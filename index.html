@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roy Zamora - Educational Data Solutions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #4d1a78 0%, #663399 50%, #1a1a1a 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .hero .subheadline {
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: #dc143c;
+            color: white;
+            padding: 1rem 2.5rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(220, 20, 60, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .cta-button:hover::before {
+            left: 100%;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(220, 20, 60, 0.4);
+        }
+        
+        /* Floating elements */
+        .floating-element {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .floating-element:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .floating-element:nth-child(2) {
+            top: 60%;
+            right: 15%;
+            animation-delay: 2s;
+        }
+        
+        .floating-element:nth-child(3) {
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+        
+        /* Value Proposition Section */
+        .value-section {
+            padding: 5rem 2rem;
+            background: #f8f9fa;
+            text-align: center;
+        }
+        
+        .value-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #4d1a78;
+        }
+        
+        .value-section p {
+            font-size: 1.3rem;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+        }
+        
+        .transformation-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+        
+        .transformation-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .transformation-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #4d1a78, #663399);
+        }
+        
+        .transformation-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .transformation-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #4d1a78;
+        }
+        
+        .transformation-card p {
+            color: #666;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+        
+        /* Credibility Section */
+        .credibility {
+            padding: 5rem 2rem;
+            background: white;
+            text-align: center;
+        }
+        
+        .credibility h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #4d1a78;
+        }
+        
+        .stats-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        
+        .stat-item {
+            padding: 2rem;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #663399;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+            color: #666;
+            margin-top: 0.5rem;
+        }
+        
+        /* Expertise Section */
+        .expertise {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+        
+        .expertise h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #4d1a78;
+        }
+        
+        .expertise-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .expertise-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .expertise-card h3 {
+            color: #663399;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .expertise-card ul {
+            list-style: none;
+        }
+        
+        .expertise-card li {
+            padding: 0.5rem 0;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .expertise-card li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #663399;
+            font-weight: bold;
+        }
+        
+        /* Individual Solutions Section */
+        .individual-solutions {
+            padding: 5rem 2rem;
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+        }
+        
+        .individual-solutions h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+        
+        .individual-solutions > p {
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+        }
+        
+        .solutions-grid {
+            max-width: 1000px;
+            margin: 0 auto 4rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+        
+        .solution-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease;
+            text-align: left;
+        }
+        
+        .solution-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .campus-card {
+            border-top: 4px solid #4d1a78;
+        }
+        
+        .individual-card {
+            border-top: 4px solid #dc143c;
+        }
+        
+        .card-header h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+        
+        .card-subtitle {
+            font-size: 1rem;
+            opacity: 0.8;
+            margin-bottom: 1.5rem;
+        }
+        
+        .solution-card ul {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+        
+        .solution-card li {
+            padding: 0.5rem 0;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .solution-card li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #c0c0c0;
+            font-weight: bold;
+        }
+        
+        .card-footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 1rem;
+        }
+        
+        .pricing-note {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            font-style: italic;
+        }
+        
+        .success-stories h3 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: white;
+        }
+        
+        .story-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: left;
+        }
+        
+        .story-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid #663399;
+        }
+        
+        .story-item strong {
+            color: #c0c0c0;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* CTA Section */
+        .final-cta {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, #4d1a78 0%, #663399 50%, #1a1a1a 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .final-cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .final-cta p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        /* Contact Form Styles */
+        .form-container {
+            max-width: 800px;
+            margin: 3rem auto 0;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 3rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .form-section {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .form-section h3 {
+            color: white;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+            padding-bottom: 0.5rem;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+        
+        .form-group label {
+            color: white;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 0.8rem;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #dc143c;
+            box-shadow: 0 0 0 3px rgba(220, 20, 60, 0.2);
+        }
+        
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .radio-item {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .radio-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .radio-item input[type="radio"] {
+            display: none;
+        }
+        
+        .radio-checkmark {
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            margin-right: 1rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .radio-item input[type="radio"]:checked + .radio-checkmark {
+            background: #dc143c;
+            border-color: #dc143c;
+        }
+        
+        .radio-item input[type="radio"]:checked + .radio-checkmark::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+        }
+        
+        .checkbox-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            color: white;
+            padding: 0.5rem;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .checkbox-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .checkbox-item input[type="checkbox"] {
+            display: none;
+        }
+        
+        .checkmark {
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            border-radius: 4px;
+            margin-right: 0.8rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .checkbox-item input[type="checkbox"]:checked + .checkmark {
+            background: #dc143c;
+            border-color: #dc143c;
+        }
+        
+        .checkbox-item input[type="checkbox"]:checked + .checkmark::after {
+            content: '✓';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-weight: bold;
+        }
+        
+        .submit-button {
+            background: #dc143c;
+            color: white;
+            border: none;
+            padding: 1.2rem 2rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+            box-shadow: 0 8px 25px rgba(220, 20, 60, 0.3);
+        }
+        
+        .submit-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(220, 20, 60, 0.4);
+        }
+        
+        .submit-button:active {
+            transform: translateY(0);
+        }
+        
+        /* Success Message */
+        .success-message {
+            background: #4CAF50;
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            margin-top: 1rem;
+            display: none;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero .subheadline {
+                font-size: 1.2rem;
+            }
+            
+            .transformation-grid,
+            .expertise-grid,
+            .solutions-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-container {
+                padding: 2rem 1rem;
+                margin: 2rem 1rem 0;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .checkbox-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="floating-element">📊</div>
+        <div class="floating-element">📈</div>
+        <div class="floating-element">🎯</div>
+        
+        <div class="hero-content">
+            <h1>Stop drowning in data.<br>Start making decisions that matter.</h1>
+            <p class="subheadline">Transform your district's data chaos into strategic advantage with proven analytics solutions that work with your existing systems.</p>
+            <a href="#contact" class="cta-button">Get Your Data Strategy Session</a>
+        </div>
+    </section>
+
+    <!-- Value Proposition -->
+    <section class="value-section">
+        <h2>Here's what you'll get:</h2>
+        <p>Clear insights, actionable recommendations, and the confidence to make data-driven decisions that improve student outcomes—using the tools you already have.</p>
+        
+        <div class="transformation-grid">
+            <div class="transformation-card">
+                <h3>From Data Overwhelm to Strategic Clarity</h3>
+                <p>Stop spending hours trying to make sense of scattered spreadsheets. Get comprehensive analytics dashboards that tell the story your stakeholders need to hear, built with your current platforms.</p>
+            </div>
+            
+            <div class="transformation-card">
+                <h3>From Compliance Stress to Confident Reporting</h3>
+                <p>Never worry about state reporting deadlines again. Streamlined evaluation systems ensure you're always ready for TEA requirements and accountability ratings, leveraging what you already own.</p>
+            </div>
+            
+            <div class="transformation-card">
+                <h3>From Reactive Planning to Predictive Strategy</h3>
+                <p>Stop making decisions based on gut feelings. Get enrollment forecasting, boundary optimization, and strategic planning frameworks that position your district for success.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Credibility Section -->
+    <section class="credibility">
+        <h2>Proven Results, Not Just Promises</h2>
+        <div class="stats-grid">
+            <div class="stat-item">
+                <span class="stat-number">30,000+</span>
+                <span class="stat-label">Students Served</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">40,000+</span>
+                <span class="stat-label">Stakeholders Surveyed</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">36</span>
+                <span class="stat-label">Campuses Analyzed</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">10+</span>
+                <span class="stat-label">Years Experience</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expertise Section -->
+    <section class="expertise">
+        <h2>What You'll Actually Get</h2>
+        <div class="expertise-grid">
+            <div class="expertise-card">
+                <h3>Strategic Planning & Analytics</h3>
+                <ul>
+                    <li>Comprehensive district strategic plans</li>
+                    <li>Executive leadership evaluation frameworks</li>
+                    <li>Data-driven goal setting and monitoring</li>
+                    <li>Stakeholder engagement strategies</li>
+                </ul>
+            </div>
+            
+            <div class="expertise-card">
+                <h3>Assessment & Accountability</h3>
+                <ul>
+                    <li>State accountability rating predictions</li>
+                    <li>TAPR and TEA compliance reporting</li>
+                    <li>Program evaluation (GT, ESL, Title I)</li>
+                    <li>Student achievement analysis</li>
+                </ul>
+            </div>
+            
+            <div class="expertise-card">
+                <h3>Enrollment & Operations</h3>
+                <ul>
+                    <li>Enrollment forecasting models</li>
+                    <li>School boundary optimization</li>
+                    <li>Demographic analysis and reporting</li>
+                    <li>Facility planning and capacity studies</li>
+                </ul>
+            </div>
+            
+            <div class="expertise-card">
+                <h3>Strategic Compensation & Performance</h3>
+                <ul>
+                    <li>Teacher Incentive Allotment (TIA) implementation</li>
+                    <li>Principal Incentive Allotment (PIA) design</li>
+                    <li>Performance-based compensation analysis</li>
+                    <li>Campus improvement initiative evaluation</li>
+                </ul>
+            </div>
+            
+            <div class="expertise-card">
+                <h3>Data Integration & Training</h3>
+                <ul>
+                    <li>Work with your existing systems (eSchool, Skyward, PowerSchool)</li>
+                    <li>Connect multiple data sources seamlessly</li>
+                    <li>Train your team for long-term success</li>
+                    <li>Build sustainable workflows you can maintain</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Individual & Campus Solutions -->
+    <section class="individual-solutions">
+        <h2>Solutions for Campus Leaders & Individual Professionals</h2>
+        <p>Whether you're a principal, data coordinator, teacher, or aspiring administrator, get the tools and skills you need to excel.</p>
+        
+        <div class="solutions-grid">
+            <div class="solution-card campus-card">
+                <div class="card-header">
+                    <h3>Campus-Level Solutions</h3>
+                    <p class="card-subtitle">Package services for schools and departments</p>
+                </div>
+                <ul>
+                    <li>Campus improvement planning & evaluation</li>
+                    <li>Principal dashboard development</li>
+                    <li>Staff evaluation tracking systems</li>
+                    <li>Campus data team training</li>
+                    <li>Ongoing retainer support</li>
+                </ul>
+                <div class="card-footer">
+                    <span class="pricing-note">Package pricing based on scope</span>
+                </div>
+            </div>
+            
+            <div class="solution-card individual-card">
+                <div class="card-header">
+                    <h3>Individual Professional Development</h3>
+                    <p class="card-subtitle">Coaching and tools for personal growth</p>
+                </div>
+                <ul>
+                    <li>Personal TIA/PIA goal tracking tools</li>
+                    <li>Excel & data analysis mastery coaching</li>
+                    <li>Professional portfolio development</li>
+                    <li>Career advancement through data skills</li>
+                    <li>Custom deliverables when needed</li>
+                </ul>
+                <div class="card-footer">
+                    <span class="pricing-note">Flexible coaching & workshop options</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="success-stories">
+            <h3>Who This Helps</h3>
+            <div class="story-grid">
+                <div class="story-item">
+                    <strong>Principals:</strong> Get data dashboards that actually help you lead, plus tools to track TIA goals and campus improvement metrics.
+                </div>
+                <div class="story-item">
+                    <strong>Data Coordinators:</strong> Master advanced features in your current systems and build processes that save hours each week.
+                </div>
+                <div class="story-item">
+                    <strong>Teachers:</strong> Develop data analysis skills that set you apart and tools to track your own professional growth.
+                </div>
+                <div class="story-item">
+                    <strong>Aspiring Leaders:</strong> Build the data competency that's essential for administrative roles in today's education landscape.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section class="final-cta" id="contact">
+        <h2>Ready to transform your data strategy?</h2>
+        <p>Tell us about your needs and we'll craft a solution that works with your current systems.</p>
+        
+        <div class="form-container">
+            <form id="contactForm" class="contact-form">
+                <!-- Audience Selection -->
+                <div class="form-section">
+                    <h3>Who is this for? *</h3>
+                    <div class="radio-group">
+                        <label class="radio-item">
+                            <input type="radio" name="audience" value="district" required>
+                            <span class="radio-checkmark"></span>
+                            District Leadership (Superintendent, Assistant Superintendent, Directors)
+                        </label>
+                        <label class="radio-item">
+                            <input type="radio" name="audience" value="campus" required>
+                            <span class="radio-checkmark"></span>
+                            Campus/School Level (Principal, Assistant Principal, Department Head)
+                        </label>
+                        <label class="radio-item">
+                            <input type="radio" name="audience" value="individual" required>
+                            <span class="radio-checkmark"></span>
+                            Individual Professional Development (Teacher, Coordinator, Aspiring Leader)
+                        </label>
+                    </div>
+                </div>
+
+                <!-- District Information (shown for district audience) -->
+                <div class="form-section district-fields" style="display: none;">
+                    <h3>District Information</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="districtName">District Name *</label>
+                            <input type="text" id="districtName" name="districtName">
+                        </div>
+                        <div class="form-group">
+                            <label for="enrollment">Student Enrollment *</label>
+                            <select id="enrollment" name="enrollment">
+                                <option value="">Select enrollment range</option>
+                                <option value="under-2500">Under 2,500</option>
+                                <option value="2500-5000">2,500 - 5,000</option>
+                                <option value="5000-10000">5,000 - 10,000</option>
+                                <option value="10000-20000">10,000 - 20,000</option>
+                                <option value="20000-plus">20,000+</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Campus Information (shown for campus audience) -->
+                <div class="form-section campus-fields" style="display: none;">
+                    <h3>Campus Information</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="campusName">School/Campus Name *</label>
+                            <input type="text" id="campusName" name="campusName">
+                        </div>
+                        <div class="form-group">
+                            <label for="campusSize">Campus Enrollment</label>
+                            <select id="campusSize" name="campusSize">
+                                <option value="">Select campus size</option>
+                                <option value="under-300">Under 300</option>
+                                <option value="300-600">300 - 600</option>
+                                <option value="600-1000">600 - 1,000</option>
+                                <option value="1000-1500">1,000 - 1,500</option>
+                                <option value="1500-plus">1,500+</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fundingSource">Funding Source</label>
+                            <select id="fundingSource" name="fundingSource">
+                                <option value="">How would this be funded?</option>
+                                <option value="campus-budget">Campus/School Budget</option>
+                                <option value="department-budget">Department Budget</option>
+                                <option value="personal">Personal Investment</option>
+                                <option value="unsure">Not sure yet</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="campusLevel">School Level</label>
+                            <select id="campusLevel" name="campusLevel">
+                                <option value="">Select level</option>
+                                <option value="elementary">Elementary</option>
+                                <option value="middle">Middle School</option>
+                                <option value="high">High School</option>
+                                <option value="k12">K-12</option>
+                                <option value="alternative">Alternative/Specialty</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="form-section">
+                    <h3>Your Information</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Name *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="title">Title/Position *</label>
+                            <input type="text" id="title" name="title" placeholder="e.g., Superintendent, Principal, Teacher, Data Coordinator" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service Selection -->
+                <div class="form-section">
+                    <h3>What services are you most interested in? *</h3>
+                    <div class="checkbox-grid">
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="services" value="strategic-planning">
+                            <span class="checkmark"></span>
+                            Strategic Planning & Analytics
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="services" value="assessment-accountability">
+                            <span class="checkmark"></span>
+                            Assessment & Accountability Reporting
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="services" value="program-evaluation">
+                            <span class="checkmark"></span>
+                            Program Evaluation (Title I, GT, ESL)
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="services" value="enrollment-forecasting">
+                            <span class="checkmark"></span>
+                            Enrollment Forecasting & Boundary Planning
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="services" value="data-dashboards">
+                            <span class="checkmark"></span>
+                            Data Dashboards & Visualization
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="services" value="strategic-compensation">
+                            <span class="checkmark"></span>
+                            Strategic Compensation (TIA/PIA Implementation)
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="services" value="campus-improvement">
+                            <span class="checkmark"></span>
+                            Campus Improvement Planning & Evaluation
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="services" value="data-integration">
+                            <span class="checkmark"></span>
+                            Data Integration & System Optimization
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="services" value="training">
+                            <span class="checkmark"></span>
+                            Staff Training & Capacity Building
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="services" value="other">
+                            <span class="checkmark"></span>
+                            Other (describe below)
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Current Data Programs/Challenges -->
+                <div class="form-section">
+                    <h3>What data programs or platforms do you need help with?</h3>
+                    <div class="checkbox-grid">
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="dataPrograms" value="sis-general">
+                            <span class="checkmark"></span>
+                            Student Information Systems (eSchool, Skyward, PowerSchool)
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="dataPrograms" value="assessment-platforms">
+                            <span class="checkmark"></span>
+                            Assessment Platforms (MAP, DecisionEd, Eduphoria, Amplify)
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="dataPrograms" value="state-reporting">
+                            <span class="checkmark"></span>
+                            State Reporting (PEIMS, TAPR, AskTED, TEA CRS)
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="dataPrograms" value="data-viz">
+                            <span class="checkmark"></span>
+                            Data Visualization (Tableau, Power BI, Qualtrics Dashboards)
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="dataPrograms" value="analytics-tools">
+                            <span class="checkmark"></span>
+                            Analytics Tools (Excel, Alteryx, IBM Cognos, SPSS)
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="dataPrograms" value="survey-systems">
+                            <span class="checkmark"></span>
+                            Survey Systems (Qualtrics, others)
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="dataPrograms" value="gis-mapping">
+                            <span class="checkmark"></span>
+                            GIS/Mapping (ArcGIS, boundary planning)
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="dataPrograms" value="other-programs">
+                            <span class="checkmark"></span>
+                            Other data programs (describe below)
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Timeline & Budget -->
+                <div class="form-section">
+                    <h3>Project Details</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="timeline">Desired Timeline *</label>
+                            <select id="timeline" name="timeline" required>
+                                <option value="">Select timeline</option>
+                                <option value="immediate">ASAP (within 30 days)</option>
+                                <option value="quarter">This quarter</option>
+                                <option value="semester">This semester</option>
+                                <option value="next-year">Next school year</option>
+                                <option value="flexible">Flexible</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="budget">Estimated Budget Range</label>
+                            <select id="budget" name="budget">
+                                <option value="">Select budget range</option>
+                                <option value="under-10k">Under $10,000</option>
+                                <option value="10k-25k">$10,000 - $25,000</option>
+                                <option value="25k-50k">$25,000 - $50,000</option>
+                                <option value="50k-100k">$50,000 - $100,000</option>
+                                <option value="100k-plus">$100,000+</option>
+                                <option value="unknown">Not sure yet</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Current Challenges -->
+                <div class="form-section">
+                    <h3>Tell us about your current challenges</h3>
+                    <div class="form-group full-width">
+                        <label for="challenges">What specific data challenges are you facing? What outcomes are you hoping to achieve? *</label>
+                        <textarea id="challenges" name="challenges" rows="4" placeholder="e.g., We need help with state accountability reporting, our enrollment projections are unreliable, we want better dashboards for the board..." required></textarea>
+                    </div>
+                </div>
+
+                <!-- Additional Comments -->
+                <div class="form-section">
+                    <div class="form-group full-width">
+                        <label for="comments">Additional comments or questions</label>
+                        <textarea id="comments" name="comments" rows="3" placeholder="Any additional details about your needs or specific questions about our services..."></textarea>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-button">Get My Custom Data Strategy Proposal</button>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards and sections
+        document.querySelectorAll('.transformation-card, .expertise-card, .stat-item, .solution-card, .story-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Form audience branching logic
+        document.querySelectorAll('input[name="audience"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                // Hide all conditional sections
+                document.querySelector('.district-fields').style.display = 'none';
+                document.querySelector('.campus-fields').style.display = 'none';
+                
+                // Remove required attributes from hidden fields
+                document.querySelectorAll('.district-fields input, .district-fields select').forEach(field => {
+                    field.removeAttribute('required');
+                });
+                document.querySelectorAll('.campus-fields input, .campus-fields select').forEach(field => {
+                    field.removeAttribute('required');
+                });
+                
+                // Show relevant section and add required attributes
+                if (this.value === 'district') {
+                    document.querySelector('.district-fields').style.display = 'block';
+                    document.getElementById('districtName').setAttribute('required', '');
+                    document.getElementById('enrollment').setAttribute('required', '');
+                } else if (this.value === 'campus') {
+                    document.querySelector('.campus-fields').style.display = 'block';
+                    document.getElementById('campusName').setAttribute('required', '');
+                }
+            });
+        });
+
+        // Form handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const data = {};
+            
+            // Handle regular fields
+            for (let [key, value] of formData.entries()) {
+                if (key === 'services' || key === 'dataPrograms') {
+                    if (!data[key]) data[key] = [];
+                    data[key].push(value);
+                } else {
+                    data[key] = value;
+                }
+            }
+            
+            // Validate required fields based on audience
+            let requiredFields = ['audience', 'name', 'title', 'email', 'timeline', 'challenges'];
+            
+            if (data.audience === 'district') {
+                requiredFields.push('districtName', 'enrollment');
+            } else if (data.audience === 'campus') {
+                requiredFields.push('campusName');
+            }
+            
+            const missingFields = requiredFields.filter(field => !data[field]);
+            
+            if (missingFields.length > 0) {
+                alert('Please fill out all required fields.');
+                return;
+            }
+            
+            // Check if at least one service is selected
+            if (!data.services || data.services.length === 0) {
+                alert('Please select at least one service you\'re interested in.');
+                return;
+            }
+            
+            // Simulate form submission
+            this.style.opacity = '0.5';
+            const submitButton = this.querySelector('.submit-button');
+            const originalText = submitButton.textContent;
+            submitButton.textContent = 'Sending...';
+            submitButton.disabled = true;
+            
+            // Create email body based on audience
+            let emailBody = `New Lead from Educational Data Solutions Website\n\n`;
+            emailBody += `AUDIENCE: ${data.audience.toUpperCase()} LEVEL\n\n`;
+            
+            if (data.audience === 'district') {
+                emailBody += `DISTRICT INFORMATION:\n`;
+                emailBody += `District: ${data.districtName}\n`;
+                emailBody += `Enrollment: ${data.enrollment}\n\n`;
+            } else if (data.audience === 'campus') {
+                emailBody += `CAMPUS INFORMATION:\n`;
+                emailBody += `Campus: ${data.campusName}\n`;
+                emailBody += `Campus Size: ${data.campusSize || 'Not specified'}\n`;
+                emailBody += `School Level: ${data.campusLevel || 'Not specified'}\n`;
+                emailBody += `Funding Source: ${data.fundingSource || 'Not specified'}\n\n`;
+            }
+            
+            emailBody += `CONTACT INFORMATION:\n`;
+            emailBody += `Name: ${data.name}\n`;
+            emailBody += `Title: ${data.title}\n`;
+            emailBody += `Email: ${data.email}\n`;
+            emailBody += `Phone: ${data.phone || 'Not provided'}\n\n`;
+            
+            emailBody += `SERVICES INTERESTED IN:\n`;
+            if (data.services) {
+                data.services.forEach(service => {
+                    emailBody += `• ${service.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())}\n`;
+                });
+            }
+            
+            emailBody += `\nDATA PROGRAMS NEEDING HELP:\n`;
+            if (data.dataPrograms) {
+                data.dataPrograms.forEach(program => {
+                    emailBody += `• ${program.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())}\n`;
+                });
+            }
+            
+            emailBody += `\nPROJECT DETAILS:\n`;
+            emailBody += `Timeline: ${data.timeline}\n`;
+            emailBody += `Budget: ${data.budget || 'Not specified'}\n\n`;
+            
+            emailBody += `CHALLENGES:\n${data.challenges}\n\n`;
+            
+            if (data.comments) {
+                emailBody += `ADDITIONAL COMMENTS:\n${data.comments}\n\n`;
+            }
+            
+            // Create mailto link
+            const subject = `Data Strategy Consultation Request - ${data.audience === 'district' ? data.districtName : data.audience === 'campus' ? data.campusName : 'Individual Professional Development'}`;
+            const mailtoLink = `mailto:royzjr2@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+            
+            // Simulate processing time
+            setTimeout(() => {
+                // Open email client
+                window.location.href = mailtoLink;
+                
+                // Show success message
+                this.innerHTML = `
+                    <div class="success-message" style="display: block;">
+                        <h3>Thank you for your interest!</h3>
+                        <p>Your email client should open with your request. If not, please email us directly at <strong>royzjr2@gmail.com</strong></p>
+                        <p>We'll respond within 24 hours with a custom proposal tailored to your ${data.audience} needs.</p>
+                    </div>
+                `;
+            }, 1500);
+        });
+    </script>
+</body>
+</html>
