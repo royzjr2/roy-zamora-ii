@@ -64,9 +64,15 @@
             font-weight: 300;
         }
         
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
         .cta-button {
             display: inline-block;
-            background: #dc143c;
             color: white;
             padding: 1rem 2.5rem;
             font-size: 1.2rem;
@@ -74,9 +80,19 @@
             text-decoration: none;
             border-radius: 50px;
             transition: all 0.3s ease;
-            box-shadow: 0 8px 25px rgba(220, 20, 60, 0.3);
             position: relative;
             overflow: hidden;
+        }
+        
+        .cta-button.primary {
+            background: #dc143c;
+            box-shadow: 0 8px 25px rgba(220, 20, 60, 0.3);
+        }
+        
+        .cta-button.secondary {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
         }
         
         .cta-button::before {
@@ -96,7 +112,15 @@
         
         .cta-button:hover {
             transform: translateY(-3px);
+        }
+        
+        .cta-button.primary:hover {
             box-shadow: 0 12px 35px rgba(220, 20, 60, 0.4);
+        }
+        
+        .cta-button.secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
         }
         
         /* Floating elements */
@@ -561,7 +585,10 @@
         <div class="hero-content">
             <h1>Stop drowning in data.<br>Start making decisions that matter.</h1>
             <p class="subheadline">Transform your district's data chaos into strategic advantage with proven analytics solutions that work with your existing systems.</p>
-            <a href="#contact" class="cta-button">Get Your Data Strategy Session</a>
+            <div class="hero-buttons">
+                <a href="#contact" class="cta-button primary">Get Your Data Strategy Session</a>
+                <a href="portfolio.html" class="cta-button secondary">View Full Portfolio →</a>
+            </div>
         </div>
     </section>
 
