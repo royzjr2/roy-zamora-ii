@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roy Zamora - Professional Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #4d1a78 0%, #663399 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+        }
+        
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .profile-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            font-weight: 700;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        
+        .profile-info h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        
+        .profile-info .title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+        
+        .profile-info .credentials {
+            font-size: 1rem;
+            opacity: 0.8;
+            line-height: 1.4;
+        }
+        
+        .navigation-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .nav-link {
+            padding: 0.8rem 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .nav-link.primary {
+            background: #dc143c;
+            border-color: #dc143c;
+        }
+        
+        .nav-link.primary:hover {
+            background: #b91c3c;
+            box-shadow: 0 8px 25px rgba(220, 20, 60, 0.3);
+        }
+        
+        /* Quick Stats */
+        .quick-stats {
+            padding: 3rem 2rem;
+            background: white;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .stats-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+        
+        .stat-item {
+            padding: 1rem;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #663399;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 0.3rem;
+        }
+        
+        /* Main Content */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 4rem;
+            padding-top: 4rem;
+            padding-bottom: 4rem;
+        }
+        
+        .content-left {
+            /* Main content area */
+        }
+        
+        .content-right {
+            /* Sidebar */
+        }
+        
+        /* Research Section */
+        .section {
+            margin-bottom: 4rem;
+        }
+        
+        .section h2 {
+            font-size: 2rem;
+            color: #4d1a78;
+            margin-bottom: 1.5rem;
+            border-bottom: 3px solid #663399;
+            padding-bottom: 0.5rem;
+        }
+        
+        .research-focus {
+            background: rgba(77, 26, 120, 0.05);
+            padding: 2rem;
+            border-radius: 10px;
+            border-left: 4px solid #663399;
+            margin-bottom: 2rem;
+        }
+        
+        .research-focus h3 {
+            color: #4d1a78;
+            margin-bottom: 1rem;
+        }
+        
+        .research-focus p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        
+        .research-methods {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .method-tag {
+            background: #663399;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+        
+        /* Project Showcase */
+        .project-showcase {
+            display: grid;
+            gap: 2rem;
+        }
+        
+        .project-item {
+            background: white;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            padding: 2rem;
+            transition: box-shadow 0.3s ease;
+        }
+        
+        .project-item:hover {
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+        
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        
+        .project-title {
+            color: #4d1a78;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+        
+        .project-type {
+            background: #dc143c;
+            color: white;
+            padding: 0.2rem 0.8rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+        }
+        
+        .project-description {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        
+        .project-metrics {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .metric {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .metric strong {
+            color: #663399;
+        }
+        
+        /* Sidebar Sections */
+        .sidebar-section {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+        
+        .sidebar-section h3 {
+            color: #4d1a78;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .tool-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem;
+        }
+        
+        .tool-item {
+            background: white;
+            padding: 0.5rem;
+            border-radius: 5px;
+            font-size: 0.85rem;
+            text-align: center;
+            border: 1px solid #eee;
+        }
+        
+        .speaking-list {
+            list-style: none;
+        }
+        
+        .speaking-item {
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .speaking-item:last-child {
+            border-bottom: none;
+        }
+        
+        .speaking-title {
+            font-weight: 600;
+            color: #4d1a78;
+            margin-bottom: 0.3rem;
+        }
+        
+        .speaking-details {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .education-item {
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .education-item:last-child {
+            border-bottom: none;
+        }
+        
+        .degree {
+            font-weight: 600;
+            color: #4d1a78;
+            margin-bottom: 0.3rem;
+        }
+        
+        .institution {
+            color: #666;
+            margin-bottom: 0.3rem;
+        }
+        
+        .education-date {
+            font-size: 0.9rem;
+            color: #999;
+        }
+        
+        /* Experience Timeline */
+        .experience-timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+        
+        .experience-timeline::before {
+            content: '';
+            position: absolute;
+            left: 1rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #4d1a78, #663399);
+        }
+        
+        .experience-item {
+            position: relative;
+            margin-bottom: 3rem;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            border: 1px solid #eee;
+            margin-left: 2rem;
+        }
+        
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: -2.5rem;
+            top: 2rem;
+            width: 12px;
+            height: 12px;
+            background: #dc143c;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px #4d1a78;
+        }
+        
+        .experience-date {
+            color: #dc143c;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .experience-title {
+            color: #4d1a78;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+        
+        .experience-company {
+            color: #666;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+        
+        .experience-description {
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .profile-section {
+                flex-direction: column;
+                text-align: center;
+                gap: 2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                padding: 2rem 1rem;
+            }
+            
+            .profile-info h1 {
+                font-size: 2rem;
+            }
+            
+            .navigation-links {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .nav-link {
+                width: 200px;
+                text-align: center;
+            }
+            
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .tool-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .project-header {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .project-metrics {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="profile-section">
+                <div class="profile-image">RZ</div>
+                <div class="profile-info">
+                    <h1>Roy Zamora</h1>
+                    <div class="title">Educational Data Strategist & Research Leader</div>
+                    <div class="credentials">
+                        Ph.D. Candidate, Educational Leadership Policy (Texas Tech)<br>
+                        M.Ed., Education Policy & Management (Harvard)<br>
+                        Director of Planning, Evaluation & Research, Irving ISD
+                    </div>
+                </div>
+            </div>
+            
+            <div class="navigation-links">
+                <a href="index.html" class="nav-link primary">🚀 Consulting Services</a>
+                <a href="research.html" class="nav-link">🔬 Dive into My Research</a>
+                <a href="mailto:royzjr2@gmail.com" class="nav-link">📧 Contact</a>
+                <a href="https://linkedin.com/in/royzamora" class="nav-link">💼 LinkedIn</a>
+                <a href="#experience" class="nav-link">📋 Experience</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Stats -->
+    <section class="quick-stats">
+        <div class="stats-container">
+            <div class="stat-item">
+                <span class="stat-number">97%</span>
+                <span class="stat-label">Enrollment Forecast Accuracy</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">$2M+</span>
+                <span class="stat-label">Cost Savings Identified</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">40K+</span>
+                <span class="stat-label">Stakeholders Surveyed</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">9</span>
+                <span class="stat-label">Speaking Engagements (2024-25)</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">5</span>
+                <span class="stat-label">Custom Systems Built</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">100%</span>
+                <span class="stat-label">Project Success Rate</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="content-left">
+            <!-- Current Research -->
+            <div class="section">
+                <h2>Current Research & Focus</h2>
+                <div class="research-focus">
+                    <h3>The Campus Readiness Index: A Novel Approach to Measuring School Organizational Capacity</h3>
+                    <p><strong>Research Focus:</strong> Developing and validating a Campus Readiness Index (CRI) that quantifies schools' organizational capacity using readily available administrative data, drawing on institutional theory and analyzing seven years of Texas administrative data (2016-2023, n=54,900 campus-year observations).</p>
+                    <p><strong>Methodology:</strong> Employing factor analysis to examine six indicators of organizational readiness including teacher experience, credentials, principal tenure, and resource distribution. Using fixed effects regression models and difference-in-differences approaches to validate against student outcomes and examine policy impacts.</p>
+                    <p><strong>Key Finding:</strong> Preliminary results reveal three distinct dimensions of campus readiness with statistically significant relationships to student achievement - a one-level increase in campus readiness grade associates with 3.20 percentage-point increases in mathematics proficiency and 2.87 percentage-point increases in reading proficiency.</p>
+                    <div class="research-methods">
+                        <span class="method-tag">Factor Analysis</span>
+                        <span class="method-tag">Fixed Effects Regression</span>
+                        <span class="method-tag">Difference-in-Differences</span>
+                        <span class="method-tag">Institutional Theory</span>
+                        <span class="method-tag">Administrative Data</span>
+                        <span class="method-tag">Policy Analysis</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Key Projects -->
+            <div class="section">
+                <h2>Key Projects & Initiatives</h2>
+                <div class="project-showcase">
+                    <div class="project-item">
+                        <div class="project-header">
+                            <div>
+                                <div class="project-title">District-Wide Strategic Planning Initiative</div>
+                                <div class="project-description">Orchestrated comprehensive strategic planning employing advanced analytics to craft district vision and goals, resulting in widespread adoption of data-driven practices across 36 campuses.</div>
+                            </div>
+                            <div class="project-type">Leadership</div>
+                        </div>
+                        <div class="project-metrics">
+                            <div class="metric">📊 <strong>40,000+</strong> stakeholders engaged</div>
+                            <div class="metric">✅ <strong>100%</strong> board approval</div>
+                            <div class="metric">🎯 <strong>36</strong> campuses aligned</div>
+                        </div>
+                    </div>
+
+                    <div class="project-item">
+                        <div class="project-header">
+                            <div>
+                                <div class="project-title">Enrollment Management & Forecasting System</div>
+                                <div class="project-description">Pioneered district-wide enrollment management system achieving 97% accuracy for projections. Established school locator app serving 30,000+ families with demographic analyses informing resource allocation.</div>
+                            </div>
+                            <div class="project-type">Analytics</div>
+                        </div>
+                        <div class="project-metrics">
+                            <div class="metric">🎯 <strong>97%</strong> forecast accuracy</div>
+                            <div class="metric">👥 <strong>30,000+</strong> families served</div>
+                            <div class="metric">💡 <strong>Custom</strong> algorithm design</div>
+                        </div>
+                    </div>
+
+                    <div class="project-item">
+                        <div class="project-header">
+                            <div>
+                                <div class="project-title">Equity-Focused Student Placement System</div>
+                                <div class="project-description">Engineered student movement management system incorporating weighted lottery algorithm, improving process efficiency while promoting diversity and earning state-level outcomes-based distinctions.</div>
+                            </div>
+                            <div class="project-type">Innovation</div>
+                        </div>
+                        <div class="project-metrics">
+                            <div class="metric">⚖️ <strong>Equity-focused</strong> algorithm</div>
+                            <div class="metric">🏆 <strong>State-level</strong> recognition</div>
+                            <div class="metric">📈 <strong>300%</strong> efficiency improvement</div>
+                        </div>
+                    </div>
+
+                    <div class="project-item">
+                        <div class="project-header">
+                            <div>
+                                <div class="project-title">School Readiness Index Development</div>
+                                <div class="project-description">Developed comprehensive analytical framework for 36 campuses, conducting advanced statistical analyses to reveal correlations between systemic factors and student outcomes for strategic staffing and support.</div>
+                            </div>
+                            <div class="project-type">Research</div>
+                        </div>
+                        <div class="project-metrics">
+                            <div class="metric">📊 <strong>36</strong> campuses analyzed</div>
+                            <div class="metric">🔍 <strong>Multi-factor</strong> correlation analysis</div>
+                            <div class="metric">📈 <strong>Predictive</strong> modeling</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Professional Experience -->
+            <div class="section" id="experience">
+                <h2>Professional Experience</h2>
+                <div class="experience-timeline">
+                    <div class="experience-item">
+                        <div class="experience-date">July 2021 - Present</div>
+                        <div class="experience-title">Director of Planning, Evaluation, & Research</div>
+                        <div class="experience-company">Irving Independent School District</div>
+                        <div class="experience-description">Oversees district-wide data initiatives and research operations for 30,000+ student district. Leads development of predictive analytics algorithms while managing performance metrics across 36 campuses. Serves as central data strategist, building analytical capacity among district and campus leaders.</div>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="experience-date">August 2019 - Present</div>
+                        <div class="experience-title">Doctoral Research</div>
+                        <div class="experience-company">Texas Tech University & Harvard Graduate School of Education</div>
+                        <div class="experience-description">Conducting graduate-level research on strategic compensation in education through advanced statistical modeling and machine learning. Analyzing statewide education data to develop evidence-based policy frameworks for district improvement strategies.</div>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="experience-date">2017 - 2021</div>
+                        <div class="experience-title">Secondary History Teacher & Instructional Leader</div>
+                        <div class="experience-company">Fort Worth Academy of Fine Arts</div>
+                        <div class="experience-description">Led strategic development of school-wide data protocols as Instructional Team Leader. Directed professional development initiatives for 25+ teachers in data-driven instruction and transformed student council into data-informed leadership platform.</div>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="experience-date">July 2011 - July 2017</div>
+                        <div class="experience-title">Civil Engineering Supervisor</div>
+                        <div class="experience-company">United States Air Force</div>
+                        <div class="experience-description">Directed mission-critical operations as lead geospatial analyst. Managed high-performance team achieving 300%+ above benchmarks. Oversaw 12 major construction projects across 8 installations while developing technical training programs for 100+ personnel.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="content-right">
+            <!-- Education -->
+            <div class="sidebar-section">
+                <h3>Education</h3>
+                <div class="education-item">
+                    <div class="degree">Ph.D. Educational Leadership Policy</div>
+                    <div class="institution">Texas Tech University</div>
+                    <div class="education-date">2022 - 2025 (Expected)</div>
+                </div>
+                <div class="education-item">
+                    <div class="degree">M.Ed. Education Policy & Management</div>
+                    <div class="institution">Harvard Graduate School of Education</div>
+                    <div class="education-date">2019 - 2020</div>
+                </div>
+                <div class="education-item">
+                    <div class="degree">B.S. Secondary Education</div>
+                    <div class="institution">Texas Christian University</div>
+                    <div class="education-date">2013 - 2017</div>
+                </div>
+            </div>
+
+            <!-- Technical Expertise -->
+            <div class="sidebar-section">
+                <h3>Technical Skills</h3>
+                <div class="tool-grid">
+                    <div class="tool-item">Stata</div>
+                    <div class="tool-item">R</div>
+                    <div class="tool-item">SPSS</div>
+                    <div class="tool-item">Python</div>
+                    <div class="tool-item">Alteryx</div>
+                    <div class="tool-item">Tableau</div>
+                    <div class="tool-item">Power BI</div>
+                    <div class="tool-item">ArcGIS</div>
+                    <div class="tool-item">SQL/MySQL</div>
+                    <div class="tool-item">Qualtrics</div>
+                    <div class="tool-item">IBM Cognos</div>
+                    <div class="tool-item">NVivo</div>
+                </div>
+            </div>
+
+            <!-- Recent Speaking -->
+            <div class="sidebar-section">
+                <h3>Recent Speaking Engagements</h3>
+                <div class="speaking-list">
+                    <div class="speaking-item">
+                        <div class="speaking-title">Texas MAP User Conference</div>
+                        <div class="speaking-details">Synthesizing Achievement & Growth<br>February 2025</div>
+                    </div>
+                    <div class="speaking-item">
+                        <div class="speaking-title">ESC Region 10 & 11</div>
+                        <div class="speaking-details">Yellow Brick Road to Success<br>January 2025</div>
+                    </div>
+                    <div class="speaking-item">
+                        <div class="speaking-title">ESC Region 10</div>
+                        <div class="speaking-details">Achievement & Growth Synthesis<br>September 2024</div>
+                    </div>
+                    <div class="speaking-item">
+                        <div class="speaking-title">Alteryx User Group</div>
+                        <div class="speaking-details">Lotteries for Diverse Districts<br>February 2024</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Leadership -->
+            <div class="sidebar-section">
+                <h3>Current Leadership</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">
+                        <strong>Strategic Compensation Design Team</strong><br>
+                        <span style="font-size: 0.9rem; color: #666;">Team Leader, Oct 2024 - Present</span>
+                    </li>
+                    <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">
+                        <strong>User Group Speaker</strong><br>
+                        <span style="font-size: 0.9rem; color: #666;">Alteryx, DecisionEd, Qualtrics</span>
+                    </li>
+                    <li style="padding: 0.5rem 0;">
+                        <strong>District Improvement Committee</strong><br>
+                        <span style="font-size: 0.9rem; color: #666;">Member, Aug 2021 - Present</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.querySelectorAll('.project-item, .experience-item, .sidebar-section').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
