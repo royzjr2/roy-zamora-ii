@@ -193,7 +193,7 @@
             line-height: 1.6;
         }
         
-        /* Credibility Section */
+        /* Proven Results Section */
         .credibility {
             padding: 5rem 2rem;
             background: white;
@@ -206,16 +206,47 @@
             color: #4d1a78;
         }
         
-        .stats-grid {
+        .stats-triangle {
             max-width: 1000px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            display: flex;
+            flex-direction: column;
             gap: 2rem;
+        }
+        
+        .stats-row {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+        
+        .row-3 {
+            /* Top row with 3 items */
+        }
+        
+        .row-2 {
+            /* Middle row with 2 items */
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .row-1 {
+            /* Bottom row with 1 item */
+            max-width: 300px;
+            margin: 0 auto;
         }
         
         .stat-item {
             padding: 2rem;
+            flex: 1;
+            max-width: 250px;
+        }
+        
+        .stat-item.featured {
+            background: rgba(220, 20, 60, 0.05);
+            border-radius: 20px;
+            border: 2px solid rgba(220, 20, 60, 0.1);
+            transform: scale(1.1);
         }
         
         .stat-number {
@@ -225,10 +256,21 @@
             display: block;
         }
         
+        .featured-number {
+            color: #dc143c !important;
+            font-size: 3.5rem;
+        }
+        
         .stat-label {
             font-size: 1.1rem;
             color: #666;
             margin-top: 0.5rem;
+            line-height: 1.3;
+        }
+        
+        .red-text {
+            color: #dc143c;
+            font-weight: 600;
         }
         
         /* Expertise Section */
@@ -424,208 +466,26 @@
         
         /* Contact Form Styles */
         .form-container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 3rem auto 0;
             background: rgba(255, 255, 255, 0.1);
-            padding: 3rem;
+            padding: 2rem;
             border-radius: 20px;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
         
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-        
-        .form-section {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-        
-        .form-section h3 {
-            color: white;
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
-            padding-bottom: 0.5rem;
-        }
-        
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-        }
-        
-        .form-group {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .form-group.full-width {
-            grid-column: 1 / -1;
-        }
-        
-        .form-group label {
-            color: white;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-        }
-        
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            padding: 0.8rem;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.9);
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-        
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #dc143c;
-            box-shadow: 0 0 0 3px rgba(220, 20, 60, 0.2);
-        }
-        
-        .radio-group {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-        
-        .radio-item {
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            color: white;
-            padding: 1rem;
-            border-radius: 8px;
-            transition: background-color 0.3s ease;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .radio-item:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-        
-        .radio-item input[type="radio"] {
-            display: none;
-        }
-        
-        .radio-checkmark {
-            width: 20px;
-            height: 20px;
-            border: 2px solid rgba(255, 255, 255, 0.5);
-            border-radius: 50%;
-            margin-right: 1rem;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-        
-        .radio-item input[type="radio"]:checked + .radio-checkmark {
-            background: #dc143c;
-            border-color: #dc143c;
-        }
-        
-        .radio-item input[type="radio"]:checked + .radio-checkmark::after {
-            content: '';
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            width: 8px;
-            height: 8px;
+        .google-form-wrapper {
             background: white;
-            border-radius: 50%;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
         }
-        
-        .checkbox-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-        }
-        
-        .checkbox-item {
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            color: white;
-            padding: 0.5rem;
-            border-radius: 8px;
-            transition: background-color 0.3s ease;
-        }
-        
-        .checkbox-item:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-        
-        .checkbox-item input[type="checkbox"] {
-            display: none;
-        }
-        
-        .checkmark {
-            width: 20px;
-            height: 20px;
-            border: 2px solid rgba(255, 255, 255, 0.5);
-            border-radius: 4px;
-            margin-right: 0.8rem;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-        
-        .checkbox-item input[type="checkbox"]:checked + .checkmark {
-            background: #dc143c;
-            border-color: #dc143c;
-        }
-        
-        .checkbox-item input[type="checkbox"]:checked + .checkmark::after {
-            content: '✓';
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            color: white;
-            font-weight: bold;
-        }
-        
-        .submit-button {
-            background: #dc143c;
-            color: white;
-            border: none;
-            padding: 1.2rem 2rem;
-            font-size: 1.2rem;
-            font-weight: 600;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 1rem;
-            box-shadow: 0 8px 25px rgba(220, 20, 60, 0.3);
-        }
-        
-        .submit-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 35px rgba(220, 20, 60, 0.4);
-        }
-        
-        .submit-button:active {
-            transform: translateY(0);
-        }
-        
-        /* Success Message */
-        .success-message {
-            background: #4CAF50;
-            color: white;
-            padding: 1rem;
-            border-radius: 8px;
-            text-align: center;
-            margin-top: 1rem;
-            display: none;
+
+        .google-form-wrapper iframe {
+            border-radius: 15px;
+            width: 100%;
+            min-height: 3620px;
         }
         
         /* Responsive */
@@ -644,17 +504,49 @@
                 grid-template-columns: 1fr;
             }
             
+            .stats-row {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .row-2, .row-1 {
+                max-width: none;
+            }
+            
+            .stat-item {
+                padding: 1.5rem;
+                max-width: none;
+            }
+            
+            .stat-number {
+                font-size: 2.5rem;
+            }
+            
+            .featured-number {
+                font-size: 3rem;
+            }
+            
+            .stat-item.featured {
+                transform: none;
+            }
+            
             .form-container {
-                padding: 2rem 1rem;
+                padding: 1rem;
                 margin: 2rem 1rem 0;
             }
             
-            .form-row {
-                grid-template-columns: 1fr;
+            .google-form-wrapper iframe {
+                min-height: 4000px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .stats-triangle {
+                gap: 1rem;
             }
             
-            .checkbox-grid {
-                grid-template-columns: 1fr;
+            .stat-item {
+                padding: 1rem;
             }
         }
     </style>
@@ -697,166 +589,46 @@
     </section>
 
     <!-- Proven Results Section -->
-<section class="credibility">
-    <h2>Proven Results, Not Just Promises</h2>
-    <div class="stats-triangle">
-        <!-- Top Row - 3 items -->
-        <div class="stats-row row-3">
-            <div class="stat-item">
-                <span class="stat-number">$2M+</span>
-                <span class="stat-label">Cost Savings <span class="red-text">Freed</span></span>
+    <section class="credibility">
+        <h2>Proven Results, Not Just Promises</h2>
+        <div class="stats-triangle">
+            <!-- Top Row - 3 items -->
+            <div class="stats-row row-3">
+                <div class="stat-item">
+                    <span class="stat-number">$2M+</span>
+                    <span class="stat-label">Cost Savings <span class="red-text">Delivered</span></span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">5</span>
+                    <span class="stat-label">Custom System Solutions <span class="red-text">Created</span></span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">700+</span>
+                    <span class="stat-label">Unique Solutions <span class="red-text">Delivered</span></span>
+                </div>
             </div>
-            <div class="stat-item">
-                <span class="stat-number">5</span>
-                <span class="stat-label">Custom System Solutions <span class="red-text">Created</span></span>
+            
+            <!-- Middle Row - 2 items -->
+            <div class="stats-row row-2">
+                <div class="stat-item">
+                    <span class="stat-number">10+</span>
+                    <span class="stat-label">Speaking Engagements <span class="red-text">(Regional/State)</span></span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">3x</span>
+                    <span class="stat-label">Faster Data <span class="red-text">Processing</span></span>
+                </div>
             </div>
-            <div class="stat-item">
-                <span class="stat-number">700+</span>
-                <span class="stat-label">Unique Solutions <span class="red-text">Delivered</span></span>
+            
+            <!-- Bottom Row - 1 item (Featured) -->
+            <div class="stats-row row-1">
+                <div class="stat-item featured">
+                    <span class="stat-number featured-number">100%</span>
+                    <span class="stat-label">Stakeholder Satisfaction Rate</span>
+                </div>
             </div>
         </div>
-        
-        <!-- Middle Row - 2 items -->
-        <div class="stats-row row-2">
-            <div class="stat-item">
-                <span class="stat-number">10+</span>
-                <span class="stat-label">Speaking Engagements <span class="red-text">(Regional/State)</span></span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-number">3x</span>
-                <span class="stat-label">Faster Data <span class="red-text">Processing</span></span>
-            </div>
-        </div>
-        
-        <!-- Bottom Row - 1 item (Featured) -->
-        <div class="stats-row row-1">
-            <div class="stat-item featured">
-                <span class="stat-number featured-number">100%</span>
-                <span class="stat-label">Stakeholder Satisfaction Rate</span>
-            </div>
-        </div>
-    </div>
-</section>
-
-<style>
-/* Credibility Section */
-.credibility {
-    padding: 5rem 2rem;
-    background: white;
-    text-align: center;
-}
-
-.credibility h2 {
-    font-size: 2.5rem;
-    margin-bottom: 3rem;
-    color: #4d1a78;
-}
-
-.stats-triangle {
-    max-width: 1000px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-}
-
-.stats-row {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-}
-
-.row-3 {
-    /* Top row with 3 items */
-}
-
-.row-2 {
-    /* Middle row with 2 items */
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-.row-1 {
-    /* Bottom row with 1 item */
-    max-width: 300px;
-    margin: 0 auto;
-}
-
-.stat-item {
-    padding: 2rem;
-    flex: 1;
-    max-width: 250px;
-}
-
-.stat-item.featured {
-    background: rgba(220, 20, 60, 0.05);
-    border-radius: 20px;
-    border: 2px solid rgba(220, 20, 60, 0.1);
-    transform: scale(1.1);
-}
-
-.stat-number {
-    font-size: 3rem;
-    font-weight: 700;
-    color: #663399;
-    display: block;
-}
-
-.featured-number {
-    color: #dc143c !important;
-    font-size: 3.5rem;
-}
-
-.stat-label {
-    font-size: 1.1rem;
-    color: #666;
-    margin-top: 0.5rem;
-    line-height: 1.3;
-}
-
-.red-text {
-    color: #dc143c;
-    font-weight: 600;
-}
-
-@media (max-width: 768px) {
-    .stats-row {
-        flex-direction: column;
-        gap: 1rem;
-    }
-    
-    .row-2, .row-1 {
-        max-width: none;
-    }
-    
-    .stat-item {
-        padding: 1.5rem;
-        max-width: none;
-    }
-    
-    .stat-number {
-        font-size: 2.5rem;
-    }
-    
-    .featured-number {
-        font-size: 3rem;
-    }
-    
-    .stat-item.featured {
-        transform: none;
-    }
-}
-
-@media (max-width: 480px) {
-    .stats-triangle {
-        gap: 1rem;
-    }
-    
-    .stat-item {
-        padding: 1rem;
-    }
-}
-</style>
+    </section>
 
     <!-- Expertise Section -->
     <section class="expertise">
@@ -968,328 +740,4 @@
                     <strong>Teachers:</strong> Develop data analysis skills that set you apart and tools to track your own professional growth.
                 </div>
                 <div class="story-item">
-                    <strong>Aspiring Leaders:</strong> Build the data competency that's essential for administrative roles in today's education landscape.
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Form Section -->
-    <section class="final-cta" id="contact">
-        <h2>Ready to transform your data strategy?</h2>
-        <p>Tell us about your needs and we'll craft a solution that works with your current systems.</p>
-        
-        <div class="form-container">
-    <div class="google-form-wrapper">
-        <!-- PASTE YOUR GOOGLE FORMS IFRAME HERE -->
-        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeHfRSKPnD9tT8tKbyCroKazQSPryTx0iZvyyqbZJeE_w4Eyg/viewform?embedded=true" 
-                width="100%" 
-                height="1400" 
-                frameborder="0" 
-                marginheight="0" 
-                marginwidth="0">
-            Loading…
-        </iframe>
-    </div>
-</div>
-
-.google-form-wrapper {
-    background: white;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-}
-
-.google-form-wrapper iframe {
-    border-radius: 15px;
-}
-
-@media (max-width: 768px) {
-    .google-form-wrapper iframe {
-        height: 1600px;
-    }
-}
-
-                <!-- District Information (shown for district audience) -->
-                <div class="form-section district-fields" style="display: none;">
-                    <h3>District Information</h3>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="districtName">District Name *</label>
-                            <input type="text" id="districtName" name="districtName">
-                        </div>
-                        <div class="form-group">
-                            <label for="enrollment">Student Enrollment *</label>
-                            <select id="enrollment" name="enrollment">
-                                <option value="">Select enrollment range</option>
-                                <option value="under-2500">Under 2,500</option>
-                                <option value="2500-5000">2,500 - 5,000</option>
-                                <option value="5000-10000">5,000 - 10,000</option>
-                                <option value="10000-20000">10,000 - 20,000</option>
-                                <option value="20000-plus">20,000+</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Campus Information (shown for campus audience) -->
-                <div class="form-section campus-fields" style="display: none;">
-                    <h3>Campus Information</h3>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="campusName">School/Campus Name *</label>
-                            <input type="text" id="campusName" name="campusName">
-                        </div>
-                        <div class="form-group">
-                            <label for="campusSize">Campus Enrollment</label>
-                            <select id="campusSize" name="campusSize">
-                                <option value="">Select campus size</option>
-                                <option value="under-300">Under 300</option>
-                                <option value="300-600">300 - 600</option>
-                                <option value="600-1000">600 - 1,000</option>
-                                <option value="1000-1500">1,000 - 1,500</option>
-                                <option value="1500-plus">1,500+</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="fundingSource">Funding Source</label>
-                            <select id="fundingSource" name="fundingSource">
-                                <option value="">How would this be funded?</option>
-                                <option value="campus-budget">Campus/School Budget</option>
-                                <option value="department-budget">Department Budget</option>
-                                <option value="personal">Personal Investment</option>
-                                <option value="unsure">Not sure yet</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="campusLevel">School Level</label>
-                            <select id="campusLevel" name="campusLevel">
-                                <option value="">Select level</option>
-                                <option value="elementary">Elementary</option>
-                                <option value="middle">Middle School</option>
-                                <option value="high">High School</option>
-                                <option value="k12">K-12</option>
-                                <option value="alternative">Alternative/Specialty</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Contact Information -->
-                <div class="form-section">
-                    <h3>Your Information</h3>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="name">Name *</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="title">Title/Position *</label>
-                            <input type="text" id="title" name="title" placeholder="e.g., Superintendent, Principal, Teacher, Data Coordinator" required>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="email">Email *</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Phone</label>
-                            <input type="tel" id="phone" name="phone">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Service Selection -->
-                <div class="form-section">
-                    <h3>What services are you most interested in? *</h3>
-                    <div class="checkbox-grid">
-                        <label class="checkbox-item">
-                            <input type="checkbox" name="services" value="strategic-planning">
-                            <span class="checkmark"></span>
-                            Strategic Planning & Analytics
-                        </label>
-                        <label class="checkbox-item">
-                            <input type="checkbox" name="services" value="assessment-accountability">
-                            <span class="checkmark"></span>
-                            Assessment & Accountability Reporting
-                        </label>
-                        <label class="checkbox-item">
-                            <input type="checkbox" name="services" value="program-evaluation">
-                            <span class="checkmark"></span>
-                            Program Evaluation (Title I, GT, ESL)
-                        </label>
-                        <label class="checkbox-item">
-                            <input type="checkbox" name="services" value="enrollment-forecasting">
-                            <span class="checkmark"></span>
-                            Enrollment Forecasting & Boundary Planning
-                        </label>
-                        <label class="checkbox-item">
-                            <input type="checkbox" name="services" value="data-dashboards">
-                            <span class="checkmark"></span>
-                            Data Dashboards & Visualization
-                        </label>
-                        <label class="checkbox-item">
-                            <input type="checkbox" name="services" value="strategic-compensation">
-                            <span class="checkmark"></span>
-                            Strategic Compensation (TIA/PIA Implementation)
-                        </label>
-                        <label class="checkbox-item">
-                            <input type="checkbox" name="services" value="campus-improvement">
-                            <span class="checkmark"></span>
-                            Campus Improvement Planning & Evaluation
-                        </label>
-                        <label class="checkbox-item">
-                            <input type="checkbox" name="services" value="data-integration">
-                            <span class="checkmark"></span>
-                            Data Integration & System Optimization
-                        </label>
-                        <label class="checkbox-item">
-                            <input type="checkbox" name="services" value="training">
-                            <span class="checkmark"></span>
-                            Staff Training & Capacity Building
-                        </label>
-                        <label class="checkbox-item">
-                            <input type="checkbox" name="services" value="other">
-                            <span class="checkmark"></span>
-                            Other (describe below)
-                        </label>
-                    </div>
-                </div>
-
-                <!-- Current Data Programs/Challenges -->
-                <div class="form-section">
-                    <h3>What data programs or platforms do you need help with?</h3>
-                    <div class="checkbox-grid">
-                        <label class="checkbox-item">
-                            <input type="checkbox" name="dataPrograms" value="sis-general">
-                            <span class="checkmark"></span>
-                            Student Information Systems (eSchool, Skyward, PowerSchool)
-                        </label>
-                        <label class="checkbox-item">
-                            <input type="checkbox" name="dataPrograms" value="assessment-platforms">
-                            <span class="checkmark"></span>
-                            Assessment Platforms (MAP, DecisionEd, Eduphoria, Amplify)
-                        </label>
-                        <label class="checkbox-item">
-                            <input type="checkbox" name="dataPrograms" value="state-reporting">
-                            <span class="checkmark"></span>
-                            State Reporting (PEIMS, TAPR, AskTED, TEA CRS)
-                        </label>
-                        <label class="checkbox-item">
-                            <input type="checkbox" name="dataPrograms" value="data-viz">
-                            <span class="checkmark"></span>
-                            Data Visualization (Tableau, Power BI, Qualtrics Dashboards)
-                        </label>
-                        <label class="checkbox-item">
-                            <input type="checkbox" name="dataPrograms" value="analytics-tools">
-                            <span class="checkmark"></span>
-                            Analytics Tools (Excel, Alteryx, IBM Cognos, SPSS)
-                        </label>
-                        <label class="checkbox-item">
-                            <input type="checkbox" name="dataPrograms" value="survey-systems">
-                            <span class="checkmark"></span>
-                            Survey Systems (Qualtrics, others)
-                        </label>
-                        <label class="checkbox-item">
-                            <input type="checkbox" name="dataPrograms" value="gis-mapping">
-                            <span class="checkmark"></span>
-                            GIS/Mapping (ArcGIS, boundary planning)
-                        </label>
-                        <label class="checkbox-item">
-                            <input type="checkbox" name="dataPrograms" value="other-programs">
-                            <span class="checkmark"></span>
-                            Other data programs (describe below)
-                        </label>
-                    </div>
-                </div>
-
-                <!-- Timeline & Budget -->
-                <div class="form-section">
-                    <h3>Project Details</h3>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="timeline">Desired Timeline *</label>
-                            <select id="timeline" name="timeline" required>
-                                <option value="">Select timeline</option>
-                                <option value="immediate">ASAP (within 30 days)</option>
-                                <option value="quarter">This quarter</option>
-                                <option value="semester">This semester</option>
-                                <option value="next-year">Next school year</option>
-                                <option value="flexible">Flexible</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="budget">Estimated Budget Range</label>
-                            <select id="budget" name="budget">
-                                <option value="">Select budget range</option>
-                                <option value="under-10k">Under $10,000</option>
-                                <option value="10k-25k">$10,000 - $25,000</option>
-                                <option value="25k-50k">$25,000 - $50,000</option>
-                                <option value="50k-100k">$50,000 - $100,000</option>
-                                <option value="100k-plus">$100,000+</option>
-                                <option value="unknown">Not sure yet</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Current Challenges -->
-                <div class="form-section">
-                    <h3>Tell us about your current challenges</h3>
-                    <div class="form-group full-width">
-                        <label for="challenges">What specific data challenges are you facing? What outcomes are you hoping to achieve? *</label>
-                        <textarea id="challenges" name="challenges" rows="4" placeholder="e.g., We need help with state accountability reporting, our enrollment projections are unreliable, we want better dashboards for the board..." required></textarea>
-                    </div>
-                </div>
-
-                <!-- Additional Comments -->
-                <div class="form-section">
-                    <div class="form-group full-width">
-                        <label for="comments">Additional comments or questions</label>
-                        <textarea id="comments" name="comments" rows="3" placeholder="Any additional details about your needs or specific questions about our services..."></textarea>
-                    </div>
-                </div>
-
-                <button type="submit" class="submit-button">Get My Custom Data Strategy Proposal</button>
-            </form>
-        </div>
-    </section>
-
-    <script>
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-
-        // Add scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Observe all cards and sections
-        document.querySelectorAll('.transformation-card, .expertise-card, .stat-item, .solution-card, .story-item').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(el);
-        });
-
-    
+                    <strong>Aspiring Leaders
