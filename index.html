@@ -980,28 +980,35 @@
         <p>Tell us about your needs and we'll craft a solution that works with your current systems.</p>
         
         <div class="form-container">
-            <form id="contactForm" class="contact-form">
-                <!-- Audience Selection -->
-                <div class="form-section">
-                    <h3>Who is this for? *</h3>
-                    <div class="radio-group">
-                        <label class="radio-item">
-                            <input type="radio" name="audience" value="district" required>
-                            <span class="radio-checkmark"></span>
-                            District Leadership (Superintendent, Assistant Superintendent, Directors)
-                        </label>
-                        <label class="radio-item">
-                            <input type="radio" name="audience" value="campus" required>
-                            <span class="radio-checkmark"></span>
-                            Campus/School Level (Principal, Assistant Principal, Department Head)
-                        </label>
-                        <label class="radio-item">
-                            <input type="radio" name="audience" value="individual" required>
-                            <span class="radio-checkmark"></span>
-                            Individual Professional Development (Teacher, Coordinator, Aspiring Leader)
-                        </label>
-                    </div>
-                </div>
+    <div class="google-form-wrapper">
+        <!-- PASTE YOUR GOOGLE FORMS IFRAME HERE -->
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeHfRSKPnD9tT8tKbyCroKazQSPryTx0iZvyyqbZJeE_w4Eyg/viewform?embedded=true" 
+                width="100%" 
+                height="1400" 
+                frameborder="0" 
+                marginheight="0" 
+                marginwidth="0">
+            Loading…
+        </iframe>
+    </div>
+</div>
+
+.google-form-wrapper {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+}
+
+.google-form-wrapper iframe {
+    border-radius: 15px;
+}
+
+@media (max-width: 768px) {
+    .google-form-wrapper iframe {
+        height: 1600px;
+    }
+}
 
                 <!-- District Information (shown for district audience) -->
                 <div class="form-section district-fields" style="display: none;">
@@ -1285,145 +1292,4 @@
             observer.observe(el);
         });
 
-        // Form audience branching logic
-        document.querySelectorAll('input[name="audience"]').forEach(radio => {
-            radio.addEventListener('change', function() {
-                // Hide all conditional sections
-                document.querySelector('.district-fields').style.display = 'none';
-                document.querySelector('.campus-fields').style.display = 'none';
-                
-                // Remove required attributes from hidden fields
-                document.querySelectorAll('.district-fields input, .district-fields select').forEach(field => {
-                    field.removeAttribute('required');
-                });
-                document.querySelectorAll('.campus-fields input, .campus-fields select').forEach(field => {
-                    field.removeAttribute('required');
-                });
-                
-                // Show relevant section and add required attributes
-                if (this.value === 'district') {
-                    document.querySelector('.district-fields').style.display = 'block';
-                    document.getElementById('districtName').setAttribute('required', '');
-                    document.getElementById('enrollment').setAttribute('required', '');
-                } else if (this.value === 'campus') {
-                    document.querySelector('.campus-fields').style.display = 'block';
-                    document.getElementById('campusName').setAttribute('required', '');
-                }
-            });
-        });
-
-        // Form handling
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(this);
-            const data = {};
-            
-            // Handle regular fields
-            for (let [key, value] of formData.entries()) {
-                if (key === 'services' || key === 'dataPrograms') {
-                    if (!data[key]) data[key] = [];
-                    data[key].push(value);
-                } else {
-                    data[key] = value;
-                }
-            }
-            
-            // Validate required fields based on audience
-            let requiredFields = ['audience', 'name', 'title', 'email', 'timeline', 'challenges'];
-            
-            if (data.audience === 'district') {
-                requiredFields.push('districtName', 'enrollment');
-            } else if (data.audience === 'campus') {
-                requiredFields.push('campusName');
-            }
-            
-            const missingFields = requiredFields.filter(field => !data[field]);
-            
-            if (missingFields.length > 0) {
-                alert('Please fill out all required fields.');
-                return;
-            }
-            
-            // Check if at least one service is selected
-            if (!data.services || data.services.length === 0) {
-                alert('Please select at least one service you\'re interested in.');
-                return;
-            }
-            
-            // Simulate form submission
-            this.style.opacity = '0.5';
-            const submitButton = this.querySelector('.submit-button');
-            const originalText = submitButton.textContent;
-            submitButton.textContent = 'Sending...';
-            submitButton.disabled = true;
-            
-            // Create email body based on audience
-            let emailBody = `New Lead from Educational Data Solutions Website\n\n`;
-            emailBody += `AUDIENCE: ${data.audience.toUpperCase()} LEVEL\n\n`;
-            
-            if (data.audience === 'district') {
-                emailBody += `DISTRICT INFORMATION:\n`;
-                emailBody += `District: ${data.districtName}\n`;
-                emailBody += `Enrollment: ${data.enrollment}\n\n`;
-            } else if (data.audience === 'campus') {
-                emailBody += `CAMPUS INFORMATION:\n`;
-                emailBody += `Campus: ${data.campusName}\n`;
-                emailBody += `Campus Size: ${data.campusSize || 'Not specified'}\n`;
-                emailBody += `School Level: ${data.campusLevel || 'Not specified'}\n`;
-                emailBody += `Funding Source: ${data.fundingSource || 'Not specified'}\n\n`;
-            }
-            
-            emailBody += `CONTACT INFORMATION:\n`;
-            emailBody += `Name: ${data.name}\n`;
-            emailBody += `Title: ${data.title}\n`;
-            emailBody += `Email: ${data.email}\n`;
-            emailBody += `Phone: ${data.phone || 'Not provided'}\n\n`;
-            
-            emailBody += `SERVICES INTERESTED IN:\n`;
-            if (data.services) {
-                data.services.forEach(service => {
-                    emailBody += `• ${service.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())}\n`;
-                });
-            }
-            
-            emailBody += `\nDATA PROGRAMS NEEDING HELP:\n`;
-            if (data.dataPrograms) {
-                data.dataPrograms.forEach(program => {
-                    emailBody += `• ${program.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())}\n`;
-                });
-            }
-            
-            emailBody += `\nPROJECT DETAILS:\n`;
-            emailBody += `Timeline: ${data.timeline}\n`;
-            emailBody += `Budget: ${data.budget || 'Not specified'}\n\n`;
-            
-            emailBody += `CHALLENGES:\n${data.challenges}\n\n`;
-            
-            if (data.comments) {
-                emailBody += `ADDITIONAL COMMENTS:\n${data.comments}\n\n`;
-            }
-            
-            // Create mailto link
-            const subject = `Data Strategy Consultation Request - ${data.audience === 'district' ? data.districtName : data.audience === 'campus' ? data.campusName : 'Individual Professional Development'}`;
-            const mailtoLink = `mailto:royzjr2@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
-            
-            // Simulate processing time
-            setTimeout(() => {
-                // Open email client
-                window.location.href = mailtoLink;
-                
-                // Show success message
-                this.innerHTML = `
-                    <div class="success-message" style="display: block;">
-                        <h3>Thank you for your interest!</h3>
-                        <p>Your email client should open with your request. If not, please email us directly at <strong>royzjr2@gmail.com</strong></p>
-                        <p>We'll respond within 24 hours with a custom proposal tailored to your ${data.audience} needs.</p>
-                    </div>
-                `;
-            }, 1500);
-        });
-    </script>
-</body>
-</html>
+    
