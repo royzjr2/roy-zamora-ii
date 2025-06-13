@@ -57,12 +57,13 @@
                         "How does the Teacher Incentive Allotment affect school organizational capacity and through what mechanisms do these effects operate to influence student outcomes?"
                     </div>
                     
+                  
                     
                     <h4>The Research Challenge</h4>
                     <p>Can school organizational capacity be validly and reliably measured through a composite index using readily available administrative data? And how does performance-based compensation like Texas's Teacher Incentive Allotment (TIA) work through these organizational mechanisms?</p>
                     <p><strong>The innovation:</strong> This study addresses both measurement and mechanism questions by developing the Campus Readiness Index (CRI) and using it to examine how TIA transforms school organizations.</p>
-                    
-                    <!-- Literature Gaps -->
+
+                     <!-- Literature Gaps -->
                     <div class="literature-gap">
                         <h4>Critical Literature Gaps Addressed</h4>
                         <ul class="gap-list">
@@ -79,7 +80,7 @@
                         <div class="paper-grid">
                             <div class="paper-card">
                                 <div class="paper-number">1</div>
-                                <div class="paper-title">Measuring What Matters — The Campus Readiness Index (CRI)</div>
+                                <div class="paper-title">Measuring What Matters — The Campus Readiness Index</div>
                                 <div class="paper-description">Development & validation of the Campus Readiness Index using factor analysis and latent content modeling</div>
                                 <div class="paper-methods">Study 1 • Institutional Theory • Factor Analysis</div>
                             </div>
@@ -271,6 +272,58 @@
                             </div>
                             <div class="equity-insight">
                                 <strong>Key Insight:</strong> High-capacity schools provide the greatest benefits to historically marginalized student populations, suggesting organizational capacity functions as an equity mechanism.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Finding 5: Regional Variation -->
+                <div class="finding-card">
+                    <div class="finding-header">
+                        <h3>Finding 5: Geographic Context Shapes Long-term Outcomes</h3>
+                        <span class="finding-type">Regional Analysis</span>
+                    </div>
+                    <div class="finding-content">
+                        <div class="regional-map">
+                            <h4>Organizational Capacity Effects on College Enrollment by Texas Region</h4>
+                            <div class="map-container">
+                                <div class="texas-regions">
+                                    <div class="region">
+                                        <span class="region-label">DFW Metro</span>
+                                        <span class="region-effect">5.76*** pp</span>
+                                    </div>
+                                    <div class="region">
+                                        <span class="region-label">Houston Metro</span>
+                                        <span class="region-effect">7.43*** pp</span>
+                                    </div>
+                                    <div class="region">
+                                        <span class="region-label">San Antonio Metro</span>
+                                        <span class="region-effect">5.01*** pp</span>
+                                    </div>
+                                    <div class="region">
+                                        <span class="region-label">West Texas</span>
+                                        <span class="region-effect">4.18*** pp</span>
+                                    </div>
+                                    <div class="region">
+                                        <span class="region-label">East Texas</span>
+                                        <span class="region-effect">1.91*** pp</span>
+                                    </div>
+                                    <div class="region">
+                                        <span class="region-label">South Texas</span>
+                                        <span class="region-effect">4.50*** pp</span>
+                                    </div>
+                                    <div class="region">
+                                        <span class="region-label">Central Texas</span>
+                                        <span class="region-effect">+0.25 pp</span>
+                                    </div>
+                                    <div class="region">
+                                        <span class="region-label">Other/Rural</span>
+                                        <span class="region-effect">2.17*** pp</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="geographic-insight">
+                                <strong>Key Insight:</strong> Metropolitan areas show stronger capacity-to-college enrollment relationships, likely due to proximity to higher education institutions and more robust support systems that amplify the effects of organizational capacity.
                             </div>
                         </div>
                     </div>
@@ -1379,6 +1432,76 @@
             border-radius: 8px;
             border-left: 4px solid #4d1a78;
             font-style: italic;
+        }
+        
+        /* Regional Map */
+        .regional-map {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin: 2rem 0;
+        }
+        
+        .regional-map h4 {
+            color: #4d1a78;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-size: 1.3rem;
+        }
+        
+        .map-container {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .texas-regions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+        }
+        
+        .region {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .region:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        
+        .region-label {
+            display: block;
+            font-weight: 600;
+            color: #4d1a78;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .region-effect {
+            display: block;
+            font-size: 1.2rem;
+            color: #dc143c;
+            font-weight: bold;
+        }
+        
+        .geographic-insight {
+            background: rgba(77, 26, 120, 0.05);
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 4px solid #4d1a78;
+            font-style: italic;
+        }
+        
+        .geographic-insight strong {
+            color: #4d1a78;
         }
         
         /* Method Grid */
