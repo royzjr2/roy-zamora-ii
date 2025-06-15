@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Campus Readiness Index: Dissertation Framework</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.4;
+            color: #333;
+            background: white;
+            padding: 1rem;
+            margin: 0;
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #4d1a78;
+        }
+        
+        .title {
+            font-size: 1.8rem;
+            color: #4d1a78;
+            margin-bottom: 0.3rem;
+            font-weight: 700;
+        }
+        
+        .subtitle {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+        
+        .author {
+            font-size: 0.9rem;
+            color: #4d1a78;
+            font-weight: 600;
+        }
+        
+        /* Framework Visual Styles */
+        .framework-visual {
+            background: white;
+            padding: 1.5rem;
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .framework-visual h2 {
+            color: #4d1a78;
+            margin-bottom: 1rem;
+            text-align: center;
+            font-size: 1.3rem;
+        }
+        
+        /* Paper 1 Section - Purple theme */
+        .paper1-section {
+            background: linear-gradient(135deg, rgba(77, 26, 120, 0.1) 0%, rgba(102, 51, 153, 0.15) 100%);
+            border: 1px solid #4d1a78;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .paper1-title {
+            text-align: center;
+            font-weight: bold;
+            font-size: 0.95rem;
+            margin-bottom: 0.8rem;
+            color: #4d1a78;
+        }
+        
+        .theory-boxes {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.5rem;
+            margin-bottom: 0.8rem;
+        }
+        
+        .theory-box {
+            background: white;
+            border: 1px solid #663399;
+            border-radius: 5px;
+            padding: 0.4rem;
+            text-align: center;
+            font-weight: 500;
+            color: #4d1a78;
+            font-size: 0.7rem;
+        }
+        
+        .dimensions-title {
+            text-align: center;
+            font-weight: bold;
+            margin: 0.8rem 0 0.5rem 0;
+            color: #4d1a78;
+            font-size: 0.85rem;
+        }
+        
+        .dimensions-container {
+            border: 1px dashed #663399;
+            border-radius: 5px;
+            padding: 0.5rem;
+            background: rgba(255,255,255,0.8);
+        }
+        
+        .dimensions-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.5rem;
+        }
+        
+        .dimension-box {
+            background: rgba(77, 26, 120, 0.05);
+            border: 1px solid #663399;
+            border-radius: 4px;
+            padding: 0.4rem;
+            text-align: center;
+            font-weight: 500;
+            color: #4d1a78;
+            font-size: 0.7rem;
+        }
+        
+        .cri-box {
+            background: white;
+            border: 2px solid #4d1a78;
+            border-radius: 8px;
+            padding: 0.6rem;
+            text-align: center;
+            font-weight: bold;
+            margin: 0.8rem auto;
+            max-width: 250px;
+            color: #4d1a78;
+            font-size: 0.9rem;
+        }
+        
+        /* Arrows */
+        .arrows-container {
+            display: flex;
+            justify-content: space-around;
+            margin: 0.5rem 0;
+        }
+        
+        .arrow-down-small {
+            font-size: 1.2rem;
+            color: #4d1a78;
+            font-weight: bold;
+        }
+        
+        /* Papers 2 and 3 Container */
+        .papers-container {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            align-items: start;
+        }
+        
+        /* Paper 2 Section - Crimson theme */
+        .paper2-section {
+            background: linear-gradient(135deg, rgba(220, 20, 60, 0.1) 0%, rgba(220, 20, 60, 0.15) 100%);
+            border: 1px solid #dc143c;
+            border-radius: 8px;
+            padding: 0.8rem;
+        }
+        
+        .paper2-title {
+            text-align: center;
+            font-weight: bold;
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+            color: #dc143c;
+        }
+        
+        .paper2-theory {
+            background: white;
+            border: 1px solid #dc143c;
+            border-radius: 5px;
+            padding: 0.4rem;
+            text-align: center;
+            margin-bottom: 0.5rem;
+            color: #dc143c;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        
+        .paper2-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.4rem;
+        }
+        
+        .paper2-box {
+            background: white;
+            border: 1px solid #dc143c;
+            border-radius: 4px;
+            padding: 0.3rem;
+            text-align: center;
+            font-size: 0.65rem;
+            color: #dc143c;
+        }
+        
+        /* Mediating Relationships */
+        .mediating-text {
+            text-align: center;
+            font-style: italic;
+            color: #dc143c;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+        
+        /* Paper 3 Section - Secondary purple theme */
+        .paper3-section {
+            background: linear-gradient(135deg, rgba(102, 51, 153, 0.1) 0%, rgba(102, 51, 153, 0.15) 100%);
+            border: 1px solid #663399;
+            border-radius: 8px;
+            padding: 0.8rem;
+        }
+        
+        .paper3-title {
+            text-align: center;
+            font-weight: bold;
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+            color: #663399;
+        }
+        
+        .iad-framework {
+            background: white;
+            border: 1px solid #663399;
+            border-radius: 5px;
+            padding: 0.4rem;
+            text-align: center;
+            margin-bottom: 0.5rem;
+            color: #663399;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        
+        .paper3-theories {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.3rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .paper3-theory {
+            background: white;
+            border: 1px solid #663399;
+            border-radius: 4px;
+            padding: 0.3rem;
+            text-align: center;
+            font-size: 0.65rem;
+            color: #663399;
+        }
+        
+        .paper3-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.3rem;
+        }
+        
+        .paper3-box {
+            background: white;
+            border: 1px solid #663399;
+            border-radius: 4px;
+            padding: 0.3rem;
+            text-align: center;
+            font-size: 0.6rem;
+            color: #663399;
+        }
+        
+        /* Overall Mediation Framework */
+        .mediation-framework {
+            background: white;
+            padding: 1.5rem;
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            margin-top: 1.5rem;
+        }
+        
+        .mediation-framework h2 {
+            color: #4d1a78;
+            margin-bottom: 1rem;
+            text-align: center;
+            font-size: 1.3rem;
+        }
+        
+        .mediation-flow-horizontal {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            gap: 1rem;
+        }
+        
+        .mediation-box-horizontal {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 6px;
+            padding: 0.8rem;
+            text-align: center;
+            flex: 1;
+            min-width: 150px;
+        }
+        
+        .mediation-box-horizontal.highlight {
+            background: rgba(77, 26, 120, 0.1);
+            border-color: #4d1a78;
+        }
+        
+        .mediation-box-horizontal strong {
+            display: block;
+            color: #4d1a78;
+            margin-bottom: 0.3rem;
+            font-size: 0.85rem;
+        }
+        
+        .mediation-box-horizontal .mediation-label {
+            font-size: 0.7rem;
+            color: #666;
+        }
+        
+        .mediation-arrow-horizontal {
+            font-size: 1.2rem;
+            color: #4d1a78;
+            font-weight: bold;
+        }
+        
+        .mediation-paths {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .indirect-path {
+            background: rgba(77, 26, 120, 0.05);
+            padding: 0.8rem;
+            border-radius: 6px;
+            border-left: 3px solid #4d1a78;
+        }
+        
+        .direct-path {
+            background: rgba(220, 20, 60, 0.05);
+            padding: 0.8rem;
+            border-radius: 6px;
+            border-left: 3px solid #dc143c;
+        }
+        
+        .indirect-path strong,
+        .direct-path strong {
+            display: block;
+            margin-bottom: 0.3rem;
+            color: #4d1a78;
+            font-size: 0.85rem;
+        }
+        
+        .direct-path strong {
+            color: #dc143c;
+        }
+        
+        .indirect-path span,
+        .direct-path span {
+            font-size: 0.75rem;
+            color: #666;
+        }
+        
+        .paper-contributions {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 1rem;
+            gap: 0.5rem;
+        }
+        
+        .paper-contribution {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            background: #f8f9fa;
+            padding: 0.5rem 0.8rem;
+            border-radius: 5px;
+            border: 1px solid #e9ecef;
+            flex: 1;
+        }
+        
+        .contribution-number {
+            background: #4d1a78;
+            color: white;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.75rem;
+        }
+        
+        .paper-contribution span {
+            font-size: 0.7rem;
+            color: #4d1a78;
+            font-weight: 500;
+        }
+        
+        .framework-note {
+            background: rgba(255,255,255,0.9);
+            border: 1px solid #4d1a78;
+            border-radius: 6px;
+            padding: 0.8rem;
+            font-size: 0.8rem;
+            color: #333;
+            text-align: center;
+            font-style: italic;
+            line-height: 1.4;
+        }
+        
+        /* Print Styles for Single Page */
+        @media print {
+            @page {
+                size: letter landscape;
+                margin: 0.5in;
+            }
+            
+            body {
+                padding: 0;
+                font-size: 10pt;
+            }
+            
+            .container {
+                max-width: 100%;
+            }
+            
+            .framework-visual,
+            .mediation-framework {
+                box-shadow: none;
+                page-break-inside: avoid;
+            }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .theory-boxes,
+            .dimensions-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .papers-container {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .mediating-text {
+                margin: 1rem 0;
+            }
+            
+            .mediation-flow-horizontal {
+                flex-direction: column;
+            }
+            
+            .mediation-arrow-horizontal {
+                transform: rotate(90deg);
+                margin: 0.5rem 0;
+            }
+            
+            .paper-contributions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1 class="title">The Campus Readiness Index</h1>
+            <p class="subtitle">A Novel Approach to Measuring School Organizational Capacity</p>
+            <p class="author">Roy Zamora, Ph.D. Candidate • Texas Tech University</p>
+        </div>
+
+        <!-- Dissertation Framework Visual -->
+        <div class="framework-visual">
+            <h2>Three-Paper Dissertation Framework</h2>
+            
+            <!-- Paper 1 Section -->
+            <div class="paper1-section">
+                <div class="paper1-title">Paper 1: Development & Validation of Campus Readiness Index</div>
+                
+                <div class="theory-boxes">
+                    <div class="theory-box">Institutional Theory</div>
+                    <div class="theory-box">Organizational Capacity Framework</div>
+                    <div class="theory-box">Factor Analysis & Latent Content Modeling</div>
+                </div>
+                
+                <div class="dimensions-container">
+                    <div class="dimensions-title">Three Dimensions of Organizational Capacity</div>
+                    <div class="dimensions-grid">
+                        <div class="dimension-box">Factor 1: Experience</div>
+                        <div class="dimension-box">Factor 2: Credentials</div>
+                        <div class="dimension-box">Factor 3: Stability</div>
+                    </div>
+                </div>
+                
+                <div class="cri-box">
+                    CAMPUS READINESS INDEX (CRI)
+                </div>
+            </div>
+            
+            <!-- Arrows to Papers 2 & 3 -->
+            <div class="arrows-container">
+                <div class="arrow-down-small">↓</div>
+                <div class="arrow-down-small">↓</div>
+            </div>
+            
+            <!-- Papers 2 & 3 Container -->
+            <div class="papers-container">
+                <!-- Paper 2 Section -->
+                <div class="paper2-section">
+                    <div class="paper2-title">Paper 2: Examining Outcomes Across Contexts</div>
+                    
+                    <div class="paper2-theory">Bronfenbrenner's Ecological Systems Theory</div>
+                    
+                    <div class="paper2-grid">
+                        <div class="paper2-box">Microsystem Effects</div>
+                        <div class="paper2-box">Student Achievement</div>
+                        <div class="paper2-box">Mesosystem Effects</div>
+                        <div class="paper2-box">Demographic Subgroups</div>
+                        <div class="paper2-box">Chronosystem Effects</div>
+                        <div class="paper2-box">College Attendance</div>
+                    </div>
+                </div>
+                
+                <!-- Mediating Relationships Between Papers -->
+                <div class="mediating-text">
+                    ← Mediating Relationships →
+                </div>
+                
+                <!-- Paper 3 Section -->
+                <div class="paper3-section">
+                    <div class="paper3-title">Paper 3: Policy Impacts on CRI</div>
+                    
+                    <div class="iad-framework">
+                        Institutional Analysis & Development (IAD) Framework
+                    </div>
+                    
+                    <div class="paper3-theories">
+                        <div class="paper3-theory">Agency Theory</div>
+                        <div class="paper3-theory">Self-Determination Theory</div>
+                    </div>
+                    
+                    <div class="paper3-grid">
+                        <div class="paper3-box">Performance Incentives</div>
+                        <div class="paper3-box">TIA Policy Implementation</div>
+                        <div class="paper3-box">Institutional Rules-in-Use</div>
+                        <div class="paper3-box">Heterogeneous Impacts</div>
+                        <div class="paper3-box">Principal-Agent Dynamics</div>
+                        <div class="paper3-box">Mediation Pathways</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Overall Mediation Framework -->
+        <div class="mediation-framework">
+            <h2>Overall Structure & Mediation Model</h2>
+            
+            <div class="mediation-flow-horizontal">
+                <div class="mediation-box-horizontal">
+                    <strong>Performance-Based Policy (X)</strong>
+                    <div class="mediation-label">Texas Teacher Incentive Allotment</div>
+                </div>
+                <div class="mediation-arrow-horizontal">→</div>
+                <div class="mediation-box-horizontal highlight">
+                    <strong>Organizational Capacity (M)</strong>
+                    <div class="mediation-label">Campus Readiness Index</div>
+                </div>
+                <div class="mediation-arrow-horizontal">→</div>
+                <div class="mediation-box-horizontal">
+                    <strong>Student Outcomes (Y)</strong>
+                    <div class="mediation-label">Achievement & College Enrollment</div>
+                </div>
+            </div>
+            
+            <div class="mediation-paths">
+                <div class="indirect-path">
+                    <strong>Indirect Effect: X → M → Y</strong>
+                    <span>How TIA works through organizational capacity changes to affect student outcomes</span>
+                </div>
+                <div class="direct-path">
+                    <strong>Direct Effect: X → Y</strong>
+                    <span>Direct TIA impact on student outcomes (not significant in findings)</span>
+                </div>
+            </div>
+            
+            <div class="paper-contributions">
+                <div class="paper-contribution">
+                    <div class="contribution-number">1</div>
+                    <span>Establishes valid mediator measurement</span>
+                </div>
+                <div class="paper-contribution">
+                    <div class="contribution-number">2</div>
+                    <span>Tests mediator-outcome relationships</span>
+                </div>
+                <div class="paper-contribution">
+                    <div class="contribution-number">3</div>
+                    <span>Examines policy effects on mediator</span>
+                </div>
+            </div>
+            
+            <div class="framework-note">
+                The mediation framework of Imai et al. (2011) structures this dissertation by guiding Paper 1's development of a valid mediator (CRI), informing Paper 2's analysis of mediator-outcome relationships, and directing Paper 3's estimation of treatment effects on the mediator, allowing separate analysis of TIA policy effects into direct and indirect pathways.
+            </div>
+        </div>
+    </div>
+</body>
+</html>
