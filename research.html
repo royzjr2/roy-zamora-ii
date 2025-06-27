@@ -627,15 +627,32 @@
     </main>
 
     <!-- Footer -->
-    <footer class="footer">
-        <h3>Continue the Conversation</h3>
-        <p>Interested in discussing this research or potential collaborations?</p>
-        <div class="footer-links">
-            <a href="mailto:royzjr2@gmail.com?subject=Research Discussion" class="footer-link">📧 Email Discussion</a>
-            <a href="https://linkedin.com/in/roy-zamora2" class="footer-link">💼 LinkedIn</a>
-            <a href="#" class="footer-link">📄 Download Full Paper (Coming Soon)</a>
-        </div>
-    </footer>
+<footer class="site-footer">
+    <h2 class="footer-title">Continue the Conversation</h2>
+    <p class="footer-subtitle">Interested in discussing this research or potential collaborations?</p>
+    <div class="footer-links">
+        <!-- Your Existing Links -->
+        <a href="mailto:roy.zamora@ttu.edu" class="footer-btn">
+            <span>📧</span> Email Discussion
+        </a>
+        <a href="https://www.linkedin.com/in/roy-zamora-ii/" class="footer-btn" target="_blank" rel="noopener noreferrer">
+            <span>💼</span> LinkedIn
+        </a>
+        <a href="#" class="footer-btn">
+            <span>📄</span> Download Full Paper (Coming Soon)
+        </a>
+        <!-- New Paper Links -->
+        <a href="https://royzjr2.github.io/roy-zamora-ii/Deep_Dive_Paper1.html" class="footer-btn paper-link" target="_blank" rel="noopener noreferrer">
+            <span>📑</span> Dive Deep: Paper 1
+        </a>
+        <a href="#" class="footer-btn paper-link">
+            <span>📑</span> Dive Deep: Paper 2 (Soon)
+        </a>
+        <a href="#" class="footer-btn paper-link">
+            <span>📑</span> Dive Deep: Paper 3 (Soon)
+        </a>
+    </div>
+</footer>
 
     <script>
         // Tab Navigation Functionality
@@ -2179,4 +2196,54 @@
                 color: #fff;
             }
         }
+
+            .site-footer {
+                background-color: #212529; /* Dark background */
+                color: #f8f9fa;
+                padding: 3rem 1rem;
+                margin-top: 4rem;
+                text-align: center;
+            }
+            .footer-title {
+                color: #dc143c; /* Crimson to match theme */
+                margin-bottom: 0.5rem;
+                font-size: 1.5rem;
+                font-weight: 600;
+            }
+            .footer-subtitle {
+                margin-bottom: 2rem;
+                color: #adb5bd;
+                font-size: 1.1rem;
+            }
+            .footer-links {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+            .footer-btn {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.75rem;
+                background-color: #343a40;
+                border: 1px solid #495057;
+                color: #f8f9fa;
+                padding: 0.75rem 1.5rem;
+                border-radius: 50px; /* Pill shape */
+                text-decoration: none;
+                font-size: 1rem;
+                font-weight: 500;
+                transition: all 0.3s ease;
+            }
+            .footer-btn:hover {
+                background-color: #495057;
+                border-color: #dc143c;
+                color: #fff;
+                transform: translateY(-2px);
+            }
+            .footer-btn span {
+                font-size: 1.2rem;
+            }
+        
     </style>
+
