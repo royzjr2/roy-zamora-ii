@@ -631,7 +631,7 @@
     <h2 class="footer-title">Continue the Conversation</h2>
     <p class="footer-subtitle">Interested in discussing this research or potential collaborations?</p>
     <div class="footer-links">
-        <!-- Your Existing Links -->
+        
         <a href="mailto:roy.zamora@ttu.edu" class="footer-btn">
             <span>📧</span> Email Discussion
         </a>
@@ -641,17 +641,18 @@
         <a href="#" class="footer-btn">
             <span>📄</span> Download Full Paper (Coming Soon)
         </a>
-        <!-- New Paper Links -->
-        <a href="https://royzjr2.github.io/roy-zamora-ii/Deep_Dive_Paper1.html" class="footer-btn paper-link" target="_blank" rel="noopener noreferrer">
-            <span>📑</span> Dive Deep: Paper 1
+        
+       <a href="https://royzjr2.github.io/roy-zamora-ii/Deep_Dive_Paper1.html" class="footer-btn paper-link" target="_blank" rel="noopener noreferrer">
+    <span>📑</span> Dive Deep: Paper 1
         </a>
-        <a href="#" class="footer-btn paper-link">
+        
+        <!-- <a href="#" class="footer-btn paper-link">
             <span>📑</span> Dive Deep: Paper 2 (Soon)
         </a>
         <a href="#" class="footer-btn paper-link">
             <span>📑</span> Dive Deep: Paper 3 (Soon)
-        </a>
-    </div>
+        </a> -->
+        </div>
 </footer>
 
     <script>
@@ -2176,7 +2177,9 @@
                 border-bottom: 1px solid #f0f0f0;
                 border-radius: 0;
             }
-            .paper-dive-deep {
+            
+            .three-paper-framework .paper-card a.paper-dive-deep,
+            .paper-grid .paper-card a.paper-dive-deep {
                 display: inline-block;
                 margin-top: 1rem;
                 padding: 0.6rem 1.2rem;
@@ -2190,9 +2193,21 @@
                 text-align: center;
                 transition: all 0.3s ease;
             }
-
-            .paper-dive-deep:hover {
+            
+            .three-paper-framework .paper-card a.paper-dive-deep:hover,
+            .paper-grid .paper-card a.paper-dive-deep:hover {
                 background-color: #dc143c;
+                color: #fff;
+                text-decoration: none;
+            }
+            
+            .three-paper-framework .paper-card a.paper-dive-deep:visited,
+            .paper-grid .paper-card a.paper-dive-deep:visited {
+                color: #dc143c;
+            }
+            
+            .three-paper-framework .paper-card a.paper-dive-deep:visited:hover,
+            .paper-grid .paper-card a.paper-dive-deep:visited:hover {
                 color: #fff;
             }
         }
@@ -2246,4 +2261,3 @@
             }
         
     </style>
-
