@@ -69,33 +69,68 @@
                         </ul>
                     </div>
                     
-                    <!-- Three Paper Framework -->
-                    <div class="three-paper-framework">
-                        <h4>Three-Paper Dissertation Structure</h4>
-                        <div class="paper-grid">
-                            <div class="paper-card">
-                                <div class="paper-number">1</div>
-                                <div class="paper-title">Measuring What Matters — The Campus Readiness Index</div>
-                                <div class="paper-description">Development & validation of the Campus Readiness Index using factor analysis and latent class modeling</div>
-                                <div class="paper-methods">Study 1 • Institutional Theory • Factor Analysis</div>
-                                <a href="https://royzjr2.github.io/roy-zamora-ii/Deep_Dive_Paper1.html" class="paper-dive-deep" target="_blank" rel="noopener noreferrer">Dive Deep into Paper 1 ↗</a>
-                            </div>
-                            <div class="paper-card">
-                                <div class="paper-number">2</div>
-                                <div class="paper-title">The Equity Power of High-Capacity Schools</div>
-                                <div class="paper-description">Examining if organizational capacity relates to outcomes across diverse contexts and populations</div>
-                                <div class="paper-methods">Study 2 • Ecological Systems Theory • Fixed Effects</div>
-                                <a href="#" class="paper-dive-deep">Dive Deep into Paper 2 (Soon) ↗ </a>
-                            </div>
-                            <div class="paper-card">
-                                <div class="paper-number">3</div>
-                                <div class="paper-title">From Incentives to Infrastructure — TIA's Organizational Impact</div>
-                                <div class="paper-description">Investigating if performance-based compensation affects organizational capacity through mediation analysis</div>
-                                <div class="paper-methods">Study 3 • IAD Framework • Event Study • Mediation</div>
-                                <a href="#" class="paper-dive-deep">Dive Deep into Paper 3 (Soon) ↗</a>
-                            </div>
-                        </div>
-                    </div>
+                 <!-- Three Paper Framework -->
+<div class="three-paper-framework">
+    <h4>Three-Paper Dissertation Structure</h4>
+    <div class="paper-grid">
+        <div class="paper-card">
+            <div class="paper-number">1</div>
+            <div class="paper-title">Measuring What Matters — The Campus Readiness Index</div>
+            <div class="paper-description">Development & validation of the Campus Readiness Index using factor analysis and latent class modeling</div>
+            <div class="paper-methods">Study 1 • Institutional Theory • Factor Analysis</div>
+            
+            <!-- Research Questions for Paper 1 -->
+            <div class="paper-questions">
+                <h5>Research Questions:</h5>
+                <ul class="questions-list">
+                    <li>Do distinct dimensions of organizational capacity emerge from administrative indicators available in Texas public schools?</li>
+                    <li>Does the Campus Readiness Index demonstrate internal consistency and structural validity using complementary analytical approaches?</li>
+                    <li>Is organizational capacity associated with student achievement outcomes?</li>
+                </ul>
+            </div>
+            
+            <a href="https://royzjr2.github.io/roy-zamora-ii/Deep_Dive_Paper1.html" class="paper-dive-deep" target="_blank" rel="noopener noreferrer">Dive Deep into Paper 1 ↗</a>
+        </div>
+        
+        <div class="paper-card">
+            <div class="paper-number">2</div>
+            <div class="paper-title">The Equity Power of High-Capacity Schools</div>
+            <div class="paper-description">Examining if organizational capacity relates to outcomes across diverse contexts and populations</div>
+            <div class="paper-methods">Study 2 • Ecological Systems Theory • Fixed Effects</div>
+            
+            <!-- Research Questions for Paper 2 -->
+            <div class="paper-questions">
+                <h5>Research Questions:</h5>
+                <ul class="questions-list">
+                    <li>What is the association between organizational capacity and student achievement outcomes across different student populations?</li>
+                    <li>How is school organizational capacity associated with long-term student success metrics (college attendance)?</li>
+                    <li>How do these relationships vary across different school contexts and student subgroups?</li>
+                </ul>
+            </div>
+            
+            <a href="#" class="paper-dive-deep">Dive Deep into Paper 2 (Soon) ↗</a>
+        </div>
+        
+        <div class="paper-card">
+            <div class="paper-number">3</div>
+            <div class="paper-title">From Incentives to Infrastructure — TIA's Organizational Impact</div>
+            <div class="paper-description">Investigating if performance-based compensation affects organizational capacity through mediation analysis</div>
+            <div class="paper-methods">Study 3 • IAD Framework • Event Study • Mediation</div>
+            
+            <!-- Research Questions for Paper 3 -->
+            <div class="paper-questions">
+                <h5>Research Questions:</h5>
+                <ul class="questions-list">
+                    <li>Does TIA approval lead to changes in school organizational capacity, and do these effects vary across different capacity dimensions?</li>
+                    <li>Do TIA's effects on organizational capacity vary across different school contexts?</li>
+                    <li>Does organizational capacity improvement mediate the relationship between TIA implementation and student achievement?</li>
+                </ul>
+            </div>
+            
+            <a href="#" class="paper-dive-deep">Dive Deep into Paper 3 (Soon) ↗</a>
+        </div>
+    </div>
+</div>
                     
                     <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(220, 20, 60, 0.05); border-left: 4px solid #dc143c; border-radius: 0 8px 8px 0;">
                         <h4 style="color: #dc143c; margin-bottom: 1rem;">Three Primary Research Questions</h4>
@@ -1958,6 +1993,8 @@
             color: #4d1a78;
         }
         
+        
+        
         /* Expected Contributions */
         .expected-contributions {
             background: white;
@@ -2302,5 +2339,64 @@
             a.paper-dive-deep:focus {
                 color: #dc143c !important;
                 text-decoration: none !important;
+            }
+            /* Paper Questions Styling */
+            .paper-questions {
+                margin: 1.5rem 0;
+                padding: 1rem;
+                background: rgba(255, 255, 255, 0.7);
+                border-radius: 8px;
+                border-left: 3px solid #4d1a78;
+            }
+            
+            .paper-questions h5 {
+                color: #4d1a78;
+                font-size: 0.9rem;
+                font-weight: 600;
+                margin-bottom: 0.8rem;
+                text-transform: none;
+                letter-spacing: 0.5px;
+            }
+            
+            .questions-list {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+            
+            .questions-list li {
+                padding: 0.5rem 0;
+                font-size: 0.85rem;
+                line-height: 1.4;
+                color: #333;
+                position: relative;
+                padding-left: 1.2rem;
+                border-bottom: 1px solid rgba(77, 26, 120, 0.1);
+            }
+            
+            .questions-list li:last-child {
+                border-bottom: none;
+            }
+            
+            .questions-list li::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                color: #4d1a78;
+                font-weight: bold;
+                font-size: 0.9rem;
+            }
+            
+            /* Responsive adjustments */
+            @media (max-width: 768px) {
+                .paper-questions {
+                    margin: 1rem 0;
+                    padding: 0.8rem;
+                }
+                
+                .questions-list li {
+                    font-size: 0.8rem;
+                    padding: 0.4rem 0;
+                }
             }
     </style>
