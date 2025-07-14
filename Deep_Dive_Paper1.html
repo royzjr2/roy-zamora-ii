@@ -1461,39 +1461,36 @@ function initializeEverything() {
     animateOnScroll();
 }
 
-// For tab functionality
-document.addEventListener('DOMContentLoaded', function() {
-    const tabButtons = document.querySelectorAll('.tab-btn');
-    const tabPanels = document.querySelectorAll('.tab-panel');
+// Add this JavaScript function for the results accordion
+function toggleResultsAccordion(header) {
+    const item = header.parentElement;
+    const content = item.querySelector('.accordion-content');
+    const chevron = header.querySelector('.chevron');
+    const allItems = document.querySelectorAll('.results-accordion .accordion-item');
     
-    tabButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const targetTab = this.getAttribute('data-tab');
-            
-            // Remove active class from all buttons and panels
-            tabButtons.forEach(btn => {
-                btn.classList.remove('active');
-                btn.style.background = 'rgba(50, 50, 80, 0.4)';
-                btn.style.color = 'rgba(255,255,255,0.7)';
-            });
-            tabPanels.forEach(panel => {
-                panel.classList.remove('active');
-                panel.style.display = 'none';
-            });
-            
-            // Add active class to clicked button and corresponding panel
-            this.classList.add('active');
-            this.style.background = 'rgba(102, 51, 153, 0.8)';
-            this.style.color = 'white';
-            
-            const targetPanel = document.getElementById(targetTab);
-            if (targetPanel) {
-                targetPanel.classList.add('active');
-                targetPanel.style.display = 'block';
-            }
-        });
+    // Close all other accordion items
+    allItems.forEach(otherItem => {
+        if (otherItem !== item) {
+            const otherHeader = otherItem.querySelector('.accordion-header');
+            const otherContent = otherItem.querySelector('.accordion-content');
+            const otherChevron = otherItem.querySelector('.chevron');
+            otherHeader.style.background = otherHeader.style.background;
+            otherContent.style.maxHeight = '0';
+            otherChevron.style.transform = 'rotate(0deg)';
+        }
     });
-});
+    
+    // Toggle current item
+    if (content.style.maxHeight === '0px' || !content.style.maxHeight) {
+        content.style.maxHeight = '1000px';
+        chevron.style.transform = 'rotate(180deg)';
+        header.style.background = header.style.background.replace('0.1', '0.2');
+    } else {
+        content.style.maxHeight = '0';
+        chevron.style.transform = 'rotate(0deg)';
+        header.style.background = header.style.background.replace('0.2', '0.1');
+    }
+};
 </script>
     
     
@@ -2347,39 +2344,64 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="results-table-section" style="background: rgba(26, 26, 46, 0.8); border-radius: 20px; padding: 40px; margin-top: 40px; border: 1px solid rgba(102, 51, 153, 0.3);">
                 <h3 style="color: #fff; font-size: 1.8em; margin-bottom: 20px; text-align: center;">Comprehensive Validation Results</h3>
                 <p style="color: rgba(255, 255, 255, 0.8); font-size: 1.1em; text-align: center; margin-bottom: 30px; line-height: 1.6;">
-                    Table 5 presents comprehensive validation results across four analytical approaches, demonstrating robust criterion validity through consistent positive associations between organizational capacity measures and student achievement in both mathematics and reading.
+                    Multi-method validation evidence across three research questions, demonstrating robust construct and criterion validity through multiple analytical approaches and consistent positive associations between organizational capacity and student achievement.
                 </p>
-                
-                <div class="results-tabs" style="margin: 30px 0;">
-    <div class="tab-buttons" style="display: flex; justify-content: center; margin-bottom: 20px; background: rgba(26, 26, 46, 0.8); border-radius: 15px; padding: 10px;">
-        <button class="tab-btn active" data-tab="validation" style="flex: 1; padding: 15px 20px; border: none; background: rgba(102, 51, 153, 0.8); color: white; border-radius: 10px; margin: 0 5px; cursor: pointer; font-weight: 600; transition: all 0.3s ease;">
-            RQ1 & RQ2: Validation Results
-        </button>
-        <button class="tab-btn" data-tab="achievement" style="flex: 1; padding: 15px 20px; border: none; background: rgba(50, 50, 80, 0.4); color: rgba(255,255,255,0.7); border-radius: 10px; margin: 0 5px; cursor: pointer; font-weight: 600; transition: all 0.3s ease;">
-            RQ3: Achievement Results
-        </button>
-    </div>
-    
-    <div class="tab-content">
-        <div class="tab-panel active" id="validation" style="text-align: center;">
-            <img src="Paper1_Table2_4_JPEG.jpg" 
-                 alt="Tables 2-4: Factor Analysis and Validation Results" 
-                 style="max-width: 100%; height: auto; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 2px solid rgba(102, 51, 153, 0.3); background: white; padding: 20px;">
-            <div style="margin-top: 15px; padding: 15px; background: rgba(102, 51, 153, 0.1); border-radius: 10px; border-left: 4px solid #663399;">
-                <p style="color: rgba(255, 255, 255, 0.9); font-size: 0.95em; font-style: italic; margin: 0;">
-                    <strong>Validation Evidence:</strong> Factor analysis confirms three-dimensional structure with clear loadings, while latent class analysis reveals organizational profiles that align with CRI readiness categories.
-                </p>
+           
+        <div class="results-accordion" style="margin: 30px 0;">
+    <div class="accordion-item" style="background: rgba(26, 26, 46, 0.8); border-radius: 20px; margin-bottom: 20px; border: 1px solid rgba(102, 51, 153, 0.3); overflow: hidden; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);">
+        <div class="accordion-header" onclick="toggleResultsAccordion(this)" style="padding: 25px 35px; cursor: pointer; display: flex; align-items: center; justify-content: space-between; background: linear-gradient(135deg, rgba(102, 51, 153, 0.1) 0%, rgba(220, 20, 60, 0.1) 100%); transition: all 0.3s ease; position: relative; overflow: hidden;">
+            <div style="display: flex; align-items: center; flex: 1;">
+                <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #663399 0%, #dc143c 100%); border-radius: 15px; display: flex; align-items: center; justify-content: center; margin-right: 20px; font-size: 1.5em; box-shadow: 0 4px 15px rgba(102, 51, 153, 0.3); transition: transform 0.3s ease;">
+                    🔍
+                </div>
+                <div style="flex: 1;">
+                    <div style="color: #fff; font-size: 1.8em; font-weight: 700; margin-bottom: 5px;">RQ1 & RQ2: Validation Results</div>
+                    <div style="color: rgba(255, 255, 255, 0.7); font-size: 1.1em; font-weight: 300;">Factor analysis, correlations, and latent class validation evidence</div>
+                </div>
+            </div>
+            <div style="font-size: 1.5em; color: #663399; transition: transform 0.3s ease; margin-left: 10px;" class="chevron">▼</div>
+        </div>
+        <div class="accordion-content" style="max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);">
+            <div style="padding: 0 35px 35px;">
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <img src="Paper1_Table2_4_JPEG.jpg" 
+                         alt="Tables 2-4: Factor Analysis and Validation Results" 
+                         style="max-width: 100%; height: auto; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 2px solid rgba(102, 51, 153, 0.3); background: white; padding: 20px;">
+                </div>
+                <div style="background: rgba(102, 51, 153, 0.1); border-radius: 10px; padding: 20px; border-left: 4px solid #663399;">
+                    <p style="color: rgba(255, 255, 255, 0.9); font-size: 1em; line-height: 1.6; margin: 0;">
+                        <strong>Validation Evidence:</strong> Factor analysis confirms three-dimensional structure with clear loadings, while latent class analysis reveals organizational profiles that align with CRI readiness categories.
+                    </p>
+                </div>
             </div>
         </div>
-        
-        <div class="tab-panel" id="achievement" style="text-align: center; display: none;">
-            <img src="Paper1_Table5_JPEG.jpg" 
-                 alt="Table 5: Relationship between Organizational Capacity Measures and Student Achievement" 
-                 style="max-width: 100%; height: auto; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 2px solid rgba(102, 51, 153, 0.3); background: white; padding: 20px;">
-            <div style="margin-top: 15px; padding: 15px; background: rgba(220, 20, 60, 0.1); border-radius: 10px; border-left: 4px solid #dc143c;">
-                <p style="color: rgba(255, 255, 255, 0.9); font-size: 0.95em; font-style: italic; margin: 0;">
-                    <strong>Criterion Validity:</strong> Consistent positive associations across all capacity measures, with optimal schools showing 4.67pp math and 3.39pp reading advantages over minimal schools.
-                </p>
+    </div>
+
+    <div class="accordion-item" style="background: rgba(26, 26, 46, 0.8); border-radius: 20px; margin-bottom: 20px; border: 1px solid rgba(102, 51, 153, 0.3); overflow: hidden; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);">
+        <div class="accordion-header" onclick="toggleResultsAccordion(this)" style="padding: 25px 35px; cursor: pointer; display: flex; align-items: center; justify-content: space-between; background: linear-gradient(135deg, rgba(220, 20, 60, 0.1) 0%, rgba(102, 51, 153, 0.1) 100%); transition: all 0.3s ease; position: relative; overflow: hidden;">
+            <div style="display: flex; align-items: center; flex: 1;">
+                <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #dc143c 0%, #663399 100%); border-radius: 15px; display: flex; align-items: center; justify-content: center; margin-right: 20px; font-size: 1.5em; box-shadow: 0 4px 15px rgba(220, 20, 60, 0.3); transition: transform 0.3s ease;">
+                    🎯
+                </div>
+                <div style="flex: 1;">
+                    <div style="color: #fff; font-size: 1.8em; font-weight: 700; margin-bottom: 5px;">RQ3: Achievement Results</div>
+                    <div style="color: rgba(255, 255, 255, 0.7); font-size: 1.1em; font-weight: 300;">Criterion validity through capacity-achievement relationships</div>
+                </div>
+            </div>
+            <div style="font-size: 1.5em; color: #dc143c; transition: transform 0.3s ease; margin-left: 10px;" class="chevron">▼</div>
+        </div>
+        <div class="accordion-content" style="max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);">
+            <div style="padding: 0 35px 35px;">
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <img src="Paper1_Table5_JPEG.jpg" 
+                         alt="Table 5: Relationship between Organizational Capacity Measures and Student Achievement" 
+                         style="max-width: 100%; height: auto; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 2px solid rgba(102, 51, 153, 0.3); background: white; padding: 20px;">
+                </div>
+                <div style="background: rgba(220, 20, 60, 0.1); border-radius: 10px; padding: 20px; border-left: 4px solid #dc143c;">
+                    <p style="color: rgba(255, 255, 255, 0.9); font-size: 1em; line-height: 1.6; margin: 0;">
+                        <strong>Criterion Validity:</strong> Consistent positive associations across all capacity measures, with optimal schools showing 4.67pp math and 3.39pp reading advantages over minimal schools.
+                    </p>
+                </div>
             </div>
         </div>
     </div>
