@@ -1460,6 +1460,40 @@ function initializeEverything() {
     initializeAnimations();
     animateOnScroll();
 }
+
+// For tab functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const tabPanels = document.querySelectorAll('.tab-panel');
+    
+    tabButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const targetTab = this.getAttribute('data-tab');
+            
+            // Remove active class from all buttons and panels
+            tabButtons.forEach(btn => {
+                btn.classList.remove('active');
+                btn.style.background = 'rgba(50, 50, 80, 0.4)';
+                btn.style.color = 'rgba(255,255,255,0.7)';
+            });
+            tabPanels.forEach(panel => {
+                panel.classList.remove('active');
+                panel.style.display = 'none';
+            });
+            
+            // Add active class to clicked button and corresponding panel
+            this.classList.add('active');
+            this.style.background = 'rgba(102, 51, 153, 0.8)';
+            this.style.color = 'white';
+            
+            const targetPanel = document.getElementById(targetTab);
+            if (targetPanel) {
+                targetPanel.classList.add('active');
+                targetPanel.style.display = 'block';
+            }
+        });
+    });
+});
 </script>
     
     
@@ -2316,11 +2350,41 @@ function initializeEverything() {
                     Table 5 presents comprehensive validation results across four analytical approaches, demonstrating robust criterion validity through consistent positive associations between organizational capacity measures and student achievement in both mathematics and reading.
                 </p>
                 
-                <div style="text-align: center; margin: 30px 0;">
-                    <img src="Paper1_Table5_JPEG.jpg" 
-                         alt="Table 5: Relationship between Organizational Capacity Measures and Student Achievement" 
-                         style="max-width: 100%; height: auto; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 2px solid rgba(102, 51, 153, 0.3); background: white; padding: 20px;">
-                </div>
+                <div class="results-tabs" style="margin: 30px 0;">
+    <div class="tab-buttons" style="display: flex; justify-content: center; margin-bottom: 20px; background: rgba(26, 26, 46, 0.8); border-radius: 15px; padding: 10px;">
+        <button class="tab-btn active" data-tab="validation" style="flex: 1; padding: 15px 20px; border: none; background: rgba(102, 51, 153, 0.8); color: white; border-radius: 10px; margin: 0 5px; cursor: pointer; font-weight: 600; transition: all 0.3s ease;">
+            RQ1 & RQ2: Validation Results
+        </button>
+        <button class="tab-btn" data-tab="achievement" style="flex: 1; padding: 15px 20px; border: none; background: rgba(50, 50, 80, 0.4); color: rgba(255,255,255,0.7); border-radius: 10px; margin: 0 5px; cursor: pointer; font-weight: 600; transition: all 0.3s ease;">
+            RQ3: Achievement Results
+        </button>
+    </div>
+    
+    <div class="tab-content">
+        <div class="tab-panel active" id="validation" style="text-align: center;">
+            <img src="Paper1_Table2_4_JPEG.jpg" 
+                 alt="Tables 2-4: Factor Analysis and Validation Results" 
+                 style="max-width: 100%; height: auto; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 2px solid rgba(102, 51, 153, 0.3); background: white; padding: 20px;">
+            <div style="margin-top: 15px; padding: 15px; background: rgba(102, 51, 153, 0.1); border-radius: 10px; border-left: 4px solid #663399;">
+                <p style="color: rgba(255, 255, 255, 0.9); font-size: 0.95em; font-style: italic; margin: 0;">
+                    <strong>Validation Evidence:</strong> Factor analysis confirms three-dimensional structure with clear loadings, while latent class analysis reveals organizational profiles that align with CRI readiness categories.
+                </p>
+            </div>
+        </div>
+        
+        <div class="tab-panel" id="achievement" style="text-align: center; display: none;">
+            <img src="Paper1_Table5_JPEG.jpg" 
+                 alt="Table 5: Relationship between Organizational Capacity Measures and Student Achievement" 
+                 style="max-width: 100%; height: auto; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 2px solid rgba(102, 51, 153, 0.3); background: white; padding: 20px;">
+            <div style="margin-top: 15px; padding: 15px; background: rgba(220, 20, 60, 0.1); border-radius: 10px; border-left: 4px solid #dc143c;">
+                <p style="color: rgba(255, 255, 255, 0.9); font-size: 0.95em; font-style: italic; margin: 0;">
+                    <strong>Criterion Validity:</strong> Consistent positive associations across all capacity measures, with optimal schools showing 4.67pp math and 3.39pp reading advantages over minimal schools.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
                 
                 <div style="background: linear-gradient(135deg, rgba(102, 51, 153, 0.2) 0%, rgba(220, 20, 60, 0.2) 100%); border-radius: 15px; padding: 25px; margin-top: 30px; border: 1px solid rgba(102, 51, 153, 0.3);">
     <h4 style="color: #fff; font-size: 1.3em; margin-bottom: 15px; display: flex; align-items: center;">
@@ -2354,14 +2418,17 @@ function initializeEverything() {
         </div>
     </div>
 </div>
+</div>
 
-<div style="margin-top: 25px; padding: 20px; background: rgba(50, 50, 80, 0.4); border-radius: 10px; border: 1px solid rgba(102, 51, 153, 0.2);">
-    <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.9em; text-align: center; line-height: 1.5;">
-        <strong>Takeaway:</strong> The CRI captures meaningful organizational differences that consistently predict student achievement across multiple analytical approaches. 
+<div style="margin-top: 25px; padding: 20px; background: rgba(220, 20, 60, 0.05); border-radius: 10px; border: 1px solid rgba(220, 20, 60, 0.3); border-left: 4px solid #dc143c;">
+    <p style="color: rgba(255, 255, 255, 0.9); font-size: 1em; text-align: center; line-height: 1.6;">
+        <strong style="color: #dc143c; font-size: 1.1em;">Takeaway:</strong> The CRI captures meaningful organizational differences that consistently predict student achievement across multiple analytical approaches. 
         Experience concentration emerges as the critical factor, with effects persisting even when comparing schools within the same district.
         These findings validate both the theoretical framework and practical utility of the measure.
     </p>
 </div>
+</div>
+
          <!-- Implications and Contributions Section -->
             <div class="findings-section">
                 <h2 class="section-title">Relevance</h2>
