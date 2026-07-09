@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- BUILD v3 · 2026-07-09 · two-col hero / in-svg map / sticky research nav -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -134,14 +135,15 @@ a{color:var(--purple-2)}
 .byline .dot{opacity:.4}
 
 /* Signature: the capacity meter */
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:3rem 4rem;align-items:center;margin-bottom:2rem}
+@media (max-width:900px){.hero-grid{grid-template-columns:1fr;gap:2.2rem}}
 .capacity-meter{
   background:rgba(255,255,255,.06);
   border:1px solid rgba(255,255,255,.14);
   border-radius:var(--radius);
   padding:1.4rem 1.5rem 1.2rem;
-  max-width:640px;
   backdrop-filter:blur(6px);
-  margin-bottom:2.4rem;
+  margin-bottom:1.4rem;
 }
 .meter-label{
   font-family:var(--font-mono);font-size:.72rem;letter-spacing:.12em;
@@ -164,10 +166,10 @@ a{color:var(--purple-2)}
 .meter-legend .num{font-family:var(--font-mono);font-weight:600}
 
 .hero-stats{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
+  display:grid;grid-template-columns:repeat(2,1fr);
   gap:1px;background:rgba(255,255,255,.14);
   border:1px solid rgba(255,255,255,.14);
-  border-radius:var(--radius);overflow:hidden;max-width:720px;
+  border-radius:var(--radius);overflow:hidden;
 }
 .stat{background:rgba(42,13,73,.55);padding:1.1rem 1.2rem}
 .stat b{
@@ -179,7 +181,7 @@ a{color:var(--purple-2)}
 /* Working paper banner */
 .wp-banner{
   display:flex;flex-wrap:wrap;align-items:center;gap:.9rem;
-  max-width:720px;margin-top:1.4rem;text-decoration:none;
+  margin-top:1rem;text-decoration:none;
   background:rgba(220,20,60,.14);border:1px solid rgba(220,20,60,.5);
   border-radius:var(--radius);padding:1rem 1.3rem;
   transition:background .25s ease, transform .25s ease;
@@ -450,15 +452,18 @@ ul.clean.no-rule li+li{border-top:none}
 <!-- ============================ HERO ============================ -->
 <header class="hero">
   <div class="hero-inner">
-    <p class="eyebrow">Dissertation Research · Educational Leadership Policy</p>
-    <h1>The Campus Capacity Index: measuring what makes schools <em>work</em>.</h1>
-    <p class="hero-sub">A novel, validated measure of school organizational capacity built entirely from Texas administrative data — and causal evidence on whether performance-based pay can build it.</p>
-    <div class="byline">
-      <span><strong>Roy Zamora, Ph.D.</strong></span><span class="dot">•</span>
-      <span>Texas Tech University</span><span class="dot">•</span>
-      <span>Educational Leadership Policy</span>
-    </div>
-
+    <div class="hero-grid">
+      <div>
+        <p class="eyebrow">Dissertation Research · Educational Leadership Policy</p>
+        <h1>The Campus Capacity Index: measuring what makes schools <em>work</em>.</h1>
+        <p class="hero-sub" style="margin-bottom:1.6rem">A novel, validated measure of school organizational capacity built entirely from Texas administrative data — and causal evidence on whether performance-based pay can build it.</p>
+        <div class="byline" style="margin-bottom:0">
+          <span><strong>Roy Zamora, Ph.D.</strong></span><span class="dot">•</span>
+          <span>Texas Tech University</span><span class="dot">•</span>
+          <span>Educational Leadership Policy</span>
+        </div>
+      </div>
+      <div>
     <!-- Signature element: the index, as a meter -->
     <div class="capacity-meter" role="img" aria-label="The Campus Capacity Index explains 61.5 percent of total variance across three dimensions: Experience 25.6 percent, Credentials 19.0 percent, Stability 16.8 percent.">
       <div class="meter-label">
@@ -482,6 +487,8 @@ ul.clean.no-rule li+li{border-top:none}
       <div class="stat"><b data-count="8">8</b><span>Years of data</span></div>
       <div class="stat"><b data-count="8725">8,725</b><span>Unique schools</span></div>
       <div class="stat"><b data-count="1177">1,177</b><span>Districts</span></div>
+    </div>
+      </div>
     </div>
 
     <a class="wp-banner" href="Deep_Dive_Paper3.html">

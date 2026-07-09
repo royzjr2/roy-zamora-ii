@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- BUILD v3 · 2026-07-09 · two-col hero / in-svg map / sticky research nav -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -106,6 +107,8 @@ a{color:var(--purple-2)}
 .tabs{max-width:var(--maxw);margin:0 auto;display:flex;overflow-x:auto}
 .tabs a{font-weight:600;font-size:.9rem;color:var(--ink-2);text-decoration:none;padding:1rem 1.3rem;border-bottom:3px solid transparent;white-space:nowrap;transition:color .2s,background .2s}
 .tabs a:hover{color:var(--purple);background:var(--purple-soft)}
+.tabs .tab-home{color:var(--crimson);border-right:1px solid var(--line);padding-right:1.5rem;margin-right:.4rem}
+.tabs .tab-home:hover{color:var(--crimson);background:var(--crimson-soft)}
 
 /* ============================ SECTIONS ============================ */
 main{max-width:var(--maxw);margin:0 auto;padding:3rem 1.5rem}
@@ -242,6 +245,7 @@ ul.clean li small{color:var(--ink-2)}
 <!-- ============================ NAV ============================ -->
 <div class="nav-wrap">
   <nav class="tabs" aria-label="Page sections">
+    <a class="tab-home" href="research.html">← Research</a>
     <a href="#construction">Construction</a>
     <a href="#readiness">Readiness Levels</a>
     <a href="#data">Data &amp; Sample</a>

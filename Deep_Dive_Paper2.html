@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- BUILD v3 · 2026-07-09 · two-col hero / in-svg map / sticky research nav -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -106,6 +107,8 @@ a{color:var(--purple-2)}
 .tabs{max-width:var(--maxw);margin:0 auto;display:flex;overflow-x:auto}
 .tabs a{font-weight:600;font-size:.9rem;color:var(--ink-2);text-decoration:none;padding:1rem 1.3rem;border-bottom:3px solid transparent;white-space:nowrap;transition:color .2s,background .2s}
 .tabs a:hover{color:var(--purple);background:var(--purple-soft)}
+.tabs .tab-home{color:var(--crimson);border-right:1px solid var(--line);padding-right:1.5rem;margin-right:.4rem}
+.tabs .tab-home:hover{color:var(--crimson);background:var(--crimson-soft)}
 
 /* ============================ SECTIONS ============================ */
 main{max-width:var(--maxw);margin:0 auto;padding:3rem 1.5rem}
@@ -216,9 +219,7 @@ ul.clean li small{color:var(--ink-2)}
   background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);
   border-radius:var(--radius);padding:1.8rem;backdrop-filter:blur(6px);
 }
-.map-stage{position:relative;line-height:0}
-.map-stage img{width:100%;height:auto;display:block}
-#txmap{position:absolute;inset:0;width:100%;height:100%}
+#txmap{width:100%;height:auto;display:block}
 #txmap .hub{cursor:pointer;transition:opacity .2s, filter .2s}
 #txmap .hub:hover circle, #txmap .hub.active circle{filter:brightness(1.25) drop-shadow(0 0 10px rgba(245,200,210,.9))}
 #txmap.has-active .hub:not(.active){opacity:.35}
@@ -246,12 +247,10 @@ ul.clean li small{color:var(--ink-2)}
 
     <!-- Signature element: interactive Texas university-hub map -->
     <div class="map-wrap">
-      <div class="map-stage">
-        <img src="Figure6_hub_map.png" alt="Choropleth map of Texas Education Service Center regions grouped into eight university hubs: Other/Rural, DFW Metro, East Texas, West Texas, Central Texas, Houston Metro, San Antonio Metro, and South Texas." loading="eager">
-        <svg id="txmap" viewBox="0 0 1500 1221" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Interactive markers over the university hub map, sized by each hub's four-year college enrollment advantage for Optimal Capacity schools: Houston Metro 7.42 percentage points, DFW Metro 5.76, San Antonio 5.41, South Texas 4.50, West Texas 4.18, Other slash Rural 2.17, East Texas moderate and significant, Central Texas null.">
-          <rect id="mapReset" x="0" y="0" width="1500" height="1221" fill="transparent"/>
-        </svg>
-      </div>
+      <svg id="txmap" viewBox="0 0 1500 1221" role="img" aria-label="Interactive map of Texas Education Service Center regions grouped into eight university hubs, with markers sized by each hub's four-year college enrollment advantage for Optimal Capacity schools: Houston Metro 7.42 percentage points, DFW Metro 5.76, San Antonio 5.41, South Texas 4.50, West Texas 4.18, Other slash Rural 2.17, East Texas moderate and significant, Central Texas null.">
+        <image href="Figure6_hub_map.png" xlink:href="Figure6_hub_map.png" x="0" y="0" width="1500" height="1221"/>
+        <rect id="mapReset" x="0" y="0" width="1500" height="1221" fill="transparent"/>
+      </svg>
       <div class="sun-panel" aria-live="polite">
         <p class="sun-kicker" id="mKicker">The geography of capacity</p>
         <h2 class="sun-title" id="mTitle">Eight university hubs, eight different returns</h2>
@@ -270,6 +269,7 @@ ul.clean li small{color:var(--ink-2)}
 <!-- ============================ NAV ============================ -->
 <div class="nav-wrap">
   <nav class="tabs" aria-label="Page sections">
+    <a class="tab-home" href="research.html">← Research</a>
     <a href="#framework">Framework</a>
     <a href="#design">Data &amp; Methods</a>
     <a href="#equity">Equity Effects</a>
@@ -540,7 +540,7 @@ ul.clean li small{color:var(--ink-2)}
      kicker:'University hub \u00b7 ESC Regions 5\u20138',
      desc:'Moderate but significant four-year advantages for Optimal Capacity schools once district factors are controlled \u2014 without the metro-style channeling away from two-year colleges.',
      chips:['Moderate, significant (district FE)','No systematic channeling']},
-    {x:686,y:472,eff:null,name:'Central Texas',hollow:true,r:14,
+    {x:712,y:505,eff:null,name:'Central Texas',hollow:true,r:14,
      kicker:'University hub \u00b7 ESC Regions 12\u201313 (Austin\u2013Waco)',
      desc:'The puzzle: negative and null four-year estimates in the state\u2019s capital region. Possibly high private-college attendance the data can\u2019t see, or the competitive admissions market around the flagships. A genuinely open question.',
      chips:['Null / negative estimates','Open research question']},
