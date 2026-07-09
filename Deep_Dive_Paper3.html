@@ -122,6 +122,8 @@ a{color:var(--purple-2)}
 .tabs{max-width:var(--maxw);margin:0 auto;display:flex;overflow-x:auto}
 .tabs a{font-weight:600;font-size:.9rem;color:var(--ink-2);text-decoration:none;padding:1rem 1.3rem;border-bottom:3px solid transparent;white-space:nowrap;transition:color .2s,background .2s}
 .tabs a:hover{color:var(--purple);background:var(--purple-soft)}
+.tabs .tab-home{color:var(--crimson);border-right:1px solid var(--line);padding-right:1.5rem;margin-right:.4rem}
+.tabs .tab-home:hover{color:var(--crimson);background:var(--crimson-soft)}
 
 /* ============================ SECTIONS ============================ */
 main{max-width:var(--maxw);margin:0 auto;padding:3rem 1.5rem}
@@ -278,8 +280,8 @@ ul.clean li small{color:var(--ink-2)}
           <text x="625" y="112" text-anchor="middle" fill="#cdbde4" font-size="11">math · p=.01</text>
 
           <!-- Faded direct path -->
-          <path d="M 125 130 C 125 210, 795 210, 795 130" fill="none" stroke="#6e5a8f" stroke-width="2.5" stroke-dasharray="7 6" marker-end="url(#arrG)"/>
-          <text x="460" y="188" text-anchor="middle" fill="#9d8bb8" font-size="13" font-family="IBM Plex Mono, monospace">direct effect: 0.05 SD · n.s. — and fading over time</text>
+          <path d="M 125 130 C 125 196, 795 196, 795 130" fill="none" stroke="#6e5a8f" stroke-width="2.5" stroke-dasharray="7 6" marker-end="url(#arrG)"/>
+          <text x="460" y="216" text-anchor="middle" fill="#b3a3cf" font-size="13" font-family="IBM Plex Mono, monospace">direct effect: 0.05 SD · n.s. — and fading over time</text>
         </g>
       </svg>
     </div>
@@ -289,6 +291,7 @@ ul.clean li small{color:var(--ink-2)}
 <!-- ============================ NAV ============================ -->
 <div class="nav-wrap">
   <nav class="tabs" aria-label="Page sections">
+    <a class="tab-home" href="research.html">← Research</a>
     <a href="#policy">The Policy</a>
     <a href="#design">Design &amp; Data</a>
     <a href="#capacity">Capacity Effects</a>
