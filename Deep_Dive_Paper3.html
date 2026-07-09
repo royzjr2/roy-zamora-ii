@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>From Incentives to Capacity: How the Texas Teacher Incentive Allotment Reshapes Schools | Working Paper — Roy Zamora</title>
+
+<!-- SEO -->
+<meta name="description" content="Working paper: staggered difference-in-differences evidence that the Texas Teacher Incentive Allotment builds school organizational capacity — 56,939 campus-year observations across 8,725 schools in 1,177 districts (2017–2024). TIA works through capacity development, not direct incentives.">
+<meta name="author" content="Roy Zamora">
+<link rel="canonical" href="Deep_Dive_Paper3.html">
+
+<!-- Open Graph -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="From Incentives to Capacity: How the Texas Teacher Incentive Allotment Reshapes Schools">
+<meta property="og:description" content="New working paper: performance-based pay works by building organizational capacity, not by buying individual performance. Evidence from 56,939 Texas campus-year observations.">
+<meta property="og:url" content="Deep_Dive_Paper3.html">
+<meta property="og:site_name" content="Roy Zamora — Research Portfolio">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="From Incentives to Capacity — Working Paper">
+<meta name="twitter:description" content="TIA operates through capacity development, not direct incentives. Staggered DiD, 2017–2024.">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ScholarlyArticle",
+  "headline": "From Incentives to Capacity: How the Texas Teacher Incentive Allotment Reshapes Schools",
+  "author": {
+    "@type": "Person",
+    "name": "Roy Zamora",
+    "affiliation": { "@type": "CollegeOrUniversity", "name": "Texas Tech University" },
+    "sameAs": "https://www.linkedin.com/in/roy-zamora2/"
+  },
+  "about": ["Performance-based compensation", "Organizational capacity", "Teacher Incentive Allotment", "Staggered difference-in-differences"],
+  "url": "Deep_Dive_Paper3.html"
+}
+</script>
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📄</text></svg>">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+
+<style>
+/* ================================================================
+   TOKENS — matches portfolio index.html
+   ================================================================ */
+:root{
+  --purple:      #3d1466;
+  --purple-2:    #663399;
+  --purple-3:    #9d7fd0;
+  --purple-soft: #f3eff9;
+  --crimson:     #dc143c;
+  --crimson-soft:#fdf0f2;
+  --ink:         #211c29;
+  --ink-2:       #5b5566;
+  --paper:       #fbfafd;
+  --card:        #ffffff;
+  --line:        #e7e2ef;
+  --gold:        #c9a24b;
+
+  --font-display:'Newsreader', Georgia, serif;
+  --font-body:   'Public Sans', -apple-system, 'Segoe UI', sans-serif;
+  --font-mono:   'IBM Plex Mono', 'SF Mono', Consolas, monospace;
+
+  --radius: 14px;
+  --shadow: 0 1px 2px rgba(33,28,41,.05), 0 8px 28px rgba(61,20,102,.08);
+  --shadow-lift: 0 2px 4px rgba(33,28,41,.06), 0 16px 40px rgba(61,20,102,.14);
+  --maxw: 1160px;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);color:var(--ink);background:var(--paper);line-height:1.65;-webkit-font-smoothing:antialiased}
+img,svg,canvas{max-width:100%}
+a{color:var(--purple-2)}
+
+.skip-link{position:absolute;left:-9999px;top:0;background:var(--purple);color:#fff;padding:.6rem 1rem;border-radius:0 0 8px 0;z-index:1000;font-weight:600}
+.skip-link:focus{left:0}
+:focus-visible{outline:3px solid var(--crimson);outline-offset:2px;border-radius:4px}
+
+/* ============================ HERO ============================ */
+.hero{
+  background:
+    radial-gradient(1100px 500px at 85% -10%, rgba(220,20,60,.18), transparent 60%),
+    radial-gradient(900px 600px at 10% 110%, rgba(102,51,153,.35), transparent 60%),
+    linear-gradient(150deg, #2a0d49 0%, var(--purple) 55%, #1b0a33 100%);
+  color:#fff;padding:3.5rem 1.5rem 4rem;
+}
+.hero-inner{max-width:var(--maxw);margin:0 auto}
+.back-link{display:inline-flex;align-items:center;gap:.4rem;color:#e8ddf5;text-decoration:none;font-size:.88rem;font-weight:600;margin-bottom:2.2rem;opacity:.85;transition:opacity .2s}
+.back-link:hover{opacity:1;text-decoration:underline}
+.eyebrow{font-family:var(--font-mono);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:#e8ddf5;opacity:.85;margin-bottom:1rem}
+.hero h1{font-family:var(--font-display);font-weight:600;font-size:clamp(2rem,4.4vw,3.3rem);line-height:1.12;letter-spacing:-.01em;max-width:22ch;margin-bottom:1.1rem}
+.hero h1 em{font-style:italic;color:#f5c8d2}
+.hero-sub{font-size:clamp(1rem,1.6vw,1.12rem);color:#d9cdea;max-width:64ch;margin-bottom:2.6rem}
+
+/* Signature: interactive CCI sunburst + detail panel */
+.sunburst-wrap{
+  display:grid;grid-template-columns:minmax(300px,440px) 1fr;gap:2rem;align-items:center;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);
+  border-radius:var(--radius);padding:1.8rem;backdrop-filter:blur(6px);
+}
+#sunburst{width:100%;height:auto;display:block}
+#sunburst path{cursor:pointer;transition:opacity .2s, filter .2s}
+#sunburst path:hover, #sunburst path.active{filter:brightness(1.18)}
+#sunburst.has-active path:not(.active){opacity:.45}
+#sunburst text{pointer-events:none;font-family:var(--font-body)}
+.sun-panel{min-width:0}
+.sun-kicker{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:#cdbde4;margin-bottom:.4rem}
+.sun-title{font-family:var(--font-display);font-weight:600;font-size:1.5rem;line-height:1.25;margin-bottom:.6rem}
+.sun-desc{color:#d9cdea;font-size:.95rem;margin-bottom:1rem}
+.sun-meta{display:flex;flex-wrap:wrap;gap:.5rem}
+.sun-chip{font-family:var(--font-mono);font-size:.76rem;font-weight:500;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);padding:.3rem .7rem;border-radius:99px;color:#f0eaf8}
+.sun-hint{font-size:.78rem;color:#a894c9;margin-top:1.1rem;font-style:italic}
+
+/* ============================ IN-PAGE NAV ============================ */
+.nav-wrap{position:sticky;top:0;z-index:100;background:rgba(251,250,253,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.tabs{max-width:var(--maxw);margin:0 auto;display:flex;overflow-x:auto}
+.tabs a{font-weight:600;font-size:.9rem;color:var(--ink-2);text-decoration:none;padding:1rem 1.3rem;border-bottom:3px solid transparent;white-space:nowrap;transition:color .2s,background .2s}
+.tabs a:hover{color:var(--purple);background:var(--purple-soft)}
+
+/* ============================ SECTIONS ============================ */
+main{max-width:var(--maxw);margin:0 auto;padding:3rem 1.5rem}
+section{scroll-margin-top:4.5rem;margin-bottom:4rem}
+.section-title{font-family:var(--font-display);font-weight:600;color:var(--purple);font-size:clamp(1.6rem,3vw,2.2rem);letter-spacing:-.01em;margin-bottom:.5rem}
+.section-desc{color:var(--ink-2);max-width:70ch;margin-bottom:2rem;font-size:1.02rem}
+.subhead{font-family:var(--font-display);color:var(--purple);font-size:1.35rem;font-weight:600;margin:2.2rem 0 1rem}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:1.8rem;transition:transform .25s ease, box-shadow .25s ease}
+.card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lift)}
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:1.6rem}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem}
+
+.callout{border-left:4px solid var(--crimson);background:var(--crimson-soft);border-radius:0 10px 10px 0;padding:1.4rem 1.6rem;margin:1.8rem 0}
+.callout h4{color:var(--crimson);margin-bottom:.7rem;font-size:1.02rem}
+.callout.purple{border-left-color:var(--purple);background:var(--purple-soft)}
+.callout.purple h4{color:var(--purple)}
+
+ul.clean{list-style:none}
+ul.clean li{padding:.5rem 0 .5rem 1.5rem;position:relative}
+ul.clean li::before{content:'▸';position:absolute;left:0;color:var(--purple-2)}
+ul.clean li+li{border-top:1px solid var(--line)}
+ul.clean li b{color:var(--ink)}
+ul.clean li small{color:var(--ink-2)}
+
+.chart-box{position:relative;height:320px;margin:1rem 0}
+.chart-note{font-size:.78rem;color:var(--ink-2);font-family:var(--font-mono);margin-top:.4rem}
+
+.stat-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin:1.2rem 0}
+.stat-strip>div{background:var(--paper);padding:1rem 1.1rem}
+.stat-strip b{display:block;font-family:var(--font-mono);font-weight:600;font-size:1.25rem;color:var(--purple)}
+.stat-strip small{font-size:.76rem;color:var(--ink-2);line-height:1.4;display:block}
+
+.badge{display:inline-block;background:var(--crimson-soft);color:var(--crimson);font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.2rem .6rem;border-radius:99px;margin-bottom:.5rem}
+.chip{display:inline-block;background:var(--purple-soft);color:var(--purple);font-size:.76rem;font-weight:600;padding:.25rem .7rem;border-radius:99px;font-family:var(--font-mono)}
+
+/* ============================ ACCORDIONS ============================ */
+.acc{border:1px solid var(--line);border-radius:var(--radius);background:var(--card);box-shadow:var(--shadow);margin-bottom:1.1rem;overflow:hidden}
+.acc-btn{appearance:none;width:100%;background:none;border:none;cursor:pointer;text-align:left;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1.3rem 1.6rem;font-family:var(--font-body);transition:background .2s}
+.acc-btn:hover{background:var(--purple-soft)}
+.acc-btn .t{font-family:var(--font-display);font-weight:600;font-size:1.2rem;color:var(--purple);display:block}
+.acc-btn .d{font-size:.86rem;color:var(--ink-2);display:block;margin-top:.15rem}
+.acc-meta{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;flex-shrink:0}
+.acc-chevron{color:var(--purple-2);transition:transform .3s;font-size:.9rem}
+.acc-btn[aria-expanded="true"] .acc-chevron{transform:rotate(180deg)}
+.acc-body{display:none;padding:0 1.6rem 1.6rem;border-top:1px solid var(--line)}
+.acc-body.open{display:block}
+.acc-body .theory{background:var(--purple-soft);border-left:4px solid var(--purple);border-radius:0 10px 10px 0;padding:1.1rem 1.3rem;margin:1.3rem 0}
+.acc-body .theory b{color:var(--purple)}
+.ind-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem}
+.ind-card{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:1.2rem 1.3rem}
+.ind-card h5{color:var(--purple);font-size:1rem;margin-bottom:.5rem}
+.ind-card p{font-size:.88rem;color:var(--ink-2);margin-bottom:.9rem}
+.scoring{background:#fff;border:1px dashed var(--line);border-left:3px solid var(--purple-2);border-radius:8px;padding:.8rem 1rem}
+.scoring b{font-size:.78rem;text-transform:uppercase;letter-spacing:.07em;color:var(--purple)}
+.scoring div{font-family:var(--font-mono);font-size:.8rem;color:var(--ink);margin-top:.4rem;line-height:1.7}
+
+/* ============================ READINESS LEVELS ============================ */
+.levels{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem;align-items:stretch}
+.level{padding:1.7rem;text-align:center;border-top:5px solid}
+.level.min{border-top-color:var(--crimson)}
+.level.mod{border-top-color:var(--gold)}
+.level.opt{border-top-color:var(--purple)}
+.level h4{font-family:var(--font-display);font-weight:600;font-size:1.25rem;color:var(--ink);margin-bottom:.2rem}
+.level .range{font-family:var(--font-mono);font-weight:600;font-size:1.9rem;margin:.6rem 0}
+.level.min .range{color:var(--crimson)}
+.level.mod .range{color:#a07c2c}
+.level.opt .range{color:var(--purple)}
+.level .share{font-family:var(--font-mono);font-size:.86rem;color:var(--ink-2);margin-bottom:.5rem}
+.level p{font-size:.88rem;color:var(--ink-2)}
+
+/* ============================ EQUATIONS & FIGURES ============================ */
+.equation{background:#241a33;color:#f0eaf8;border-radius:10px;font-family:var(--font-mono);font-size:1.05rem;text-align:center;padding:1.1rem 1.2rem;margin:.8rem 0 1rem;overflow-x:auto}
+.equation sub{font-size:.7em}
+.figure{background:#fff;border:1px solid var(--line);border-radius:10px;padding:1rem;margin:1rem 0;text-align:center}
+.figure img{border-radius:6px}
+.figure figcaption{font-size:.8rem;color:var(--ink-2);font-family:var(--font-mono);margin-top:.6rem}
+
+/* ============================ FOOTER ============================ */
+.site-footer{background:#17101f;color:#e8e2f0;text-align:center;padding:3.5rem 1.5rem;margin-top:2rem}
+.site-footer h2{font-family:var(--font-display);font-weight:600;color:#f5c8d2;margin-bottom:.4rem}
+.site-footer p{color:#a99cbb;margin-bottom:2rem}
+.footer-links{display:flex;justify-content:center;flex-wrap:wrap;gap:.9rem}
+.footer-btn{display:inline-flex;align-items:center;gap:.6rem;background:#241a30;border:1px solid #3b2d4d;color:#f0eaf8;padding:.7rem 1.4rem;border-radius:99px;text-decoration:none;font-size:.92rem;font-weight:500;transition:all .25s ease}
+.footer-btn:hover{border-color:var(--crimson);background:#2e2140;transform:translateY(-2px)}
+
+/* ============================ RESPONSIVE + MOTION ============================ */
+@media (max-width: 960px){
+  .sunburst-wrap{grid-template-columns:1fr}
+  .grid-3,.levels{grid-template-columns:1fr}
+  .grid-2,.ind-grid{grid-template-columns:1fr}
+}
+@media (max-width: 600px){
+  .hero{padding:2.5rem 1.2rem 3rem}
+  main{padding:2rem 1.2rem}
+  .chart-box{height:280px}
+  .acc-btn{flex-wrap:wrap}
+}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
+<style>
+/* Page-specific: hero mechanism diagram */
+.mech{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:var(--radius);padding:1.8rem;backdrop-filter:blur(6px)}
+.mech-title{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:#cdbde4;margin-bottom:1.2rem;text-align:center}
+.mech svg{width:100%;height:auto;display:block}
+.wp-badge{display:inline-block;background:rgba(220,20,60,.25);border:1px solid rgba(220,20,60,.55);color:#ffd9e1;font-family:var(--font-mono);font-size:.74rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:.3rem .8rem;border-radius:99px;margin-bottom:1rem}
+.neg{color:var(--crimson)!important}
+.pos{color:#177245!important}
+</style>
+</head><body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ============================ HERO ============================ -->
+<header class="hero">
+  <div class="hero-inner">
+    <a class="back-link" href="research.html">← Back to research portfolio</a>
+    <p class="eyebrow">Paper 03 · Working Paper · Study 3</p>
+    <span class="wp-badge">📄 Working paper — 2026 draft</span>
+    <h1>From incentives to capacity: how the Texas Teacher Incentive Allotment <em>reshapes schools</em>.</h1>
+    <p class="hero-sub">Most merit pay tries to <em>buy</em> individual performance. TIA requires districts to <em>build</em> organizational infrastructure first. Using staggered difference-in-differences across 56,939 campus-year observations (2017–2024), this study finds the policy works — but through capacity development, not direct incentives.</p>
+
+    <!-- Signature element: the mechanism, in one diagram -->
+    <div class="mech">
+      <p class="mech-title">The core finding — TIA's effects travel through organizational capacity</p>
+      <svg viewBox="0 0 920 240" role="img" aria-label="Mechanism diagram. TIA approval leads to campus capacity with an effect of 0.09 standard deviations, strengthening to significance in five-year windows. Campus capacity leads to math achievement at 0.21 standard deviations, significant at p equals 0.01. The direct path from TIA to achievement is only 0.05 standard deviations and not significant.">
+        <defs>
+          <marker id="arrP" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#f5c8d2"/></marker>
+          <marker id="arrG" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#6e5a8f"/></marker>
+        </defs>
+        <!-- Boxes -->
+        <g font-family="Public Sans, sans-serif">
+          <rect x="10" y="40" width="230" height="86" rx="12" fill="rgba(255,255,255,.08)" stroke="rgba(255,255,255,.3)" stroke-width="1.5"/>
+          <text x="125" y="76" text-anchor="middle" fill="#fff" font-size="19" font-weight="700">TIA approval</text>
+          <text x="125" y="100" text-anchor="middle" fill="#cdbde4" font-size="13">Performance-based policy (X)</text>
+
+          <rect x="345" y="40" width="230" height="86" rx="12" fill="rgba(220,20,60,.18)" stroke="#dc143c" stroke-width="2"/>
+          <text x="460" y="76" text-anchor="middle" fill="#fff" font-size="19" font-weight="700">Campus capacity</text>
+          <text x="460" y="100" text-anchor="middle" fill="#f5c8d2" font-size="13">The CCI — mediator (M)</text>
+
+          <rect x="680" y="40" width="230" height="86" rx="12" fill="rgba(255,255,255,.08)" stroke="rgba(255,255,255,.3)" stroke-width="1.5"/>
+          <text x="795" y="76" text-anchor="middle" fill="#fff" font-size="19" font-weight="700">Achievement</text>
+          <text x="795" y="100" text-anchor="middle" fill="#cdbde4" font-size="13">STAAR math &amp; reading (Y)</text>
+
+          <!-- Indirect path arrows -->
+          <line x1="244" y1="83" x2="337" y2="83" stroke="#f5c8d2" stroke-width="3" marker-end="url(#arrP)"/>
+          <text x="290" y="66" text-anchor="middle" fill="#f5c8d2" font-size="14" font-weight="600" font-family="IBM Plex Mono, monospace">0.09 SD</text>
+          <text x="290" y="112" text-anchor="middle" fill="#cdbde4" font-size="11">p=.03 in 5-yr window</text>
+
+          <line x1="579" y1="83" x2="672" y2="83" stroke="#f5c8d2" stroke-width="3" marker-end="url(#arrP)"/>
+          <text x="625" y="66" text-anchor="middle" fill="#f5c8d2" font-size="14" font-weight="600" font-family="IBM Plex Mono, monospace">0.21 SD</text>
+          <text x="625" y="112" text-anchor="middle" fill="#cdbde4" font-size="11">math · p=.01</text>
+
+          <!-- Faded direct path -->
+          <path d="M 125 130 C 125 210, 795 210, 795 130" fill="none" stroke="#6e5a8f" stroke-width="2.5" stroke-dasharray="7 6" marker-end="url(#arrG)"/>
+          <text x="460" y="188" text-anchor="middle" fill="#9d8bb8" font-size="13" font-family="IBM Plex Mono, monospace">direct effect: 0.05 SD · n.s. — and fading over time</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<!-- ============================ NAV ============================ -->
+<div class="nav-wrap">
+  <nav class="tabs" aria-label="Page sections">
+    <a href="#policy">The Policy</a>
+    <a href="#design">Design &amp; Data</a>
+    <a href="#capacity">Capacity Effects</a>
+    <a href="#context">Context</a>
+    <a href="#mediation">Mediation</a>
+    <a href="#robustness">Robustness</a>
+    <a href="#implications">Implications</a>
+  </nav>
+</div>
+
+<main id="main">
+
+<!-- ============================ THE POLICY ============================ -->
+<section id="policy">
+  <h2 class="section-title">Buying performance vs. building capacity</h2>
+  <p class="section-desc">Why the Teacher Incentive Allotment is a different kind of performance-based compensation — and why that difference is the study's central question.</p>
+
+  <div class="grid-2">
+    <div class="card">
+      <span class="badge">The old model</span>
+      <h4 style="font-family:var(--font-display);color:var(--purple);font-size:1.25rem;margin-bottom:.6rem">Traditional merit pay: "buying" teacher quality</h4>
+      <p style="font-size:.94rem;color:var(--ink-2)">Individual financial incentives overlaid on existing structures, assuming clear performance signals and rational-actor responses. In practice, education is a sea of "imperfect signals" — noisy effectiveness measures shaped by prior achievement, socioeconomics, and resources. Large RCTs of traditional merit pay have shown minimal effects, alongside short-term thinking and unsustainable resource dependence.</p>
+    </div>
+    <div class="card">
+      <span class="badge">TIA's innovation</span>
+      <h4 style="font-family:var(--font-display);color:var(--purple);font-size:1.25rem;margin-bottom:.6rem">TIA (2019): capacity first, compensation second</h4>
+      <p style="font-size:.94rem;color:var(--ink-2)">Districts must build organizational infrastructure — calibrated evaluation systems, data management capabilities, stakeholder engagement — <em>before</em> participating. Once approved, state funding flows per designated highly-effective teacher. The approval process itself creates new "rules-in-use" that reshape how districts approach evaluation and strategic staffing.</p>
+    </div>
+  </div>
+
+  <div class="callout purple">
+    <h4>Theoretical framework: IAD × agency theory</h4>
+    <p style="font-size:.95rem">The Institutional Analysis &amp; Development framework treats TIA as reshaping the decision-making environment — new rules-in-use rather than a simple bonus scheme. Agency theory explains the cascading principal–agent chain: the state is principal to districts, districts to campuses, campus administrators to teachers. TIA's capacity prerequisites address the information asymmetries that break traditional merit pay at each link in that chain.</p>
+  </div>
+
+  <h3 class="subhead">Research questions</h3>
+  <div class="grid-3">
+    <div class="card"><span class="badge">RQ1</span><p style="font-size:.94rem">Does TIA approval lead to changes in the CCI — and do effects vary across its capacity dimensions?</p></div>
+    <div class="card"><span class="badge">RQ2</span><p style="font-size:.94rem">Do TIA's effects on the CCI vary across school contexts — rural, high-poverty, and charter environments?</p></div>
+    <div class="card"><span class="badge">RQ3</span><p style="font-size:.94rem">Does CCI improvement mediate the relationship between TIA implementation and student achievement?</p></div>
+  </div>
+</section>
+
+<!-- ============================ DESIGN & DATA ============================ -->
+<section id="design">
+  <h2 class="section-title">Design &amp; data</h2>
+  <p class="section-desc">Eight years of Texas administrative data and a modern staggered difference-in-differences design that exploits variation in when districts received TIA approval.</p>
+
+  <div class="stat-strip">
+    <div><b>56,939</b><small>Campus-year observations, 2017–2024</small></div>
+    <div><b>8,725</b><small>Unique schools</small></div>
+    <div><b>1,177</b><small>Districts</small></div>
+    <div><b>12.44%</b><small>Of observations treated via district TIA approval</small></div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <h4 style="color:var(--purple-2);margin-bottom:.9rem">📊 Data sources</h4>
+      <ul class="clean">
+        <li><b>TAPR</b> <small>— organizational capacity indicators and campus-level achievement (math &amp; reading)</small></li>
+        <li><b>AskTED</b> <small>— locations, regions, urbanicity, and charter status for contextual analysis</small></li>
+        <li><b>TIA application records</b> <small>— district application timing and approval decisions, obtained via Public Information Request (PIR #67981)</small></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4 style="color:var(--purple-2);margin-bottom:.9rem">🧭 Identification strategy</h4>
+      <ul class="clean">
+        <li><b>Staggered DiD</b> <small>— did_multiplegt_dyn estimator (de Chaisemartin et al.), robust to heterogeneous treatment effects</small></li>
+        <li><b>Staggered rollout</b> <small>— first approvals in 2020 (15 districts), waves through 2023–24 (112 and 132 districts)</small></li>
+        <li><b>Not-yet-treated controls</b> <small>— later adopters serve as controls for earlier ones</small></li>
+        <li><b>Controls</b> <small>— standardized economic disadvantage, lagged scores, year FE; SEs clustered by district</small></li>
+        <li><b>Pre-trends validated</b> <small>— placebo tests and parallel-trends checks across all specifications</small></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout" style="margin-top:1.6rem">
+    <h4>The outcome: the Campus Capacity Index</h4>
+    <p style="font-size:.95rem">The CCI is a validated 0–100 composite of school organizational capacity built from six administrative indicators across three dimensions — Experience concentration, Credential quality, and Organizational stability. Optimal Capacity schools outperform Minimal Capacity schools by 4.67pp in math and 3.39pp in reading (district + year FE). Full construction and validation details are in <a href="Deep_Dive_Paper1.html">the Paper 1 deep dive</a>.</p>
+  </div>
+</section>
+
+<!-- ============================ CAPACITY EFFECTS ============================ -->
+<section id="capacity">
+  <h2 class="section-title">Finding 1 — Capacity builds over years, not months</h2>
+  <p class="section-desc">TIA produces capacity development that emerges gradually and varies sharply across organizational dimensions. The policy is an Experience-building intervention above all.</p>
+
+  <div class="card">
+    <div class="chart-box" style="height:380px"><canvas id="chartEvent" aria-label="Event-study line chart of TIA effects by year since approval. Overall CCI rises from 0.03 to 0.20 standard deviations at year 3 then 0.14 at year 4. Experience climbs steadily from 0.03 to 0.22. Credentials fluctuate around zero ending at negative 0.22. Stability spikes at 0.20 in year 1 then is inconsistent."></canvas></div>
+    <p class="chart-note">Dynamic treatment effects (SD units) by years since TIA approval · did_multiplegt_dyn with district-clustered SEs.</p>
+  </div>
+
+  <div class="stat-strip">
+    <div><b>0.09 SD</b><small>Overall CCI average effect (joint p = 0.11; p = 0.033 in 5-year window)</small></div>
+    <div><b class="pos">0.06 SD</b><small>Experience average effect, joint p &lt; 0.001 — strengthening to 0.22 SD by Year 4</small></div>
+    <div><b>0.02 SD</b><small>Credentials — no systematic pattern (joint p = 0.26)</small></div>
+    <div><b>0.20 SD</b><small>Stability's Year 1 attraction spike (p &lt; 0.001), then inconsistent (joint p = 0.21)</small></div>
+  </div>
+
+  <div class="grid-3">
+    <div class="card">
+      <h5 style="color:var(--purple-2);margin-bottom:.5rem">Why Year 3 peaks</h5>
+      <p style="font-size:.9rem;color:var(--ink-2)">The trajectory tracks TIA's implementation structure: districts build evaluation systems (Year 1), collect data and make designations (Year 2), and distribute compensation (Year 3) — when incentives activate, effects reach 0.20 SD and statistical significance.</p>
+    </div>
+    <div class="card">
+      <h5 style="color:var(--purple-2);margin-bottom:.5rem">Experience: cumulative advantage</h5>
+      <p style="font-size:.9rem;color:var(--ink-2)">The steadily strengthening Experience effects suggest districts build reputations as desirable workplaces and compete more effectively for experienced teachers — cumulative gains, not one-time recruitment.</p>
+    </div>
+    <div class="card">
+      <h5 style="color:var(--purple-2);margin-bottom:.5rem">Credentials: a redefinition?</h5>
+      <p style="font-size:.9rem;color:var(--ink-2)">Null credential effects may signal a shift toward performance-based rather than credential-based hiring — TIA's rules-in-use redefining teacher quality around demonstrated effectiveness rather than formal qualifications.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ CONTEXT ============================ -->
+<section id="context">
+  <h2 class="section-title">Finding 2 — Institutional context moderates everything</h2>
+  <p class="section-desc">TIA effectiveness depends on where it lands. Governance structures prove especially decisive.</p>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="chart-box"><canvas id="chartContext" aria-label="Bar chart of average TIA effects on overall campus capacity by context: traditional public schools positive 0.14 standard deviations, high-poverty 0.11, not high-poverty 0.05, charter schools negative 0.12"></canvas></div>
+      <p class="chart-note">Average total effects on overall CCI by baseline context (SD units).</p>
+    </div>
+    <div class="card">
+      <div class="chart-box"><canvas id="chartCharter" aria-label="Bar chart of charter school effects by dimension: Stability positive 0.11, Experience positive 0.10, overall CCI negative 0.12, Credentials negative 0.50"></canvas></div>
+      <p class="chart-note">The charter paradox: dimensional effects within charter schools (average total effects, SD units).</p>
+    </div>
+  </div>
+
+  <div class="grid-3" style="margin-top:1.6rem">
+    <div class="card">
+      <span class="badge">Governance</span>
+      <h5 style="color:var(--purple-2);margin-bottom:.5rem">Traditional vs. charter</h5>
+      <p style="font-size:.9rem;color:var(--ink-2)">Traditional public schools show systematic positive effects (+0.14 SD, rising to 0.26–0.30 SD in Years 3–4). Charters go the other way (−0.12 SD; Year 4 at −0.47 SD), driven almost entirely by credentials (−0.50 SD average) — yet still use TIA to improve experience (+0.10) and stability (+0.11). Embedded district evaluation systems appear to enable implementation in ways charter autonomy cannot replicate.</p>
+    </div>
+    <div class="card">
+      <span class="badge">Poverty</span>
+      <h5 style="color:var(--purple-2);margin-bottom:.5rem">High-poverty schools</h5>
+      <p style="font-size:.9rem;color:var(--ink-2)">High-poverty schools average stronger capacity effects (0.11 vs. 0.05 SD), with significant systematic responses on Experience (0.07 SD) and Stability (0.08 SD) — evidence TIA's capacity-building approach addresses resource constraints more effectively than traditional merit pay.</p>
+    </div>
+    <div class="card">
+      <span class="badge">Geography</span>
+      <h5 style="color:var(--purple-2);margin-bottom:.5rem">Rural schools</h5>
+      <p style="font-size:.9rem;color:var(--ink-2)">No significant overall differences — but rural schools show significant dimensional gains on Experience (Year 4 reaching 0.45 SD) and Credentials, highlighting TIA's value for establishing professional staff in hard-to-staff contexts.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ MEDIATION ============================ -->
+<section id="mediation">
+  <h2 class="section-title">Finding 3 — The pathway runs through capacity</h2>
+  <p class="section-desc">A three-step mediation framework (Imai et al.), adapted to the staggered DiD design, separates TIA's direct and indirect pathways to student achievement.</p>
+
+  <div class="grid-3">
+    <div class="card">
+      <span class="chip">Step 1 · X → M</span>
+      <h5 style="color:var(--purple);margin:.7rem 0 .4rem">TIA → capacity</h5>
+      <p style="font-size:.9rem;color:var(--ink-2)">TIA approval builds CCI scores: 0.09 SD average, marginally significant in the four-year window (p = 0.11) but strengthening to p = 0.033 over five years.</p>
+    </div>
+    <div class="card">
+      <span class="chip">Step 2 · M → Y</span>
+      <h5 style="color:var(--purple);margin:.7rem 0 .4rem">Capacity → achievement</h5>
+      <p style="font-size:.9rem;color:var(--ink-2)">Schools with CCI improvements gain systematically in math: 0.21 SD average, joint p = 0.01. Reading is positive but weaker (0.17 SD, p = 0.35) — math is more sensitive to organizational coherence.</p>
+    </div>
+    <div class="card">
+      <span class="chip">Step 3 · X → Y | M</span>
+      <h5 style="color:var(--purple);margin:.7rem 0 .4rem">Direct effects: minimal</h5>
+      <p style="font-size:.9rem;color:var(--ink-2)">Controlling for capacity, direct TIA effects on achievement are small (0.05 SD math, 0.03 SD reading), not systematic, and fade as implementation matures.</p>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:1.6rem">
+    <div class="chart-box"><canvas id="chartMediation" aria-label="Bar chart of mediation pathway effect sizes: TIA to capacity 0.09 standard deviations, capacity to math achievement 0.21 significant at p equals .01, capacity to reading 0.17, direct TIA to math 0.05 not significant, direct TIA to reading 0.03 not significant"></canvas></div>
+    <p class="chart-note">Average total effects per pathway (SD units). Sequential estimation — evidence about mechanisms, not definitive causal mediation.</p>
+  </div>
+
+  <div class="callout purple">
+    <h4>What this means</h4>
+    <p style="font-size:.95rem">Systematic policy-to-capacity effects, strong capacity-to-achievement relationships in mathematics, and minimal direct policy effects: the pattern is consistent with organizational development as the primary mechanism through which performance-based compensation influences outcomes — not the direct incentive-to-performance pathway that traditional agency theory predicts.</p>
+  </div>
+</section>
+
+<!-- ============================ ROBUSTNESS ============================ -->
+<section id="robustness">
+  <h2 class="section-title">Robustness</h2>
+  <p class="section-desc">A comprehensive battery confirms the findings are not artifacts of modeling choices, treatment timing, or the pandemic.</p>
+
+  <div class="grid-2">
+    <div class="card">
+      <span class="badge">Balance</span>
+      <h5 style="color:var(--purple-2);margin-bottom:.5rem">Pre-treatment balance</h5>
+      <p style="font-size:.9rem;color:var(--ink-2)">Treated and control districts do not differ on baseline CCI (p = 0.42) or math achievement (p = 0.97). Treated districts are larger and higher-poverty — time-invariant differences the design absorbs. No differential missingness by treatment status (all p &gt; 0.09).</p>
+    </div>
+    <div class="card">
+      <span class="badge">Windows</span>
+      <h5 style="color:var(--purple-2);margin-bottom:.5rem">Effects strengthen with time</h5>
+      <p style="font-size:.9rem;color:var(--ink-2)">Five-year specifications reach significance on the overall CCI (joint p = 0.033 vs. 0.108 at four years), with a Year 5 effect of 0.14 SD suggesting sustained development. Experience is robust across all windows (all joint p &lt; 0.003).</p>
+    </div>
+    <div class="card">
+      <span class="badge">Cohorts</span>
+      <h5 style="color:var(--purple-2);margin-bottom:.5rem">Same-switcher restriction</h5>
+      <p style="font-size:.9rem;color:var(--ink-2)">Limiting comparisons to districts treated at similar times, the Experience effect remains highly significant (p &lt; 0.001) and <em>strengthens</em> — 0.14 SD vs. 0.06 SD in the main specification.</p>
+    </div>
+    <div class="card">
+      <span class="badge">Placebo</span>
+      <h5 style="color:var(--purple-2);margin-bottom:.5rem">Placebo &amp; COVID tests</h5>
+      <p style="font-size:.9rem;color:var(--ink-2)">With randomly assigned treatment, only 1 of 20 tests reaches 5% significance — the expected Type I rate. Effects hold across COVID-era and post-pandemic periods, and adding COVID controls leaves estimates unchanged (0.09 SD, p = 0.108).</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ IMPLICATIONS ============================ -->
+<section id="implications">
+  <h2 class="section-title">Implications</h2>
+  <p class="section-desc">What the evidence means for policy design — and where the study's boundaries lie.</p>
+
+  <div class="grid-3">
+    <div class="card">
+      <span class="badge">Policy 1</span>
+      <h5 style="color:var(--purple-2);margin-bottom:.5rem">Commit for multiple years</h5>
+      <p style="font-size:.9rem;color:var(--ink-2)">Peak effects arrive in Years 3–4. Accountability frameworks expecting immediate achievement gains are misaligned with organizational development timelines.</p>
+    </div>
+    <div class="card">
+      <span class="badge">Policy 2</span>
+      <h5 style="color:var(--purple-2);margin-bottom:.5rem">Differentiate by governance</h5>
+      <p style="font-size:.9rem;color:var(--ink-2)">Traditional public and charter contexts respond in opposite directions. Implementation strategies must account for the institutional systems a school can draw on.</p>
+    </div>
+    <div class="card">
+      <span class="badge">Policy 3</span>
+      <h5 style="color:var(--purple-2);margin-bottom:.5rem">Target strategic recruitment</h5>
+      <p style="font-size:.9rem;color:var(--ink-2)">TIA works through teacher experience deployment. Prioritize strategic recruitment and retention over attempting comprehensive organizational transformation.</p>
+    </div>
+  </div>
+
+  <div class="callout" style="margin-top:1.6rem">
+    <h4>Limitations</h4>
+    <p style="font-size:.94rem">Findings may not generalize beyond Texas's accountability systems and labor markets. The CCI captures observable administrative characteristics — professional learning communities and collaborative culture remain unmeasured. The mediation analysis relies on sequential estimation rather than definitive causal identification, uses the composite CCI rather than dimension-specific pathways, and the binary improvement indicator sacrifices dose-response detail. The study covers participating districts only, not spillovers.</p>
+  </div>
+
+  <div class="callout purple">
+    <h4>Conclusion</h4>
+    <p style="font-size:.95rem">TIA achieves its effects primarily through organizational capacity development rather than direct individual incentives — challenging prevailing assumptions about performance-based compensation. Sustainable educational improvement requires patient investment in institutional infrastructure rather than simple financial inducements. The TIA model offers a promising alternative to traditional merit pay, but realizing its potential requires reconceptualizing performance-based compensation as organizational development: multi-year commitment, context-specific implementation.</p>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================ FOOTER ============================ -->
+<footer class="site-footer">
+  <h2>Continue the conversation</h2>
+  <p>Interested in the full working paper, the data, or a collaboration?</p>
+  <div class="footer-links">
+    <a href="research.html" class="footer-btn"><span aria-hidden="true">←</span> Back to portfolio</a>
+    <a href="Deep_Dive_Paper1.html" class="footer-btn"><span aria-hidden="true">📑</span> Paper 1: the CCI</a>
+    <a href="mailto:roy.zamora@ttu.edu" class="footer-btn"><span aria-hidden="true">📧</span> Request the draft</a>
+    <a href="https://www.linkedin.com/in/roy-zamora2/" class="footer-btn" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">💼</span> LinkedIn</a>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (typeof Chart === 'undefined') return;
+
+  const css = getComputedStyle(document.documentElement);
+  const PURPLE  = css.getPropertyValue('--purple').trim();
+  const PURPLE2 = css.getPropertyValue('--purple-2').trim();
+  const CRIMSON = css.getPropertyValue('--crimson').trim();
+  const GOLD    = css.getPropertyValue('--gold').trim();
+  const INK2    = css.getPropertyValue('--ink-2').trim();
+  const LINE    = css.getPropertyValue('--line').trim();
+  const GREEN   = '#177245';
+
+  Chart.defaults.font.family = "'Public Sans', sans-serif";
+  Chart.defaults.font.size = 12;
+  Chart.defaults.color = INK2;
+  Chart.defaults.animation = reduceMotion ? false : {duration: 800, easing: 'easeOutQuart'};
+  Chart.defaults.plugins.legend.labels.usePointStyle = true;
+  Chart.defaults.plugins.legend.labels.boxHeight = 7;
+  Chart.defaults.plugins.tooltip.backgroundColor = '#211c29';
+  Chart.defaults.plugins.tooltip.padding = 10;
+  Chart.defaults.plugins.tooltip.cornerRadius = 8;
+
+  const grid = {color: LINE};
+  const zeroLine = {
+    id:'zeroLine',
+    beforeDraw(c){
+      const y = c.scales.y; if(!y) return;
+      const y0 = y.getPixelForValue(0);
+      if (y0 < c.chartArea.top || y0 > c.chartArea.bottom) return;
+      const ctx = c.ctx; ctx.save();
+      ctx.strokeStyle = '#c9c2d6'; ctx.lineWidth = 1.5; ctx.setLineDash([4,4]);
+      ctx.beginPath(); ctx.moveTo(c.chartArea.left, y0); ctx.lineTo(c.chartArea.right, y0); ctx.stroke();
+      ctx.restore();
+    }
+  };
+
+  /* Event study — four series */
+  new Chart(document.getElementById('chartEvent'), {
+    type: 'line',
+    plugins: [zeroLine],
+    data: {
+      labels: ['Year 1','Year 2','Year 3','Year 4'],
+      datasets: [
+        {label:'Overall CCI', data:[0.03,0.11,0.20,0.14], borderColor:PURPLE, backgroundColor:'rgba(61,20,102,.08)', fill:true, borderWidth:3.5, tension:.35, pointRadius:5, pointBackgroundColor:PURPLE},
+        {label:'Experience (F1)', data:[0.03,0.07,0.11,0.22], borderColor:CRIMSON, borderWidth:2.5, tension:.35, pointRadius:4, pointBackgroundColor:CRIMSON, fill:false},
+        {label:'Credentials (F2)', data:[-0.00,0.08,0.09,-0.22], borderColor:GOLD, borderDash:[6,5], borderWidth:2, tension:.35, pointRadius:4, pointBackgroundColor:GOLD, fill:false},
+        {label:'Stability (F3)', data:[0.20,0.01,0.13,0.15], borderColor:'#9d7fd0', borderDash:[2,4], borderWidth:2, tension:.35, pointRadius:4, pointBackgroundColor:'#9d7fd0', fill:false}
+      ]
+    },
+    options: {
+      maintainAspectRatio:false,
+      scales: {
+        y:{grid, title:{display:true,text:'Effect size (SD)'}, suggestedMin:-0.3, suggestedMax:0.3},
+        x:{grid:{display:false}, title:{display:true,text:'Years since TIA approval'}}
+      },
+      plugins:{
+        title:{display:true,text:'TIA effects emerge over years — led by Experience',color:PURPLE,font:{size:14,weight:'600'}},
+        tooltip:{callbacks:{label: c => ` ${c.dataset.label}: ${c.parsed.y} SD`}}
+      }
+    }
+  });
+
+  /* Context comparison */
+  new Chart(document.getElementById('chartContext'), {
+    type:'bar',
+    plugins:[zeroLine],
+    data:{
+      labels:['Traditional public','High-poverty','Not high-poverty','Charter'],
+      datasets:[{ data:[0.14,0.11,0.05,-0.12],
+        backgroundColor:[PURPLE,PURPLE2,'#b6a6cf',CRIMSON], borderRadius:6 }]
+    },
+    options:{
+      maintainAspectRatio:false,
+      scales:{ y:{grid, title:{display:true,text:'Avg. total effect (SD)'}}, x:{grid:{display:false}} },
+      plugins:{ legend:{display:false},
+        title:{display:true,text:'Overall CCI effects by school context',color:PURPLE,font:{size:14,weight:'600'}},
+        tooltip:{callbacks:{label:c=>` ${c.parsed.y} SD`}} }
+    }
+  });
+
+  /* Charter paradox */
+  new Chart(document.getElementById('chartCharter'), {
+    type:'bar',
+    plugins:[zeroLine],
+    data:{
+      labels:['Stability (F3)','Experience (F1)','Overall CCI','Credentials (F2)'],
+      datasets:[{ data:[0.11,0.10,-0.12,-0.50],
+        backgroundColor:[GREEN,GREEN,CRIMSON,CRIMSON], borderRadius:6 }]
+    },
+    options:{
+      maintainAspectRatio:false, indexAxis:'y',
+      scales:{ x:{grid, title:{display:true,text:'Avg. total effect (SD)'}}, y:{grid:{display:false}} },
+      plugins:{ legend:{display:false},
+        title:{display:true,text:'Charter schools: gaining experience, losing credentials',color:PURPLE,font:{size:14,weight:'600'}},
+        tooltip:{callbacks:{label:c=>` ${c.parsed.x} SD`}} }
+    }
+  });
+
+  /* Mediation pathways */
+  new Chart(document.getElementById('chartMediation'), {
+    type:'bar',
+    data:{
+      labels:['TIA → Capacity','Capacity → Math','Capacity → Reading','Direct TIA → Math','Direct TIA → Reading'],
+      datasets:[{ data:[0.09,0.21,0.17,0.05,0.03],
+        backgroundColor:[GOLD,PURPLE,PURPLE2,'#c9c2d6','#c9c2d6'], borderRadius:6 }]
+    },
+    options:{
+      maintainAspectRatio:false, indexAxis:'y',
+      scales:{ x:{grid, title:{display:true,text:'Avg. total effect (SD)'}, beginAtZero:true}, y:{grid:{display:false}, ticks:{autoSkip:false, font:{size:11}}} },
+      plugins:{ legend:{display:false},
+        title:{display:true,text:'The indirect pathway dominates the direct one',color:PURPLE,font:{size:14,weight:'600'}},
+        tooltip:{callbacks:{label:c=>` ${c.parsed.x} SD`}} }
+    }
+  });
+})();
+</script>
+</body>
+</html>

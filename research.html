@@ -1,2387 +1,1192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Campus Capacity Index | Roy Zamora, Ph.D. — Texas Tech University</title>
+
+<!-- SEO -->
+<meta name="description" content="The Campus Capacity Index (CCI): a validated measure of school organizational capacity built from Texas administrative data across 56,939 campus-year observations, 8,725 schools, and 8 years (2017–2024). Research by Roy Zamora, Ph.D., Texas Tech University.">
+<meta name="author" content="Roy Zamora">
+<meta name="keywords" content="Campus Capacity Index, school organizational capacity, Teacher Incentive Allotment, TIA, education policy, Texas schools, educational equity, Roy Zamora">
+<link rel="canonical" href="https://royzjr2.github.io/roy-zamora-ii/research.html">
+
+<!-- Open Graph (LinkedIn, Facebook) -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Campus Capacity Index: Measuring School Organizational Capacity">
+<meta property="og:description" content="A novel, validated index of school organizational capacity from 56,939 Texas campus-year observations — and evidence on how performance-based pay builds it.">
+<meta property="og:url" content="https://royzjr2.github.io/roy-zamora-ii/research.html">
+<meta property="og:site_name" content="Roy Zamora — Research Portfolio">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="The Campus Capacity Index — Roy Zamora, Ph.D.">
+<meta name="twitter:description" content="Can school organizational capacity be measured with administrative data — and can policy build it? 56,939 campus-year observations say yes.">
+
+<!-- Structured data for scholarly indexing -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ScholarlyArticle",
+  "headline": "The Campus Capacity Index: A Novel Approach to Measuring School Organizational Capacity",
+  "author": {
+    "@type": "Person",
+    "name": "Roy Zamora",
+    "affiliation": { "@type": "CollegeOrUniversity", "name": "Texas Tech University" },
+    "sameAs": "https://www.linkedin.com/in/roy-zamora2/"
+  },
+  "about": ["Educational Leadership Policy", "School Organizational Capacity", "Teacher Incentive Allotment"],
+  "url": "https://royzjr2.github.io/roy-zamora-ii/research.html"
+}
+</script>
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📊</text></svg>">
+
+<!-- Type system -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<!-- Charts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+
+<style>
+/* ================================================================
+   TOKENS — single source of truth
+   ================================================================ */
+:root{
+  --purple:      #3d1466;   /* primary ink-purple */
+  --purple-2:    #663399;   /* mid accent */
+  --purple-soft: #f3eff9;   /* tinted surface */
+  --crimson:     #dc143c;
+  --crimson-soft:#fdf0f2;
+  --ink:         #211c29;
+  --ink-2:       #5b5566;
+  --paper:       #fbfafd;
+  --card:        #ffffff;
+  --line:        #e7e2ef;
+  --gold:        #c9a24b;   /* used sparingly: “optimal” marker */
+
+  --font-display:'Newsreader', Georgia, serif;
+  --font-body:   'Public Sans', -apple-system, 'Segoe UI', sans-serif;
+  --font-mono:   'IBM Plex Mono', 'SF Mono', Consolas, monospace;
+
+  --radius: 14px;
+  --shadow: 0 1px 2px rgba(33,28,41,.05), 0 8px 28px rgba(61,20,102,.08);
+  --shadow-lift: 0 2px 4px rgba(33,28,41,.06), 0 16px 40px rgba(61,20,102,.14);
+  --maxw: 1160px;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font-body);
+  color:var(--ink);
+  background:var(--paper);
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+img,svg,canvas{max-width:100%}
+a{color:var(--purple-2)}
+
+.skip-link{
+  position:absolute;left:-9999px;top:0;background:var(--purple);color:#fff;
+  padding:.6rem 1rem;border-radius:0 0 8px 0;z-index:1000;font-weight:600;
+}
+.skip-link:focus{left:0}
+
+:focus-visible{outline:3px solid var(--crimson);outline-offset:2px;border-radius:4px}
+
+/* ================================================================
+   HERO
+   ================================================================ */
+.hero{
+  background:
+    radial-gradient(1100px 500px at 85% -10%, rgba(220,20,60,.18), transparent 60%),
+    radial-gradient(900px 600px at 10% 110%, rgba(102,51,153,.35), transparent 60%),
+    linear-gradient(150deg, #2a0d49 0%, var(--purple) 55%, #1b0a33 100%);
+  color:#fff;
+  padding:4.5rem 1.5rem 3.5rem;
+}
+.hero-inner{max-width:var(--maxw);margin:0 auto}
+.eyebrow{
+  font-family:var(--font-mono);font-size:.78rem;letter-spacing:.14em;
+  text-transform:uppercase;color:#e8ddf5;opacity:.85;margin-bottom:1rem;
+}
+.hero h1{
+  font-family:var(--font-display);
+  font-weight:600;
+  font-size:clamp(2.1rem, 4.6vw, 3.6rem);
+  line-height:1.12;
+  letter-spacing:-.01em;
+  max-width:19ch;
+  margin-bottom:1.1rem;
+}
+.hero h1 em{font-style:italic;color:#f5c8d2}
+.hero-sub{
+  font-size:clamp(1rem, 1.6vw, 1.15rem);
+  color:#d9cdea;max-width:62ch;margin-bottom:2rem;
+}
+.byline{
+  display:flex;flex-wrap:wrap;gap:.6rem 1.6rem;align-items:center;
+  font-size:.9rem;color:#e8ddf5;margin-bottom:2.6rem;
+}
+.byline .dot{opacity:.4}
+
+/* Signature: the capacity meter */
+.capacity-meter{
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:var(--radius);
+  padding:1.4rem 1.5rem 1.2rem;
+  max-width:640px;
+  backdrop-filter:blur(6px);
+  margin-bottom:2.4rem;
+}
+.meter-label{
+  font-family:var(--font-mono);font-size:.72rem;letter-spacing:.12em;
+  text-transform:uppercase;color:#cdbde4;margin-bottom:.7rem;
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:.4rem;
+}
+.meter-track{
+  display:flex;height:14px;border-radius:99px;overflow:hidden;
+  background:rgba(255,255,255,.12);
+}
+.meter-seg{height:100%;width:0;transition:width 1.2s cubic-bezier(.2,.7,.2,1)}
+.meter-seg.exp{background:#f5c8d2}
+.meter-seg.cred{background:#c9a24b}
+.meter-seg.stab{background:#9d7fd0}
+.meter-legend{
+  display:flex;flex-wrap:wrap;gap:.4rem 1.4rem;margin-top:.75rem;
+  font-size:.82rem;color:#e8ddf5;
+}
+.meter-legend .key{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:.45rem;vertical-align:baseline}
+.meter-legend .num{font-family:var(--font-mono);font-weight:600}
+
+.hero-stats{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
+  gap:1px;background:rgba(255,255,255,.14);
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:var(--radius);overflow:hidden;max-width:720px;
+}
+.stat{background:rgba(42,13,73,.55);padding:1.1rem 1.2rem}
+.stat b{
+  display:block;font-family:var(--font-mono);font-weight:600;
+  font-size:1.45rem;letter-spacing:-.02em;
+}
+.stat span{font-size:.74rem;text-transform:uppercase;letter-spacing:.08em;color:#cdbde4}
+
+/* Working paper banner */
+.wp-banner{
+  display:flex;flex-wrap:wrap;align-items:center;gap:.9rem;
+  max-width:720px;margin-top:1.4rem;text-decoration:none;
+  background:rgba(220,20,60,.14);border:1px solid rgba(220,20,60,.5);
+  border-radius:var(--radius);padding:1rem 1.3rem;
+  transition:background .25s ease, transform .25s ease;
+}
+.wp-banner:hover{background:rgba(220,20,60,.24);transform:translateY(-2px)}
+.wp-tag{
+  font-family:var(--font-mono);font-size:.7rem;font-weight:600;letter-spacing:.1em;
+  text-transform:uppercase;color:#ffd9e1;background:rgba(220,20,60,.35);
+  border-radius:99px;padding:.25rem .7rem;white-space:nowrap;
+}
+.wp-text{color:#f0eaf8;font-size:.92rem;line-height:1.5}
+.wp-text strong{color:#fff}
+
+/* ================================================================
+   TRIAD BAND — the dissertation in three moves
+   ================================================================ */
+.triad-band{
+  background:linear-gradient(180deg, #1b0a33 0%, #241239 100%);
+  border-top:1px solid rgba(255,255,255,.08);
+  padding:3.5rem 1.5rem 4rem;color:#fff;
+}
+.triad-inner{max-width:var(--maxw);margin:0 auto}
+.triad-head{text-align:center;margin-bottom:2.4rem}
+.triad-head .eyebrow{margin-bottom:.6rem}
+.triad-head h2{
+  font-family:var(--font-display);font-weight:600;
+  font-size:clamp(1.6rem,3.2vw,2.3rem);letter-spacing:-.01em;
+}
+.triad-head p{color:#cdbde4;font-size:1rem;margin-top:.5rem}
+.triad-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
+.triad-panel{
+  display:flex;flex-direction:column;text-decoration:none;
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.13);
+  border-radius:var(--radius);padding:1.7rem 1.6rem 1.5rem;
+  transition:transform .3s ease, border-color .3s ease, background .3s ease;
+}
+.triad-panel:hover, .triad-panel:focus-visible{
+  transform:translateY(-6px);
+  border-color:rgba(220,20,60,.6);
+  background:rgba(255,255,255,.08);
+}
+.triad-viz{
+  height:150px;display:flex;align-items:center;justify-content:center;
+  margin-bottom:1.3rem;
+}
+.triad-viz svg{height:100%;width:auto;max-width:100%;transition:filter .3s ease, transform .3s ease}
+.triad-panel:hover .triad-viz svg{filter:brightness(1.15);transform:scale(1.04)}
+.triad-kicker{
+  font-family:var(--font-mono);font-size:.7rem;letter-spacing:.13em;
+  text-transform:uppercase;color:#e2b7c4;margin-bottom:.35rem;
+}
+.triad-title{
+  font-family:var(--font-display);font-weight:600;font-size:1.7rem;
+  color:#fff;letter-spacing:-.01em;margin-bottom:.5rem;
+}
+.triad-thesis{color:#d9cdea;font-size:.92rem;line-height:1.55;flex:1}
+.triad-cta{
+  margin-top:1.2rem;font-weight:600;font-size:.88rem;color:#f5c8d2;
+  display:inline-flex;align-items:center;gap:.4rem;
+}
+.triad-cta .arr{transition:transform .3s ease;display:inline-block}
+.triad-panel:hover .triad-cta .arr{transform:translateX(5px)}
+@media (max-width:900px){.triad-grid{grid-template-columns:1fr}.triad-viz{height:120px}}
+
+/* ================================================================
+   TAB NAV
+   ================================================================ */
+.nav-wrap{
+  position:sticky;top:0;z-index:100;
+  background:rgba(251,250,253,.92);backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.tabs{
+  max-width:var(--maxw);margin:0 auto;display:flex;overflow-x:auto;
+}
+.tab{
+  appearance:none;background:none;border:none;cursor:pointer;
+  font-family:var(--font-body);font-weight:600;font-size:.92rem;color:var(--ink-2);
+  padding:1rem 1.4rem;border-bottom:3px solid transparent;white-space:nowrap;
+  transition:color .2s, border-color .2s, background .2s;
+}
+.tab:hover{color:var(--purple);background:var(--purple-soft)}
+.tab[aria-selected="true"]{color:var(--purple);border-bottom-color:var(--crimson)}
+
+/* ================================================================
+   SECTIONS & CARDS
+   ================================================================ */
+main{max-width:var(--maxw);margin:0 auto;padding:3rem 1.5rem}
+.panel{display:none}
+.panel.active{display:block;animation:fadeUp .45s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+.section-title{
+  font-family:var(--font-display);font-weight:600;color:var(--purple);
+  font-size:clamp(1.7rem,3vw,2.3rem);letter-spacing:-.01em;
+  margin-bottom:.5rem;
+}
+.section-desc{color:var(--ink-2);max-width:68ch;margin-bottom:2.2rem;font-size:1.03rem}
+
+.card{
+  background:var(--card);border:1px solid var(--line);
+  border-radius:var(--radius);box-shadow:var(--shadow);
+  padding:1.8rem;
+  transition:transform .25s ease, box-shadow .25s ease;
+}
+.card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lift)}
+
+.lead-question{
+  font-family:var(--font-display);font-style:italic;font-size:1.25rem;
+  color:var(--purple);line-height:1.5;
+  background:var(--purple-soft);border-left:4px solid var(--purple);
+  border-radius:0 10px 10px 0;padding:1.4rem 1.6rem;margin:1.4rem 0 1.8rem;
+}
+
+.callout{
+  border-left:4px solid var(--crimson);background:var(--crimson-soft);
+  border-radius:0 10px 10px 0;padding:1.4rem 1.6rem;margin:1.8rem 0;
+}
+.callout h4{color:var(--crimson);margin-bottom:.8rem;font-size:1.05rem}
+.callout.purple{border-left-color:var(--purple);background:var(--purple-soft)}
+.callout.purple h4{color:var(--purple)}
+
+ul.clean{list-style:none}
+ul.clean li{padding:.5rem 0 .5rem 1.5rem;position:relative}
+ul.clean li::before{content:'▸';position:absolute;left:0;color:var(--purple-2)}
+ul.clean li+li{border-top:1px solid var(--line)}
+ul.clean.no-rule li+li{border-top:none}
+
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:1.6rem}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem}
+
+/* Paper cards */
+.paper-card{display:flex;flex-direction:column}
+.paper-num{
+  font-family:var(--font-mono);font-weight:600;font-size:.78rem;
+  color:var(--crimson);letter-spacing:.1em;margin-bottom:.6rem;
+}
+.paper-card h4{
+  font-family:var(--font-display);font-weight:600;font-size:1.25rem;
+  color:var(--purple);line-height:1.3;margin-bottom:.6rem;
+}
+.paper-card .desc{color:var(--ink-2);font-size:.92rem;margin-bottom:.9rem}
+.chip{
+  display:inline-block;background:var(--purple-soft);color:var(--purple);
+  font-size:.74rem;font-weight:600;padding:.25rem .7rem;border-radius:99px;
+  margin:0 .3rem .4rem 0;
+}
+.rq{
+  background:var(--paper);border:1px solid var(--line);border-radius:10px;
+  padding:1rem 1.1rem;margin:1rem 0;flex:1;
+}
+.rq h5{font-size:.78rem;text-transform:uppercase;letter-spacing:.09em;color:var(--purple);margin-bottom:.5rem}
+.rq li{font-size:.86rem;padding:.35rem 0;color:var(--ink)}
+.btn{
+  display:inline-block;font-weight:600;font-size:.88rem;text-decoration:none;
+  color:var(--crimson);border:1.5px solid rgba(220,20,60,.45);
+  padding:.55rem 1.2rem;border-radius:99px;text-align:center;
+  transition:background .2s,color .2s;align-self:flex-start;
+}
+.btn:hover{background:var(--crimson);color:#fff}
+.btn[aria-disabled="true"]{opacity:.5;pointer-events:none}
+
+/* Theory cards */
+.theory-card{text-align:center}
+.theory-card .icon{font-size:1.8rem;display:block;margin-bottom:.7rem}
+.theory-card h5{color:var(--purple);font-size:.98rem;margin-bottom:.4rem}
+.theory-card p{font-size:.85rem;color:var(--ink-2)}
+
+/* ================================================================
+   FINDINGS
+   ================================================================ */
+.finding{margin-bottom:2rem;overflow:hidden;padding:0}
+.finding-head{
+  background:linear-gradient(135deg,var(--purple),#552388);
+  color:#fff;padding:1.3rem 1.8rem;
+}
+.finding-head .kicker{
+  font-family:var(--font-mono);font-size:.72rem;letter-spacing:.12em;
+  text-transform:uppercase;color:#e2b7c4;margin-bottom:.3rem;
+}
+.finding-head h3{font-family:var(--font-display);font-weight:600;font-size:1.3rem;line-height:1.3}
+.finding-body{padding:1.7rem 1.8rem}
+.finding-body h4{color:var(--purple);font-size:1rem;margin:1.4rem 0 .7rem}
+.finding-body h4:first-child{margin-top:0}
+
+.chart-box{position:relative;height:340px;margin:1.2rem 0}
+.chart-note{font-size:.78rem;color:var(--ink-2);font-family:var(--font-mono);margin-top:.4rem}
+
+.stat-strip{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:1px;background:var(--line);border:1px solid var(--line);
+  border-radius:10px;overflow:hidden;margin:1.2rem 0;
+}
+.stat-strip>div{background:var(--paper);padding:1rem 1.1rem}
+.stat-strip b{display:block;font-family:var(--font-mono);font-weight:600;font-size:1.25rem;color:var(--purple)}
+.stat-strip small{font-size:.76rem;color:var(--ink-2);line-height:1.4;display:block}
+.stat-strip .up{color:#177245}
+.stat-strip .down{color:var(--crimson)}
+
+/* ================================================================
+   METHODOLOGY VISUALS
+   ================================================================ */
+.method-card h4{color:var(--purple-2);margin-bottom:.9rem;font-size:1.05rem}
+.method-card li{font-size:.92rem}
+.method-card li b{color:var(--ink)}
+.method-card li small{color:var(--ink-2)}
+
+.flow{
+  display:flex;align-items:stretch;gap:.9rem;flex-wrap:wrap;margin:1.6rem 0;
+}
+.flow-box{
+  flex:1;min-width:190px;background:var(--paper);border:1.5px solid var(--line);
+  border-radius:10px;padding:1.1rem 1.2rem;text-align:center;
+}
+.flow-box.mid{background:var(--purple-soft);border-color:var(--purple)}
+.flow-box b{display:block;color:var(--purple);margin-bottom:.25rem}
+.flow-box small{color:var(--ink-2);font-size:.8rem}
+.flow-arrow{align-self:center;font-size:1.4rem;color:var(--purple);font-weight:700}
+
+.badge{
+  display:inline-block;background:var(--crimson-soft);color:var(--crimson);
+  font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  padding:.2rem .6rem;border-radius:99px;margin-bottom:.5rem;
+}
+
+/* ================================================================
+   FOOTER
+   ================================================================ */
+.site-footer{
+  background:#17101f;color:#e8e2f0;text-align:center;
+  padding:3.5rem 1.5rem;margin-top:4rem;
+}
+.site-footer h2{font-family:var(--font-display);font-weight:600;color:#f5c8d2;margin-bottom:.4rem}
+.site-footer p{color:#a99cbb;margin-bottom:2rem}
+.footer-links{display:flex;justify-content:center;flex-wrap:wrap;gap:.9rem}
+.footer-btn{
+  display:inline-flex;align-items:center;gap:.6rem;
+  background:#241a30;border:1px solid #3b2d4d;color:#f0eaf8;
+  padding:.7rem 1.4rem;border-radius:99px;text-decoration:none;
+  font-size:.92rem;font-weight:500;transition:all .25s ease;
+}
+.footer-btn:hover{border-color:var(--crimson);background:#2e2140;transform:translateY(-2px)}
+
+/* ================================================================
+   RESPONSIVE + MOTION
+   ================================================================ */
+@media (max-width: 900px){
+  .grid-3{grid-template-columns:1fr}
+  .grid-2{grid-template-columns:1fr}
+  .flow{flex-direction:column}
+  .flow-arrow{transform:rotate(90deg)}
+}
+@media (max-width: 600px){
+  .hero{padding:3rem 1.2rem 2.5rem}
+  main{padding:2rem 1.2rem}
+  .chart-box{height:300px}
+}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+  .meter-seg{transition:none}
+}
 </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <a href="#" class="back-link">← Back to Portfolio</a>
-        <h1 class="research-title">The Campus Capacity Index: A Novel Approach to Measuring School Organizational Capacity</h1>
-        
-        <div class="researcher-info">
-            <div class="info-item">Roy Zamora, Ph.D.</div>
-            <div class="info-item">Texas Tech University</div>
-            <div class="info-item">Educational Leadership Policy</div>
-        </div>
-        
-        <div class="research-stats">
-            <div class="stat-box">
-                <span class="stat-number">56,000+</span>
-                <span class="stat-label">Campus Observations</span>
-            </div>
-            <div class="stat-box">
-                <span class="stat-number">8</span>
-                <span class="stat-label">Years of Data</span>
-            </div>
-            <div class="stat-box">
-                <span class="stat-number">8,605</span>
-                <span class="stat-label">Unique Schools</span>
-            </div>
-            <div class="stat-box">
-                <span class="stat-number">1,100+</span>
-                <span class="stat-label">Districts</span>
-            </div>
-        </div>
-    </header>
+<a class="skip-link" href="#main">Skip to content</a>
 
-    <!-- Navigation -->
-    <div class="nav-container">
-        <nav class="research-nav">
-            <button class="nav-btn active" data-section="overview">Research Overview</button>
-            <button class="nav-btn" data-section="methodology">Methodology</button>
-            <button class="nav-btn" data-section="findings">Preliminary Findings</button>
-            <button class="nav-btn" data-section="implications">Policy Implications</button>
-        </nav>
+<!-- ============================ HERO ============================ -->
+<header class="hero">
+  <div class="hero-inner">
+    <p class="eyebrow">Dissertation Research · Educational Leadership Policy</p>
+    <h1>The Campus Capacity Index: measuring what makes schools <em>work</em>.</h1>
+    <p class="hero-sub">A novel, validated measure of school organizational capacity built entirely from Texas administrative data — and causal evidence on whether performance-based pay can build it.</p>
+    <div class="byline">
+      <span><strong>Roy Zamora, Ph.D.</strong></span><span class="dot">•</span>
+      <span>Texas Tech University</span><span class="dot">•</span>
+      <span>Educational Leadership Policy</span>
     </div>
 
-    <!-- Main Content -->
-    <main class="main-content">
-        <!-- Overview Section -->
-        <section class="research-section active" id="overview">
-            <h2 class="section-title">Research Overview</h2>
-            <p class="section-description">Understanding how school organizational capacity can be measured, why it matters for equity, and how policies can influence it.</p>
-
-            <div class="overview-grid">
-                <div class="overview-text">
-                    <h3>The Research Challenge</h3>
-                    <div class="lead-question">
-                        "Can school organizational capacity be validly measured using administrative data, does it relate to student outcomes across diverse populations, and to what extent do performance-based policies affect these organizational structures?"
-                    </div>
-                    
-                    <p><strong>The Novelty:</strong> This study addresses both measurement and mechanism questions by developing the Campus Capacity Index (CCI) and using it to examine associations across different institutional contexts and how TIA transforms school organizations.</p>
-
-                     <!-- Literature Gaps -->
-                    <div class="literature-gap">
-                        <h4>Critical Literature Gaps Addressed</h4>
-                        <ul class="gap-list">
-                            <li><strong>Measurement Gap:</strong> Limited validated measures of organizational capacity exist using readily available administrative data</li>
-                            <li><strong>Mechanism Gap:</strong> How performance-based compensation works through organizational structures remains unclear</li>
-                            <li><strong>Equity Gap:</strong> Differential effects across student populations and institutional contexts underexplored</li>
-                            <li><strong>Temporal Gap:</strong> Long-term organizational development processes vs. immediate policy effects</li>
-                        </ul>
-                    </div>
-                    
-                 <!-- Three Paper Framework -->
-<div class="three-paper-framework">
-    <h4>Three-Paper Dissertation Structure</h4>
-    <div class="paper-grid">
-        <div class="paper-card">
-            <div class="paper-number">1</div>
-            <div class="paper-title">Measuring What Matters — The Campus Capacity Index</div>
-            <div class="paper-description">Development & validation of the Campus Capacity Index using factor analysis and latent class modeling</div>
-            <div class="paper-methods">Study 1 • Institutional Theory • Factor Analysis</div>
-            
-            <!-- Research Questions for Paper 1 -->
-            <div class="paper-questions">
-                <h5>Research Questions:</h5>
-                <ul class="questions-list">
-                    <li>Do distinct dimensions of organizational capacity emerge from administrative indicators available in Texas public schools?</li>
-                    <li>Does the Campus Capacity Index demonstrate internal consistency and structural validity using complementary analytical approaches?</li>
-                    <li>What is the relationship between organizational capacity measures and student achievement outcomes?</li>
-                </ul>
-            </div>
-            
-            <a href="https://royzjr2.github.io/roy-zamora-ii/Deep_Dive_Paper1.html" class="paper-dive-deep" target="_blank" rel="noopener noreferrer">Dive Deep into Paper 1 ↗</a>
-        </div>
-        
-        <div class="paper-card">
-            <div class="paper-number">2</div>
-            <div class="paper-title">The Equity Power of High-Capacity Schools</div>
-            <div class="paper-description">Examining if organizational capacity relates to outcomes across diverse contexts and populations</div>
-            <div class="paper-methods">Study 2 • Ecological Systems Theory • Fixed Effects</div>
-            
-            <!-- Research Questions for Paper 2 -->
-            <div class="paper-questions">
-                <h5>Research Questions:</h5>
-                <ul class="questions-list">
-                    <li>Is organizational capacity, as measured by the Campus Capacity Index, associated with student achievement outcomes across different student populations?</li>
-                    <li>Is Campus Capacity associated with long-term student success metrics (college attendance)?</li>
-                    <li>Do these relationships vary across different school contexts and student subgroups?</li>
-                </ul>
-            </div>
-            
-            <a href="#" class="paper-dive-deep">Dive Deep into Paper 2 (Soon) ↗</a>
-        </div>
-        
-        <div class="paper-card">
-            <div class="paper-number">3</div>
-            <div class="paper-title">From Incentives to Infrastructure — TIA's Organizational Impact</div>
-            <div class="paper-description">Investigating if performance-based compensation affects organizational capacity through mediation analysis</div>
-            <div class="paper-methods">Study 3 • IAD Framework • Staggered Difference-in-Differences</div>
-            
-            <!-- Research Questions for Paper 3 -->
-            <div class="paper-questions">
-                <h5>Research Questions:</h5>
-                <ul class="questions-list">
-                    <li>Does TIA approval lead to changes in Campus Capacity, and do these effects vary across different capacity dimensions?</li>
-                    <li>Do TIA's effects on Campus Capacity vary across different school contexts?</li>
-                    <li>Does Campus Capacity improvement mediate the relationship between TIA implementation and student achievement?</li>
-                </ul>
-            </div>
-            
-            <a href="#" class="paper-dive-deep">Dive Deep into Paper 3 (Soon) ↗</a>
-        </div>
+    <!-- Signature element: the index, as a meter -->
+    <div class="capacity-meter" role="img" aria-label="The Campus Capacity Index explains 61.5 percent of total variance across three dimensions: Experience 25.6 percent, Credentials 19.0 percent, Stability 16.8 percent.">
+      <div class="meter-label">
+        <span>Three dimensions of capacity</span>
+        <span>61.5% total variance explained</span>
+      </div>
+      <div class="meter-track">
+        <div class="meter-seg exp"  data-w="41.6"></div>
+        <div class="meter-seg cred" data-w="30.9"></div>
+        <div class="meter-seg stab" data-w="27.3"></div>
+      </div>
+      <div class="meter-legend">
+        <span><span class="key" style="background:#f5c8d2"></span>Experience <span class="num">25.6%</span></span>
+        <span><span class="key" style="background:#c9a24b"></span>Credentials <span class="num">19.0%</span></span>
+        <span><span class="key" style="background:#9d7fd0"></span>Stability <span class="num">16.8%</span></span>
+      </div>
     </div>
-</div>
-                    
-                    <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(220, 20, 60, 0.05); border-left: 4px solid #dc143c; border-radius: 0 8px 8px 0;">
-                        <h4 style="color: #dc143c; margin-bottom: 1rem;">Three Primary Research Questions</h4>
-                        <p style="margin-bottom: 0.8rem;"><strong>RQ1:</strong> To what extent can school organizational capacity be validly and reliably measured through a composite index using readily available Texas administrative data?</p>
-                        <p style="margin-bottom: 0.8rem;"><strong>RQ2:</strong> Does school organizational capacity, as measured by the Campus Capacity Index, relate to both immediate and long-term student outcomes across diverse school contexts and student populations?</p>
-                        <p style="margin-bottom: 0;"><strong>RQ3:</strong> Does the initial approval of a performance-based compensation policy (Texas Teacher Incentive Allotment) affect schools' Campus Capacity?</p>
-                    </div>
-                </div>
 
-                <div class="overview-visual">
-                    <!-- Theoretical Framework -->
-                    <div class="theoretical-framework">
-                        <h4>Integrated Theoretical Framework</h4>
-                        <div class="theory-grid">
-                            <div class="theory-card">
-                                <span class="theory-icon">🏛️</span>
-                                <div class="theory-name">Institutional Theory</div>
-                                <div class="theory-description">Whether external pressures reshape organizational structures through isomorphic processes</div>
-                            </div>
-                            <div class="theory-card">
-                                <span class="theory-icon">🌐</span>
-                                <div class="theory-name">Ecological Systems Theory</div>
-                                <div class="theory-description">Understanding whether organizational effects vary across nested environmental contexts</div>
-                            </div>
-                            <div class="theory-card">
-                                <span class="theory-icon">⚡</span>
-                                <div class="theory-name">Institutional Analysis & Development Framework</div>
-                                <div class="theory-description">Whether external policies create new institutional 'rules-in-use' that reshape organizational behavior</div>
-                            </div>
-                        </div>
-                        <div class="integration-note">
-                            <strong>Innovation:</strong> This research develops a novel integrated framework combining these theories to examine whether external policy incentives reshape organizational structures and differentially affect diverse student populations over time.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
- <!-- Findings Section - Updated to Match Dissertation Defense -->
-<section class="research-section" id="findings">
-    <h2 class="section-title">Key Findings</h2>
-    <p class="section-description">Five major discoveries that advance our understanding of school organizational capacity, educational equity, and policy effectiveness.</p>
-
-    <div class="findings-grid">
-        <!-- Finding 1: Administrative Data Unlocks Organizational Measurement -->
-        <div class="finding-card">
-            <div class="finding-header">
-                <h3>Finding 1: Administrative Data Unlocks Organizational Measurement</h3>
-                <span class="finding-type">Measurement Validation</span>
-            </div>
-            <div class="finding-content">
-                <ul class="insight-list">
-                    <li><strong>Clean 3-Factor Structure:</strong> 61.5% total variance explained (Experience – 25.6%, Credentials – 19.0%, Stability – 16.8%)</li>
-                    <li><strong>Natural Clustering Matches Theory:</strong> Latent class analysis aligns with CCI categories (χ² = 24,305, p < 0.001)</li>
-                    <li><strong>Strong Criterion Validity:</strong> Optimal Capacity schools show 8.00pp math, 5.59pp reading advantages vs. Minimal Capacity</li>
-                    <li><strong>Powerful Predictive Validity:</strong> R² = 0.61-0.69 – CCI explains up to 69% of variance in student outcomes</li>
-                </ul>
-                <div class="equity-insight">
-                    <strong>Key Insight:</strong> Organizational constructs can be measured systematically without resource-intensive collection methods
-                </div>
-            </div>
-        </div>
-
-        <!-- Finding 2: The CCI Can Function As An Equity Mechanism -->
-        <div class="finding-card">
-            <div class="finding-header">
-                <h3>Finding 2: The CCI Can Function As An Equity Mechanism</h3>
-                <span class="finding-type">Educational Equity Analysis</span>
-            </div>
-            <div class="finding-content">
-                <div class="subgroup-benefits">
-                    <h4>Achievement Benefits by Student Population (Optimal vs. Minimal Schools, District FE)</h4>
-                    <div class="benefit-bars">
-                        <div class="benefit-row">
-                            <span class="group-label">Emergent Bilingual</span>
-                            <div class="benefit-bar">
-                                <div class="bar-fill" style="width: 100%">
-                                    <span class="benefit-value">6.27pp math, 5.96pp reading</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="benefit-row">
-                            <span class="group-label">Hispanic</span>
-                            <div class="benefit-bar">
-                                <div class="bar-fill" style="width: 78%">
-                                    <span class="benefit-value">4.64pp math, 3.29pp reading</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="benefit-row">
-                            <span class="group-label">Economically Disadvantaged</span>
-                            <div class="benefit-bar">
-                                <div class="bar-fill" style="width: 76%">
-                                    <span class="benefit-value">4.54pp math, 3.41pp reading</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="benefit-row">
-                            <span class="group-label">African American</span>
-                            <div class="benefit-bar">
-                                <div class="bar-fill" style="width: 70%">
-                                    <span class="benefit-value">4.15pp math, 3.42pp reading</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="benefit-row">
-                            <span class="group-label">Special Education</span>
-                            <div class="benefit-bar">
-                                <div class="bar-fill" style="width: 60%">
-                                    <span class="benefit-value">3.32pp math, 3.52pp reading</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="equity-insight">
-                        <strong>Key Insight:</strong> Organizational capacity advantages are most pronounced for students requiring specialized institutional responses
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Finding 3: Optimal Capacity Schools Channel Students Toward Four-Year Colleges -->
-        <div class="finding-card">
-            <div class="finding-header">
-                <h3>Finding 3: Optimal Capacity Schools Channel Students Toward Four-Year Colleges</h3>
-                <span class="finding-type">College Pathway Analysis</span>
-            </div>
-            <div class="finding-content">
-                <div class="regional-map">
-                    <h4>Four-Year College Enrollment Advantages by Region (District FE)</h4>
-                    <div class="map-container">
-                        <div class="texas-regions">
-                            <div class="region">
-                                <span class="region-label">Houston Metro</span>
-                                <span class="region-effect">7.42*** pp</span>
-                            </div>
-                            <div class="region">
-                                <span class="region-label">DFW Metro</span>
-                                <span class="region-effect">5.76*** pp</span>
-                            </div>
-                            <div class="region">
-                                <span class="region-label">San Antonio</span>
-                                <span class="region-effect">5.41*** pp</span>
-                            </div>
-                            <div class="region">
-                                <span class="region-label">South Texas</span>
-                                <span class="region-effect">4.50*** pp</span>
-                            </div>
-                            <div class="region">
-                                <span class="region-label">West Texas</span>
-                                <span class="region-effect">4.18*** pp</span>
-                            </div>
-                            <div class="region">
-                                <span class="region-label">Other/Rural</span>
-                                <span class="region-effect">2.17*** pp</span>
-                            </div>
-                        </div>
-                    </div>
-                    <h4 style="margin-top: 1.5rem;">Channeling Phenomenon</h4>
-                    <ul class="insight-list">
-                        <li><strong>Metro Areas:</strong> -1 to -2pp effects on 2-year college enrollment</li>
-                        <li><strong>Rural Areas:</strong> Minimal channeling (community colleges remain important)</li>
-                    </ul>
-                    <div class="geographic-insight">
-                        <strong>Key Insight:</strong> Optimal Capacity schools don't just improve student achievement; they shape college pathways, with metropolitan areas amplifying these advantages through university proximity and opportunity structures
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Finding 4: Performance-Based Pay CAN Build Organizational Capacity -->
-        <div class="finding-card">
-            <div class="finding-header">
-                <h3>Finding 4: Performance-Based Pay CAN Build Organizational Capacity</h3>
-                <span class="finding-type">Policy Impact Analysis</span>
-            </div>
-            <div class="finding-content">
-                <h4>TIA Effects on Campus Capacity Over Time</h4>
-                <ul class="insight-list">
-                    <li><strong>Year 1:</strong> 0.03 SD (minimal immediate response)</li>
-                    <li><strong>Year 2:</strong> 0.11 SD (organizational adaptation emerging)</li>
-                    <li><strong>Year 3 (Peak Effects):</strong> 0.20 SD* (when incentives activate)</li>
-                    <li><strong>Year 4:</strong> 0.14 SD (sustained institutional change)</li>
-                </ul>
-                <h4 style="margin-top: 1.5rem;">Dimensional Insights</h4>
-                <ul class="insight-list">
-                    <li><strong>Experience Dimension:</strong> Strongest systematic response (0.22 SD by Year 4, p < 0.001) – districts compete more effectively for experienced teachers</li>
-                    <li><strong>Stability Dimension:</strong> Initial attraction effect (0.20 SD Year 1), then mixed patterns</li>
-                    <li><strong>Credential Dimension:</strong> No systematic improvement – suggests shift toward performance-based hiring over credentials</li>
-                </ul>
-                <div class="equity-insight">
-                    <strong>Key Insight:</strong> Organizational development requires 2-3 years and operates through strategic teacher recruitment rather than retention or credentialing
-                </div>
-            </div>
-        </div>
-
-        <!-- Finding 5: Institutional Context Moderates Policy Success -->
-        <div class="finding-card">
-            <div class="finding-header">
-                <h3>Finding 5: Institutional Context Moderates Policy Success</h3>
-                <span class="finding-type">Contextual & Mediation Analysis</span>
-            </div>
-            <div class="finding-content">
-                <h4>Institutional Context Moderation</h4>
-                <ul class="insight-list">
-                    <li><strong>Traditional Public Schools:</strong> +0.11 SD (embedded systems may enable implementation)</li>
-                    <li><strong>Charter Schools:</strong> -0.12 SD overall, but +0.10 SD on experience dimension (policy helps recruitment, constrains overall capacity)</li>
-                    <li><strong>High-Poverty Schools:</strong> Higher effects (0.11 SD) but not statistically significant</li>
-                </ul>
-                <h4 style="margin-top: 1.5rem;">Policy Pathway Evidence</h4>
-                <ul class="insight-list">
-                    <li><strong>Policy → Capacity:</strong> 0.09 SD average effect (TIA builds organizational capacity)</li>
-                    <li><strong>Capacity → Achievement:</strong> Strong in math (0.21 SD, p = 0.01), modest in reading (0.17 SD)</li>
-                    <li><strong>Direct Policy → Achievement:</strong> Minimal effects (0.05 SD math, 0.03 SD reading)</li>
-                </ul>
-                <div class="equity-insight">
-                    <strong>Key Insight:</strong> TIA operates primarily through CCI development rather than direct achievement effects – supports organizational patience over quick fixes
-                </div>
-            </div>
-        </div>
+    <div class="hero-stats">
+      <div class="stat"><b data-count="56939">56,939</b><span>Campus observations</span></div>
+      <div class="stat"><b data-count="8">8</b><span>Years of data</span></div>
+      <div class="stat"><b data-count="8725">8,725</b><span>Unique schools</span></div>
+      <div class="stat"><b data-count="1177">1,177</b><span>Districts</span></div>
     </div>
+
+    <a class="wp-banner" href="Deep_Dive_Paper3.html">
+      <span class="wp-tag">New · Working paper</span>
+      <span class="wp-text"><strong>From Incentives to Capacity:</strong> how the Texas Teacher Incentive Allotment reshapes schools — read the interactive deep dive →</span>
+    </a>
+  </div>
+</header>
+
+<!-- ============================ TRIAD ============================ -->
+<section class="triad-band" aria-labelledby="triad-heading">
+  <div class="triad-inner">
+    <div class="triad-head">
+      <p class="eyebrow">The dissertation in three moves</p>
+      <h2 id="triad-heading">One index. Three questions.</h2>
+      <p>How organizational capacity is built, where it matters, and how policy moves it.</p>
+    </div>
+    <div class="triad-grid">
+
+      <a class="triad-panel" href="Deep_Dive_Paper1.html">
+        <div class="triad-viz" aria-hidden="true">
+          <svg viewBox="-70 -70 140 140">
+            <path d="M 2.0 -40.0 A 40 40 0 0 1 35.6 18.2 L 19.6 10.0 A 22 22 0 0 0 1.1 -22.0 Z" fill="#e9a9bc"/>
+            <path d="M 33.6 21.7 A 40 40 0 0 1 -33.6 21.7 L -18.5 11.9 A 22 22 0 0 0 18.5 11.9 Z" fill="#c9a24b"/>
+            <path d="M -35.6 18.2 A 40 40 0 0 1 -2.0 -40.0 L -1.1 -22.0 A 22 22 0 0 0 -19.6 10.0 Z" fill="#9d7fd0"/>
+            <path d="M 3.1 -61.9 A 62 62 0 0 1 52.1 -33.6 L 37.0 -23.9 A 44 44 0 0 0 2.2 -43.9 Z" fill="#f2c3d1" fill-opacity=".85"/>
+            <path d="M 55.2 -28.3 A 62 62 0 0 1 55.2 28.3 L 39.2 20.1 A 44 44 0 0 0 39.2 -20.1 Z" fill="#dd8fa8" fill-opacity=".85"/>
+            <path d="M 52.1 33.6 A 62 62 0 0 1 3.1 61.9 L 2.2 43.9 A 44 44 0 0 0 37.0 23.9 Z" fill="#dbb968" fill-opacity=".85"/>
+            <path d="M -3.1 61.9 A 62 62 0 0 1 -52.1 33.6 L -37.0 23.9 A 44 44 0 0 0 -2.2 43.9 Z" fill="#b38c39" fill-opacity=".85"/>
+            <path d="M -55.2 28.3 A 62 62 0 0 1 -55.2 -28.3 L -39.2 -20.1 A 44 44 0 0 0 -39.2 20.1 Z" fill="#b49add" fill-opacity=".85"/>
+            <path d="M -52.1 -33.6 A 62 62 0 0 1 -3.1 -61.9 L -2.2 -43.9 A 44 44 0 0 0 -37.0 -23.9 Z" fill="#8465b8" fill-opacity=".85"/>
+            <circle r="16" fill="rgba(255,255,255,.12)" stroke="rgba(255,255,255,.4)" stroke-width="1"/>
+            <text text-anchor="middle" y="3.5" font-size="10" font-weight="700" fill="#fff" font-family="Public Sans, sans-serif">CCI</text>
+          </svg>
+        </div>
+        <p class="triad-kicker">01 · Paper One</p>
+        <h3 class="triad-title">Construction</h3>
+        <p class="triad-thesis">How the index is built — six administrative indicators, three validated dimensions, one 0–100 measure of school organizational capacity.</p>
+        <span class="triad-cta">Explore the CCI <span class="arr">→</span></span>
+      </a>
+
+      <a class="triad-panel" href="Deep_Dive_Paper2.html">
+        <div class="triad-viz" aria-hidden="true">
+          <svg viewBox="-10 -10 472 392">
+            <path d="M 127.8 6.8 L 231.2 6.8 L 231.2 72.8 L 258.4 84.7 L 295.8 88.1 L 328.1 96.9 L 374.0 96.2 L 418.9 104.4 L 433.8 107.1 L 433.8 176.8 L 445.4 214.2 L 440.3 228.5 L 438.6 238.0 L 408.0 249.9 L 380.8 265.2 L 346.8 285.6 L 324.7 309.4 L 321.3 336.6 L 328.1 365.5 L 295.8 360.4 L 261.8 333.2 L 249.9 309.4 L 232.9 285.6 L 207.4 255.0 L 183.6 236.3 L 153.0 232.9 L 134.3 249.9 L 119.0 261.8 L 98.6 251.6 L 74.8 231.2 L 62.9 207.4 L 40.8 190.4 L 17.0 173.4 L 8.5 166.6 L 6.8 159.8 L 127.2 159.8 Z"
+              fill="rgba(255,255,255,.07)" stroke="rgba(255,255,255,.45)" stroke-width="3" stroke-linejoin="round"/>
+            <circle cx="387.6" cy="235.3" r="17" fill="#f5c8d2"/>
+            <circle cx="329.8" cy="132.6" r="13" fill="#dd8fa8"/>
+            <circle cx="282.2" cy="246.5" r="12" fill="#dd8fa8"/>
+            <circle cx="292.4" cy="330.0" r="10" fill="#b49add"/>
+            <circle cx="132.6" cy="183.6" r="10" fill="#b49add"/>
+          </svg>
+        </div>
+        <p class="triad-kicker">02 · Paper Two</p>
+        <h3 class="triad-title">Place</h3>
+        <p class="triad-thesis">Where and for whom capacity matters — the largest gains go to the students and regions facing the greatest institutional barriers.</p>
+        <span class="triad-cta">Explore the equity effects <span class="arr">→</span></span>
+      </a>
+
+      <a class="triad-panel" href="Deep_Dive_Paper3.html">
+        <div class="triad-viz" aria-hidden="true">
+          <svg viewBox="0 0 320 150">
+            <defs>
+              <marker id="tArrP" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#f5c8d2"/></marker>
+              <marker id="tArrG" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#6e5a8f"/></marker>
+            </defs>
+            <rect x="6" y="34" width="82" height="44" rx="9" fill="rgba(255,255,255,.09)" stroke="rgba(255,255,255,.35)" stroke-width="1.5"/>
+            <text x="47" y="60" text-anchor="middle" fill="#fff" font-size="13" font-weight="700" font-family="Public Sans, sans-serif">TIA</text>
+            <rect x="119" y="34" width="82" height="44" rx="9" fill="rgba(220,20,60,.2)" stroke="#dc143c" stroke-width="1.8"/>
+            <text x="160" y="60" text-anchor="middle" fill="#fff" font-size="13" font-weight="700" font-family="Public Sans, sans-serif">CCI</text>
+            <rect x="232" y="34" width="82" height="44" rx="9" fill="rgba(255,255,255,.09)" stroke="rgba(255,255,255,.35)" stroke-width="1.5"/>
+            <text x="273" y="60" text-anchor="middle" fill="#fff" font-size="13" font-weight="700" font-family="Public Sans, sans-serif">Scores</text>
+            <line x1="91" y1="56" x2="114" y2="56" stroke="#f5c8d2" stroke-width="2.5" marker-end="url(#tArrP)"/>
+            <line x1="204" y1="56" x2="227" y2="56" stroke="#f5c8d2" stroke-width="2.5" marker-end="url(#tArrP)"/>
+            <path d="M 47 82 C 47 130, 273 130, 273 82" fill="none" stroke="#6e5a8f" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#tArrG)"/>
+          </svg>
+        </div>
+        <p class="triad-kicker">03 · Working Paper</p>
+        <h3 class="triad-title">Mechanism</h3>
+        <p class="triad-thesis">How policy moves it — the Teacher Incentive Allotment lifts achievement through capacity development, not direct incentives.</p>
+        <span class="triad-cta">Explore the working paper <span class="arr">→</span></span>
+      </a>
+
+    </div>
+  </div>
 </section>
-            
-            <!-- Preliminary Findings Takeaway -->
-<div class="policy-connection">
-    <h5>Early Takeaways</h5>
-    <p>Early results demonstrate that the Campus Capacity Index successfully captures organizational differences that are associated with student outcomes, with particularly strong benefits for historically marginalized populations. While organizational capacity develops gradually over 2-3 years rather than immediately, the CCI provides a validated tool for identifying schools needing support and tracking long-term organizational development across diverse contexts.</p>
+
+<!-- ============================ NAV ============================ -->
+<div class="nav-wrap">
+  <nav class="tabs" role="tablist" aria-label="Research sections">
+    <button class="tab" role="tab" id="tab-overview" aria-controls="overview" aria-selected="true">Research Overview</button>
+    <button class="tab" role="tab" id="tab-methodology" aria-controls="methodology" aria-selected="false" tabindex="-1">Methodology</button>
+    <button class="tab" role="tab" id="tab-findings" aria-controls="findings" aria-selected="false" tabindex="-1">Key Findings</button>
+    <button class="tab" role="tab" id="tab-implications" aria-controls="implications" aria-selected="false" tabindex="-1">Policy Implications</button>
+  </nav>
 </div>
-        </section>
 
-        <!-- Methodology Section -->
-        <section class="research-section" id="methodology">
-            <h2 class="section-title">Methodology</h2>
-            <p class="section-description">A comprehensive analytical strategy combining multiple methodological approaches to establish causal relationships.</p>
+<main id="main">
 
-            <div class="method-grid">
-                <div class="method-card">
-                    <h4>📊 Data Sources</h4>
-                    <ul>
-                        <li><strong>Texas Academic Performance Reports (TAPR)</strong><br>7 years, comprehensive campus-level data</li>
-                        <li><strong>Texas Education Directory (AskTED)</strong><br>School characteristics and contexts</li>
-                        <li><strong>Texas Higher Education Coordinating Board (THECB)</strong><br>Campus-level college enrollment metrics for two- and four-year public institutions</li>
-                        <li><strong>TIA Implementation Records</strong><br>Policy timing via Public Information Requests</li>
+<!-- ============================ OVERVIEW ============================ -->
+<section class="panel active" id="overview" role="tabpanel" aria-labelledby="tab-overview">
+  <h2 class="section-title">Research Overview</h2>
+  <p class="section-desc">Understanding how school organizational capacity can be measured, why it matters for equity, and how policies can influence it.</p>
 
-                    </ul>
-                </div>
+  <div class="lead-question">
+    “Can school organizational capacity be validly measured using administrative data, does it relate to student outcomes across diverse populations, and to what extent do performance-based policies affect these organizational structures?”
+  </div>
 
-            <div class="method-card">
-                    <h4>🔍 Validation Strategies</h4>
-                    <ul>
-                        <li><strong>Correlation Analysis</strong><br>
-                        Confirms meaningful structure within and across capacity dimensions</li>
-                        <li><strong>Factor Analysis</strong><br>
-                        Establishes construct validity through a clean, theory-aligned structure</li>
-                        <li><strong>Latent Class Analysis</strong><br>
-                        Reveals empirical configurations consistent with CCI categories</li>
-                        <li><strong>Criterion Validity Testing</strong><br>
-                        Demonstrates predictive value of CCI for student achievement outcomes</li>
-                    </ul>
-                </div>
-                
-                <div class="method-card">
-                    <h4>🔬 Analytical Techniques</h4>
-                    <ul>
-                        <li><strong>Fixed Effects Regressions</strong><br>Control for unobserved heterogeneity</li>
-                        <li><strong>Staggered Difference-in-Differences</strong><br>
-                         Exploits variation in policy rollout across districts to estimate causal effects</li>
-                         <li><strong>Event Study Framework</strong><br>
-                         Tests pre-trends and dynamic treatment effects</li>
-                        <li><strong>Bias-Corrected Estimators</strong><br>
-                        Addresses concerns with heterogeneous treatment timing</li>
-                        <li><strong>Causal Mediation within DiD</strong><br>
-                        Traces indirect policy effects via organizational capacity over time</li>
+  <p style="max-width:72ch;margin-bottom:1.6rem"><strong>The novelty:</strong> this study addresses both measurement and mechanism questions by developing the Campus Capacity Index (CCI) and using it to examine associations across different institutional contexts and how the Teacher Incentive Allotment (TIA) transforms school organizations.</p>
 
-                    </ul>
-                </div>
+  <div class="callout">
+    <h4>Critical literature gaps addressed</h4>
+    <ul class="clean">
+      <li><strong>Measurement gap:</strong> limited validated measures of organizational capacity exist using readily available administrative data</li>
+      <li><strong>Mechanism gap:</strong> how performance-based compensation works through organizational structures remains unclear</li>
+      <li><strong>Equity gap:</strong> differential effects across student populations and institutional contexts are underexplored</li>
+      <li><strong>Temporal gap:</strong> long-term organizational development processes vs. immediate policy effects</li>
+    </ul>
+  </div>
 
-                <div class="method-card">
-                    <h4>🎯 Key Innovation</h4>
-                    <ul>
-                        <li><strong>Campus Capacity Index (CCI)</strong><br>Unique validated measure using administrative data</li>
-                        <li><strong>Multi-dimensional Framework</strong><br>Experience, credentials, and stability integrated</li>
-                        <li><strong>Scalable Approach</strong><br>Replicable methodology, no primary data collection</li>
-                        <li><strong>Theoretical Integration</strong><br>Combines institutional, ecological systems, and IAD theories</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <!-- Dissertation Framework Visual -->
-            <div class="framework-visual">
-                <h4>Dissertation Framework Visualization</h4>
-                
-                <!-- Paper 1 Section -->
-                <div class="paper1-section">
-                    <div class="paper1-title">Paper 1: Development & Validation of Campus Capacity Index</div>
-                    
-                    <div class="theory-boxes">
-                        <div class="theory-box">Institutional Theory</div>
-                        <div class="theory-box">Organizational Capacity Framing</div>
-                        <div class="theory-box">Factor Analysis & Latent Content Modeling</div>
-                    </div>
-                    
-                    <div class="dimensions-container">
-                        <div class="dimensions-title">Three Dimensions of Organizational Capacity</div>
-                        <div class="dimensions-grid">
-                            <div class="dimension-box">Factor 1: Experience</div>
-                            <div class="dimension-box">Factor 2: Credentials</div>
-                            <div class="dimension-box">Factor 3: Stability</div>
-                        </div>
-                    </div>
-                    
-                    <div class="cri-box">
-                        CAMPUS CAPACITY INDEX (CCI)
-                    </div>
-                </div>
-                
-                <!-- Arrows to Papers 2 & 3 -->
-                <div class="arrows-container">
-                    <div class="arrow-down-small">↓</div>
-                    <div class="arrow-down-small">↓</div>
-                </div>
-                
-                <!-- Papers 2 & 3 Container -->
-                <div class="papers-container">
-                    <!-- Paper 2 Section -->
-                    <div class="paper2-section">
-                        <div class="paper2-title">Paper 2: Examining Outcomes Across Contexts</div>
-                        
-                        <div class="paper2-theory">Bronfenbrenner's Ecological Systems Theory</div>
-                        
-                        <div class="paper2-grid">
-                            <div class="paper2-box">Microsystem Effects</div>
-                            <div class="paper2-box">Student Achievement</div>
-                            <div class="paper2-box">Mesosystem Effects</div>
-                            <div class="paper2-box">Demographic Subgroups</div>
-                            <div class="paper2-box">Chronosystem Effects</div>
-                            <div class="paper2-box">College Attendance</div>
-                        </div>
-                    </div>
-                    
-                    <!-- Mediating Relationships Between Papers -->
-                    <div style="text-align: center; margin: 1rem 0; font-style: italic; color: #dc143c; font-size: 0.9rem; font-weight: 600;">
-                        ← Mediating Relationships →
-                    </div>
-                    
-                    <!-- Paper 3 Section -->
-                    <div class="paper3-section">
-                        <div class="paper3-title">Paper 3: Policy Impacts on CRI</div>
-                        
-                        <div style="background: white; border: 2px solid #663399; border-radius: 8px; padding: 0.8rem; text-align: center; margin-bottom: 1rem; color: #663399; font-size: 0.9rem; font-weight: 600;">
-                            Institutional Analysis & Development (IAD) Framework & Agency Theory
-                        </div>
-                        <div class="paper3-grid">
-                            <div class="paper3-box">Performance Incentives</div>
-                            <div class="paper3-box">TIA Policy Implementation</div>
-                            <div class="paper3-box">Institutional Rules-in-Use</div>
-                            <div class="paper3-box">Heterogeneous Impacts</div>
-                            <div class="paper3-box">Principal-Agent Dynamics</div>
-                            <div class="paper3-box">Mediation Pathways</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Overall Mediation Framework -->
-            <div class="mediation-framework">
-                <h4>Overall Structure & Mediation Model</h4>
-                
-                <div class="mediation-flow-horizontal">
-                    <div class="mediation-box-horizontal">
-                        <strong>Performance-Based Policy (X)</strong>
-                        <div class="mediation-label">Texas Teacher Incentive Allotment</div>
-                    </div>
-                    <div class="mediation-arrow-horizontal">→</div>
-                    <div class="mediation-box-horizontal highlight">
-                        <strong>Organizational Capacity (M)</strong>
-                        <div class="mediation-label">Campus Capacity Index</div>
-                    </div>
-                    <div class="mediation-arrow-horizontal">→</div>
-                    <div class="mediation-box-horizontal">
-                        <strong>Student Outcomes (Y)</strong>
-                        <div class="mediation-label">Achievement & College Enrollment</div>
-                    </div>
-                </div>
-                
-                <div class="mediation-paths">
-                    <div class="indirect-path">
-                        <strong>Indirect Effect: X → M → Y</strong>
-                        <span>How TIA works through organizational capacity</span>
-                    </div>
-                    <div class="direct-path">
-                        <strong>Direct Effect: X → Y</strong>
-                        <span>Direct TIA impact on outcomes</span>
-                    </div>
-                </div>
-                
-                <div class="paper-contributions">
-                    <div class="paper-contribution">
-                        <div class="contribution-number">1</div>
-                        <span>Establishes valid mediator measurement</span>
-                    </div>
-                    <div class="paper-contribution">
-                        <div class="contribution-number">2</div>
-                        <span>Tests mediator-outcome relationships</span>
-                    </div>
-                    <div class="paper-contribution">
-                        <div class="contribution-number">3</div>
-                        <span>Examines policy effects on mediator</span>
-                    </div>
-                </div>
-                
-                <div class="framework-note">
-                    The mediation framework of Imai et al. (2011) structures this dissertation by guiding Paper 1's development of a valid mediator (CCI), informing Paper 2's analysis of mediator-outcome relationships, and framing Paper 3's decomposition of policy effects into direct and indirect pathways using a staggered difference-in-differences design.
-                </div>
-            </div>
-            
-            <div class="integration-note">
-                <strong>Methodological Innovation:</strong> This research advances educational methodology by demonstrating how complex organizational constructs can be measured using readily available administrative data, providing a replicable framework for state policy evaluation studies.
-            </div>
-        </section>
+  <h3 style="font-family:var(--font-display);color:var(--purple);font-size:1.5rem;margin:2.4rem 0 1.2rem">Three-paper dissertation structure</h3>
+  <div class="grid-3">
+    <article class="card paper-card">
+      <span class="paper-num">PAPER 01 · STUDY 1</span>
+      <h4>Measuring What Matters — The Campus Capacity Index</h4>
+      <p class="desc">Development and validation of the Campus Capacity Index using factor analysis and latent class modeling.</p>
+      <div><span class="chip">Institutional Theory</span><span class="chip">Factor Analysis</span></div>
+      <div class="rq">
+        <h5>Research questions</h5>
+        <ul class="clean no-rule">
+          <li>Do distinct dimensions of organizational capacity emerge from administrative indicators available in Texas public schools?</li>
+          <li>Does the CCI demonstrate internal consistency and structural validity using complementary analytical approaches?</li>
+          <li>What is the relationship between organizational capacity measures and student achievement outcomes?</li>
+        </ul>
+      </div>
+      <a class="btn" href="Deep_Dive_Paper1.html" target="_blank" rel="noopener noreferrer">Dive deep into Paper 1 ↗</a>
+    </article>
 
-        <!-- Implications Section -->
-        <section class="research-section" id="implications">
-            <h2 class="section-title">Policy Implications</h2>
-            <p class="section-description">Actionable insights for policymakers, district leaders, researchers, and practitioners.</p>
+    <article class="card paper-card">
+      <span class="paper-num">PAPER 02 · STUDY 2</span>
+      <h4>The Equity Power of High-Capacity Schools</h4>
+      <p class="desc">Examining if organizational capacity relates to outcomes across diverse contexts and populations.</p>
+      <div><span class="chip">Ecological Systems Theory</span><span class="chip">Fixed Effects</span></div>
+      <div class="rq">
+        <h5>Research questions</h5>
+        <ul class="clean no-rule">
+          <li>Is organizational capacity, as measured by the CCI, associated with achievement across different student populations?</li>
+          <li>Is campus capacity associated with long-term success metrics such as college attendance?</li>
+          <li>Do these relationships vary across school contexts and student subgroups?</li>
+        </ul>
+      </div>
+      <a class="btn" href="Deep_Dive_Paper2.html">Dive deep into Paper 2 ↗</a>
+    </article>
 
-            <div class="implications-grid">
-                <div class="implication-card">
-                    <div class="implication-icon">🎯</div>
-                    <h4>For Policymakers</h4>
-                    <ul>
-                        <li><strong>Focus on Organizational Development:</strong> Performance-based compensation works through strengthening organizations, not just individual incentives</li>
-                        <li><strong>Allow Implementation Time:</strong> Organizational changes require 2-3 years to show full effects</li>
-                        <li><strong>Context-Sensitive Design:</strong> Traditional public schools may be better positioned than charter schools</li>
-                        <li><strong>Equity Mechanism:</strong> Well-implemented policies provide greatest benefits to marginalized students</li>
-                    </ul>
-                </div>
+    <article class="card paper-card">
+      <span class="paper-num">PAPER 03 · STUDY 3</span>
+      <h4>From Incentives to Infrastructure — TIA's Organizational Impact</h4>
+      <p class="desc">Investigating if performance-based compensation affects organizational capacity through mediation analysis.</p>
+      <div><span class="chip">IAD Framework</span><span class="chip">Staggered DiD</span></div>
+      <div class="rq">
+        <h5>Research questions</h5>
+        <ul class="clean no-rule">
+          <li>Does TIA approval lead to changes in campus capacity, and do effects vary across capacity dimensions?</li>
+          <li>Do TIA's effects on campus capacity vary across school contexts?</li>
+          <li>Does capacity improvement mediate the relationship between TIA implementation and achievement?</li>
+        </ul>
+      </div>
+      <a class="btn" href="Deep_Dive_Paper3.html">Read the working paper deep dive ↗</a>
+    </article>
+  </div>
 
-                <div class="implication-card">
-                    <div class="implication-icon">🏫</div>
-                    <h4>For District Leaders</h4>
-                    <ul>
-                        <li><strong>Invest in Organizational Capacity:</strong> Prioritize experience distribution, credential quality, and leadership stability</li>
-                        <li><strong>Strategic Staffing:</strong> Concentrate experienced teachers strategically rather than spreading thin</li>
-                        <li><strong>Leadership Continuity:</strong> Principal stability is crucial for organizational development</li>
-                        <li><strong>Data-Driven Assessment:</strong> Use CCI framework to assess and improve organizational capacity</li>
-                    </ul>
-                </div>
+  <div class="callout" style="margin-top:2.4rem">
+    <h4>Three primary research questions</h4>
+    <ul class="clean">
+      <li><strong>RQ1:</strong> To what extent can school organizational capacity be validly and reliably measured through a composite index using readily available Texas administrative data?</li>
+      <li><strong>RQ2:</strong> Does school organizational capacity, as measured by the CCI, relate to both immediate and long-term student outcomes across diverse school contexts and student populations?</li>
+      <li><strong>RQ3:</strong> Does the initial approval of a performance-based compensation policy (Texas Teacher Incentive Allotment) affect schools' campus capacity?</li>
+    </ul>
+  </div>
 
-                <div class="implication-card">
-                    <div class="implication-icon">🔬</div>
-                    <h4>For Researchers</h4>
-                    <ul>
-                        <li><strong>Mechanism-Focused Research:</strong> Examine how policies work through organizational structures</li>
-                        <li><strong>Mediating Pathways:</strong> Investigate policy transmission mechanisms</li>
-                        <li><strong>Contextual Variation:</strong> Study how institutional contexts moderate policy effectiveness</li>
-                        <li><strong>Replication Opportunities:</strong> Adapt CCI framework to other states and contexts</li>
-                    </ul>
-                </div>
+  <h3 style="font-family:var(--font-display);color:var(--purple);font-size:1.5rem;margin:2.4rem 0 1.2rem">Integrated theoretical framework</h3>
+  <div class="grid-3">
+    <div class="card theory-card">
+      <span class="icon" aria-hidden="true">🏛️</span>
+      <h5>Institutional Theory</h5>
+      <p>Whether external pressures reshape organizational structures through isomorphic processes.</p>
+    </div>
+    <div class="card theory-card">
+      <span class="icon" aria-hidden="true">🌐</span>
+      <h5>Ecological Systems Theory</h5>
+      <p>Understanding whether organizational effects vary across nested environmental contexts.</p>
+    </div>
+    <div class="card theory-card">
+      <span class="icon" aria-hidden="true">⚡</span>
+      <h5>IAD Framework</h5>
+      <p>Whether external policies create new institutional “rules-in-use” that reshape organizational behavior.</p>
+    </div>
+  </div>
+  <div class="callout purple" style="margin-top:1.6rem">
+    <h4>Innovation</h4>
+    <p>This research develops a novel integrated framework combining these theories to examine whether external policy incentives reshape organizational structures and differentially affect diverse student populations over time.</p>
+  </div>
+</section>
 
-                <div class="implication-card">
-                    <div class="implication-icon">📊</div>
-                    <h4>For Practitioners</h4>
-                    <ul>
-                        <li><strong>Organizational Assessment:</strong> Regularly evaluate school capacity using validated frameworks</li>
-                        <li><strong>Targeted Interventions:</strong> Address specific capacity dimensions based on school needs</li>
-                        <li><strong>Professional Development:</strong> Invest in building organizational coherence and stability</li>
-                        <li><strong>Equity Focus:</strong> High-capacity environments particularly benefit vulnerable populations</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <!-- Expected Contributions Section -->
-            <div class="expected-contributions">
-                <h4>Expected Contributions to the Field</h4>
-                <div class="contributions-grid">
-                    <div class="contribution-item">
-                        <div class="expected-badge">Theoretical</div>
-                        <h5>Integrated Framework Development</h5>
-                        <p>Framework combining institutional, ecological systems, and IAD theories to explain policy-driven organizational change.</p>
-                    </div>
-                    <div class="contribution-item">
-                        <div class="expected-badge">Methodological</div>
-                        <h5>Scalable Measurement Tool</h5>
-                        <p>Campus Capacity Index provides replicable method for measuring organizational capacity using administrative data.</p>
-                    </div>
-                    <div class="contribution-item">
-                        <div class="expected-badge">Empirical</div>
-                        <h5>Mechanism Identification</h5>
-                        <p>Reveals how performance-based compensation works through organizational structures rather than individual incentives.</p>
-                    </div>
-                    <div class="contribution-item">
-                        <div class="expected-badge">Policy</div>
-                        <h5>Equity-Focused Evidence</h5>
-                        <p>Demonstrates how organizational capacity functions as an equity mechanism, particularly benefiting marginalized students.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Policy Connection -->
-            <div class="policy-connection">
-                <h5>Practical Applications & Future Directions</h5>
-                <p>The Campus Capacity Index offers practitioners and policymakers a scalable tool for assessing organizational capacity and targeting improvement efforts, with potential applications extending beyond Texas to other state contexts and policy initiatives.</p>
-            </div>
-        </section>
-    </main>
+<!-- ============================ METHODOLOGY ============================ -->
+<section class="panel" id="methodology" role="tabpanel" aria-labelledby="tab-methodology" hidden>
+  <h2 class="section-title">Methodology</h2>
+  <p class="section-desc">A comprehensive analytical strategy combining multiple methodological approaches to establish causal relationships.</p>
 
-    <!-- Footer -->
+  <div class="grid-2">
+    <div class="card method-card">
+      <h4>📊 Data sources</h4>
+      <ul class="clean">
+        <li><b>Texas Academic Performance Reports (TAPR)</b><br><small>8 years (2017–2024), comprehensive campus-level data</small></li>
+        <li><b>Texas Education Directory (AskTED)</b><br><small>School characteristics and contexts</small></li>
+        <li><b>Texas Higher Education Coordinating Board (THECB)</b><br><small>Campus-level college enrollment for two- and four-year public institutions</small></li>
+        <li><b>TIA implementation records</b><br><small>Policy timing via Public Information Requests</small></li>
+      </ul>
+    </div>
+    <div class="card method-card">
+      <h4>🔍 Validation strategies</h4>
+      <ul class="clean">
+        <li><b>Correlation analysis</b><br><small>Confirms meaningful structure within and across capacity dimensions</small></li>
+        <li><b>Factor analysis</b><br><small>Establishes construct validity through a clean, theory-aligned structure</small></li>
+        <li><b>Latent class analysis</b><br><small>Reveals empirical configurations consistent with CCI categories</small></li>
+        <li><b>Criterion validity testing</b><br><small>Demonstrates predictive value of the CCI for achievement outcomes</small></li>
+      </ul>
+    </div>
+    <div class="card method-card">
+      <h4>🔬 Analytical techniques</h4>
+      <ul class="clean">
+        <li><b>Fixed effects regressions</b><br><small>Control for unobserved heterogeneity</small></li>
+        <li><b>Staggered difference-in-differences</b><br><small>Exploits variation in policy rollout across districts to estimate causal effects</small></li>
+        <li><b>Event study framework</b><br><small>Tests pre-trends and dynamic treatment effects</small></li>
+        <li><b>Bias-corrected estimators</b><br><small>Addresses concerns with heterogeneous treatment timing</small></li>
+        <li><b>Causal mediation within DiD</b><br><small>Traces indirect policy effects via organizational capacity over time</small></li>
+      </ul>
+    </div>
+    <div class="card method-card">
+      <h4>🎯 Key innovation</h4>
+      <ul class="clean">
+        <li><b>Campus Capacity Index (CCI)</b><br><small>Unique validated measure using administrative data</small></li>
+        <li><b>Multi-dimensional framework</b><br><small>Experience, credentials, and stability integrated</small></li>
+        <li><b>Scalable approach</b><br><small>Replicable methodology, no primary data collection</small></li>
+        <li><b>Theoretical integration</b><br><small>Combines institutional, ecological systems, and IAD theories</small></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:2rem">
+    <h3 style="font-family:var(--font-display);color:var(--purple);font-size:1.4rem;text-align:center;margin-bottom:.4rem">Overall structure &amp; mediation model</h3>
+    <p style="text-align:center;color:var(--ink-2);font-size:.92rem;margin-bottom:1.4rem">How the three papers connect: X → M → Y</p>
+    <div class="flow">
+      <div class="flow-box">
+        <b>Performance-based policy (X)</b>
+        <small>Texas Teacher Incentive Allotment</small>
+      </div>
+      <span class="flow-arrow" aria-hidden="true">→</span>
+      <div class="flow-box mid">
+        <b>Organizational capacity (M)</b>
+        <small>Campus Capacity Index</small>
+      </div>
+      <span class="flow-arrow" aria-hidden="true">→</span>
+      <div class="flow-box">
+        <b>Student outcomes (Y)</b>
+        <small>Achievement &amp; college enrollment</small>
+      </div>
+    </div>
+    <div class="grid-2" style="gap:1rem">
+      <div class="callout purple" style="margin:0">
+        <h4>Indirect effect: X → M → Y</h4>
+        <p style="font-size:.9rem">How TIA works through organizational capacity. Paper 1 establishes valid mediator measurement; Paper 2 tests mediator–outcome relationships; Paper 3 examines policy effects on the mediator.</p>
+      </div>
+      <div class="callout" style="margin:0">
+        <h4>Direct effect: X → Y</h4>
+        <p style="font-size:.9rem">Direct TIA impact on outcomes, decomposed from indirect pathways using the mediation framework of Imai et al. (2011) within a staggered difference-in-differences design.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout purple" style="margin-top:2rem">
+    <h4>Methodological innovation</h4>
+    <p>This research advances educational methodology by demonstrating how complex organizational constructs can be measured using readily available administrative data, providing a replicable framework for state policy evaluation studies.</p>
+  </div>
+</section>
+
+<!-- ============================ FINDINGS ============================ -->
+<section class="panel" id="findings" role="tabpanel" aria-labelledby="tab-findings" hidden>
+  <h2 class="section-title">Key Findings</h2>
+  <p class="section-desc">Five major discoveries that advance our understanding of school organizational capacity, educational equity, and policy effectiveness.</p>
+
+  <!-- Finding 1 -->
+  <article class="card finding">
+    <div class="finding-head">
+      <p class="kicker">Finding 01 · Measurement validation</p>
+      <h3>Administrative data unlocks organizational measurement</h3>
+    </div>
+    <div class="finding-body">
+      <div class="stat-strip">
+        <div><b>61.5%</b><small>Total variance explained by a clean 3-factor structure</small></div>
+        <div><b>χ² = 24,305</b><small>Latent class alignment with CCI categories (p &lt; 0.001)</small></div>
+        <div><b>+4.67pp / +3.39pp</b><small>Math / reading advantage, Optimal vs. Minimal Capacity (district + year FE)</small></div>
+        <div><b>R² = 0.61–0.69</b><small>CCI explains up to 69% of variance in student outcomes</small></div>
+      </div>
+      <div class="chart-box"><canvas id="chartFactors" aria-label="Doughnut chart: variance explained by Experience 25.6 percent, Credentials 19.0 percent, Stability 16.8 percent, other 38.5 percent"></canvas></div>
+      <div class="callout purple" style="margin-bottom:0">
+        <h4>Key insight</h4>
+        <p>Organizational constructs can be measured systematically without resource-intensive collection methods.</p>
+      </div>
+    </div>
+  </article>
+
+  <!-- Finding 2 -->
+  <article class="card finding">
+    <div class="finding-head">
+      <p class="kicker">Finding 02 · Educational equity analysis</p>
+      <h3>The CCI can function as an equity mechanism</h3>
+    </div>
+    <div class="finding-body">
+      <h4>Achievement benefits by student population (Optimal vs. Minimal schools, district FE)</h4>
+      <div class="chart-box"><canvas id="chartEquity" aria-label="Grouped bar chart of math and reading percentage point advantages for Emergent Bilingual, Hispanic, Economically Disadvantaged, African American, and Special Education students"></canvas></div>
+      <p class="chart-note">Percentage-point advantages, Optimal vs. Minimal Capacity schools with district fixed effects.</p>
+      <div class="callout purple" style="margin-bottom:0">
+        <h4>Key insight</h4>
+        <p>Organizational capacity advantages are most pronounced for students requiring specialized institutional responses.</p>
+      </div>
+    </div>
+  </article>
+
+  <!-- Finding 3 -->
+  <article class="card finding">
+    <div class="finding-head">
+      <p class="kicker">Finding 03 · College pathway analysis</p>
+      <h3>Optimal Capacity schools channel students toward four-year colleges</h3>
+    </div>
+    <div class="finding-body">
+      <h4>Four-year college enrollment advantages by region (district FE)</h4>
+      <div class="chart-box"><canvas id="chartRegions" aria-label="Horizontal bar chart of four-year college enrollment advantages by Texas region, ranging from 7.42 percentage points in Houston Metro to 2.17 in rural areas"></canvas></div>
+      <p class="chart-note">All estimates significant at p &lt; 0.001.</p>
+      <h4>Channeling phenomenon</h4>
+      <ul class="clean">
+        <li><strong>Metro areas:</strong> −1 to −2pp effects on two-year college enrollment</li>
+        <li><strong>Rural areas:</strong> minimal channeling — community colleges remain important</li>
+      </ul>
+      <div class="callout purple" style="margin-bottom:0">
+        <h4>Key insight</h4>
+        <p>Optimal Capacity schools don't just improve achievement; they shape college pathways, with metropolitan areas amplifying these advantages through university proximity and opportunity structures.</p>
+      </div>
+    </div>
+  </article>
+
+  <!-- Finding 4 -->
+  <article class="card finding">
+    <div class="finding-head">
+      <p class="kicker">Finding 04 · Policy impact analysis</p>
+      <h3>Performance-based pay <em>can</em> build organizational capacity</h3>
+    </div>
+    <div class="finding-body">
+      <h4>TIA effects on campus capacity over time (event study)</h4>
+      <div class="chart-box"><canvas id="chartTIA" aria-label="Line chart of TIA effects on campus capacity: 0.03 standard deviations in year one, 0.11 in year two, peaking at 0.20 in year three, 0.14 in year four; the experience dimension reaches 0.22 by year four"></canvas></div>
+      <p class="chart-note">Effect sizes in standard deviations. * Year 3 overall effect statistically significant; Experience dimension p &lt; 0.001 by Year 4.</p>
+      <h4>Dimensional insights</h4>
+      <ul class="clean">
+        <li><strong>Experience dimension:</strong> strongest systematic response (0.22 SD by Year 4, p &lt; 0.001) — districts compete more effectively for experienced teachers</li>
+        <li><strong>Stability dimension:</strong> initial attraction effect (0.20 SD Year 1), then mixed patterns</li>
+        <li><strong>Credential dimension:</strong> no systematic improvement — suggests a shift toward performance-based hiring over credentials</li>
+      </ul>
+      <div class="callout purple" style="margin-bottom:0">
+        <h4>Key insight</h4>
+        <p>Organizational development requires 2–3 years and operates through strategic teacher recruitment rather than retention or credentialing.</p>
+      </div>
+    </div>
+  </article>
+
+  <!-- Finding 5 -->
+  <article class="card finding">
+    <div class="finding-head">
+      <p class="kicker">Finding 05 · Contextual &amp; mediation analysis</p>
+      <h3>Institutional context moderates policy success</h3>
+    </div>
+    <div class="finding-body">
+      <h4>Institutional context moderation</h4>
+      <div class="stat-strip">
+        <div><b class="up">+0.11 SD</b><small>Traditional public schools — embedded systems may enable implementation</small></div>
+        <div><b class="down">−0.12 SD</b><small>Charter schools overall (but +0.10 SD on the experience dimension)</small></div>
+        <div><b>+0.11 SD</b><small>High-poverty schools — higher effects but not statistically significant</small></div>
+      </div>
+      <h4>Policy pathway evidence</h4>
+      <div class="chart-box"><canvas id="chartPathway" aria-label="Bar chart comparing pathway effect sizes: policy to capacity 0.09 SD; capacity to achievement 0.21 SD math and 0.17 SD reading; direct policy to achievement 0.05 SD math and 0.03 SD reading"></canvas></div>
+      <div class="callout purple" style="margin-bottom:0">
+        <h4>Key insight</h4>
+        <p>TIA operates primarily through CCI development rather than direct achievement effects — supporting organizational patience over quick fixes.</p>
+      </div>
+    </div>
+  </article>
+
+  <div class="callout">
+    <h4>Early takeaways</h4>
+    <p>Early results demonstrate that the Campus Capacity Index successfully captures organizational differences associated with student outcomes, with particularly strong benefits for historically marginalized populations. While organizational capacity develops gradually over 2–3 years rather than immediately, the CCI provides a validated tool for identifying schools needing support and tracking long-term organizational development across diverse contexts.</p>
+  </div>
+</section>
+
+<!-- ============================ IMPLICATIONS ============================ -->
+<section class="panel" id="implications" role="tabpanel" aria-labelledby="tab-implications" hidden>
+  <h2 class="section-title">Policy Implications</h2>
+  <p class="section-desc">Actionable insights for policymakers, district leaders, researchers, and practitioners.</p>
+
+  <div class="grid-2">
+    <div class="card method-card">
+      <h4>🎯 For policymakers</h4>
+      <ul class="clean">
+        <li><b>Focus on organizational development:</b> <small>performance-based compensation works through strengthening organizations, not just individual incentives</small></li>
+        <li><b>Allow implementation time:</b> <small>organizational changes require 2–3 years to show full effects</small></li>
+        <li><b>Context-sensitive design:</b> <small>traditional public schools may be better positioned than charter schools</small></li>
+        <li><b>Equity mechanism:</b> <small>well-implemented policies provide the greatest benefits to marginalized students</small></li>
+      </ul>
+    </div>
+    <div class="card method-card">
+      <h4>🏫 For district leaders</h4>
+      <ul class="clean">
+        <li><b>Invest in organizational capacity:</b> <small>prioritize experience distribution, credential quality, and leadership stability</small></li>
+        <li><b>Strategic staffing:</b> <small>concentrate experienced teachers strategically rather than spreading thin</small></li>
+        <li><b>Leadership continuity:</b> <small>principal stability is crucial for organizational development</small></li>
+        <li><b>Data-driven assessment:</b> <small>use the CCI framework to assess and improve organizational capacity</small></li>
+      </ul>
+    </div>
+    <div class="card method-card">
+      <h4>🔬 For researchers</h4>
+      <ul class="clean">
+        <li><b>Mechanism-focused research:</b> <small>examine how policies work through organizational structures</small></li>
+        <li><b>Mediating pathways:</b> <small>investigate policy transmission mechanisms</small></li>
+        <li><b>Contextual variation:</b> <small>study how institutional contexts moderate policy effectiveness</small></li>
+        <li><b>Replication opportunities:</b> <small>adapt the CCI framework to other states and contexts</small></li>
+      </ul>
+    </div>
+    <div class="card method-card">
+      <h4>📊 For practitioners</h4>
+      <ul class="clean">
+        <li><b>Organizational assessment:</b> <small>regularly evaluate school capacity using validated frameworks</small></li>
+        <li><b>Targeted interventions:</b> <small>address specific capacity dimensions based on school needs</small></li>
+        <li><b>Professional development:</b> <small>invest in building organizational coherence and stability</small></li>
+        <li><b>Equity focus:</b> <small>high-capacity environments particularly benefit vulnerable populations</small></li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 style="font-family:var(--font-display);color:var(--purple);font-size:1.5rem;margin:2.4rem 0 1.2rem">Expected contributions to the field</h3>
+  <div class="grid-2">
+    <div class="card">
+      <span class="badge">Theoretical</span>
+      <h5 style="color:var(--purple-2);margin-bottom:.5rem">Integrated framework development</h5>
+      <p style="font-size:.92rem;color:var(--ink-2)">Framework combining institutional, ecological systems, and IAD theories to explain policy-driven organizational change.</p>
+    </div>
+    <div class="card">
+      <span class="badge">Methodological</span>
+      <h5 style="color:var(--purple-2);margin-bottom:.5rem">Scalable measurement tool</h5>
+      <p style="font-size:.92rem;color:var(--ink-2)">The Campus Capacity Index provides a replicable method for measuring organizational capacity using administrative data.</p>
+    </div>
+    <div class="card">
+      <span class="badge">Empirical</span>
+      <h5 style="color:var(--purple-2);margin-bottom:.5rem">Mechanism identification</h5>
+      <p style="font-size:.92rem;color:var(--ink-2)">Reveals how performance-based compensation works through organizational structures rather than individual incentives.</p>
+    </div>
+    <div class="card">
+      <span class="badge">Policy</span>
+      <h5 style="color:var(--purple-2);margin-bottom:.5rem">Equity-focused evidence</h5>
+      <p style="font-size:.92rem;color:var(--ink-2)">Demonstrates how organizational capacity functions as an equity mechanism, particularly benefiting marginalized students.</p>
+    </div>
+  </div>
+
+  <div class="callout" style="margin-top:2rem">
+    <h4>Practical applications &amp; future directions</h4>
+    <p>The Campus Capacity Index offers practitioners and policymakers a scalable tool for assessing organizational capacity and targeting improvement efforts, with potential applications extending beyond Texas to other state contexts and policy initiatives.</p>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================ FOOTER ============================ -->
 <footer class="site-footer">
-    <h2 class="footer-title">Continue the Conversation</h2>
-    <p class="footer-subtitle">Interested in discussing this research or potential collaborations?</p>
-    <div class="footer-links">
-        
-        <a href="mailto:roy.zamora@ttu.edu" class="footer-btn">
-            <span>📧</span> Email Discussion
-        </a>
-        <a href="https://www.linkedin.com/in/roy-zamora2/" class="footer-btn" target="_blank" rel="noopener noreferrer">
-            <span>💼</span> LinkedIn
-        </a>
-        <a href="#" class="footer-btn">
-            <span>📄</span> Download Full Paper (Coming Soon)
-        </a>
-        
-       <a href="https://royzjr2.github.io/roy-zamora-ii/Deep_Dive_Paper1.html" class="footer-btn paper-link" target="_blank" rel="noopener noreferrer">
-    <span>📑</span> Dive Deep: Paper 1
-        </a>
-        
-        <!-- <a href="#" class="footer-btn paper-link">
-            <span>📑</span> Dive Deep: Paper 2 (Soon)
-        </a>
-        <a href="#" class="footer-btn paper-link">
-            <span>📑</span> Dive Deep: Paper 3 (Soon)
-        </a> -->
-        </div>
+  <h2>Continue the conversation</h2>
+  <p>Interested in discussing this research or potential collaborations?</p>
+  <div class="footer-links">
+    <a href="mailto:roy.zamora@ttu.edu" class="footer-btn"><span aria-hidden="true">📧</span> Email discussion</a>
+    <a href="https://www.linkedin.com/in/roy-zamora2/" class="footer-btn" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">💼</span> LinkedIn</a>
+    <a href="Deep_Dive_Paper3.html" class="footer-btn"><span aria-hidden="true">📄</span> New: the working paper</a>
+    <a href="Deep_Dive_Paper1.html" class="footer-btn" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">📑</span> Dive deep: Paper 1</a>
+  </div>
 </footer>
 
-    <script>
-        // Tab Navigation Functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const navButtons = document.querySelectorAll('.nav-btn');
-            const sections = document.querySelectorAll('.research-section');
+<script>
+(function(){
+  'use strict';
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-            navButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    // Remove active class from all buttons and sections
-                    navButtons.forEach(btn => btn.classList.remove('active'));
-                    sections.forEach(section => section.classList.remove('active'));
+  /* ---------- Accessible tabs ---------- */
+  const tabs = Array.from(document.querySelectorAll('.tab'));
+  const panels = Array.from(document.querySelectorAll('.panel'));
 
-                    // Add active class to clicked button
-                    this.classList.add('active');
+  function activate(tab, focus){
+    tabs.forEach(t => {
+      const on = t === tab;
+      t.setAttribute('aria-selected', on);
+      t.tabIndex = on ? 0 : -1;
+    });
+    panels.forEach(p => {
+      const on = p.id === tab.getAttribute('aria-controls');
+      p.classList.toggle('active', on);
+      p.hidden = !on;
+    });
+    if (focus) tab.focus();
+    if (tab.getAttribute('aria-controls') === 'findings') initCharts();
+    document.querySelector('.nav-wrap').scrollIntoView({behavior: reduceMotion ? 'auto' : 'smooth'});
+  }
 
-                    // Show corresponding section
-                    const targetSection = this.getAttribute('data-section');
-                    const targetElement = document.getElementById(targetSection);
-                    if (targetElement) {
-                        targetElement.classList.add('active');
-                    }
+  tabs.forEach((tab, i) => {
+    tab.addEventListener('click', () => activate(tab, false));
+    tab.addEventListener('keydown', e => {
+      let idx = null;
+      if (e.key === 'ArrowRight') idx = (i + 1) % tabs.length;
+      if (e.key === 'ArrowLeft')  idx = (i - 1 + tabs.length) % tabs.length;
+      if (e.key === 'Home') idx = 0;
+      if (e.key === 'End')  idx = tabs.length - 1;
+      if (idx !== null){ e.preventDefault(); activate(tabs[idx], true); }
+    });
+  });
 
-                    // Animate benefit bars when findings section is shown
-                    if (targetSection === 'findings') {
-                        setTimeout(() => {
-                            const barFills = document.querySelectorAll('.bar-fill');
-                            barFills.forEach(bar => {
-                                const width = bar.style.width;
-                                bar.style.width = '0%';
-                                setTimeout(() => {
-                                    bar.style.width = width;
-                                }, 100);
-                            });
-                        }, 300);
-                    }
+  /* ---------- Hero: capacity meter + counters ---------- */
+  window.addEventListener('load', () => {
+    document.querySelectorAll('.meter-seg').forEach(seg => {
+      const w = seg.dataset.w + '%';
+      if (reduceMotion) { seg.style.width = w; }
+      else { requestAnimationFrame(() => setTimeout(() => seg.style.width = w, 150)); }
+    });
+  });
 
-                    // Scroll to top of content area smoothly
-                    document.querySelector('.nav-container').scrollIntoView({ 
-                        behavior: 'smooth' 
-                    });
-                });
-            });
+  if (!reduceMotion){
+    const counters = document.querySelectorAll('.stat b[data-count]');
+    const seen = new WeakSet();
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(en => {
+        if (!en.isIntersecting || seen.has(en.target)) return;
+        seen.add(en.target);
+        const el = en.target, target = +el.dataset.count, suffix = el.dataset.suffix || '';
+        const t0 = performance.now(), dur = 1100;
+        (function tick(now){
+          const p = Math.min((now - t0) / dur, 1);
+          const eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = Math.round(target * eased).toLocaleString() + suffix;
+          if (p < 1) requestAnimationFrame(tick);
+        })(t0);
+      });
+    }, {threshold: .4});
+    counters.forEach(c => io.observe(c));
+  }
 
-            // Smooth scrolling for anchor links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
+  /* ---------- Charts (lazy: created when Findings first opens) ---------- */
+  let chartsReady = false;
+  function initCharts(){
+    if (chartsReady || typeof Chart === 'undefined') return;
+    chartsReady = true;
 
-            // Add scroll animations for cards
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
+    const css = getComputedStyle(document.documentElement);
+    const PURPLE  = css.getPropertyValue('--purple').trim();
+    const PURPLE2 = css.getPropertyValue('--purple-2').trim();
+    const CRIMSON = css.getPropertyValue('--crimson').trim();
+    const GOLD    = css.getPropertyValue('--gold').trim();
+    const INK2    = css.getPropertyValue('--ink-2').trim();
+    const LINE    = css.getPropertyValue('--line').trim();
 
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, observerOptions);
+    Chart.defaults.font.family = "'Public Sans', sans-serif";
+    Chart.defaults.font.size = 12;
+    Chart.defaults.color = INK2;
+    Chart.defaults.animation = reduceMotion ? false : {duration: 800, easing: 'easeOutQuart'};
+    Chart.defaults.plugins.legend.labels.usePointStyle = true;
+    Chart.defaults.plugins.legend.labels.boxHeight = 7;
+    Chart.defaults.plugins.tooltip.backgroundColor = '#211c29';
+    Chart.defaults.plugins.tooltip.padding = 10;
+    Chart.defaults.plugins.tooltip.cornerRadius = 8;
 
-            // Apply animations to cards
-            document.querySelectorAll('.finding-card, .method-card, .implication-card, .theory-card, .paper-card, .contribution-item').forEach(el => {
-                el.style.opacity = '0';
-                el.style.transform = 'translateY(30px)';
-                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                observer.observe(el);
-            });
+    const gridOpts = {color: LINE};
 
-            // Add hover effects
-            document.querySelectorAll('.finding-card, .method-card, .implication-card, .theory-card, .paper-card').forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-5px)';
-                    this.style.boxShadow = '0 10px 30px rgba(0,0,0,0.2)';
-                });
-                
-                card.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateY(0)';
-                    this.style.boxShadow = '0 5px 20px rgba(0,0,0,0.1)';
-                });
-            });
+    /* Finding 1 — variance doughnut */
+    new Chart(document.getElementById('chartFactors'), {
+      type: 'doughnut',
+      data: {
+        labels: ['Experience (25.6%)', 'Credentials (19.0%)', 'Stability (16.8%)', 'Unexplained (38.5%)'],
+        datasets: [{
+          data: [25.6, 19.0, 16.8, 38.5],
+          backgroundColor: [PURPLE, GOLD, PURPLE2, '#eceaf1'],
+          borderColor: '#ffffff', borderWidth: 3, hoverOffset: 8
+        }]
+      },
+      options: {
+        maintainAspectRatio: false, cutout: '62%',
+        plugins: {
+          legend: {position: 'right'},
+          title: {display: true, text: 'Variance explained by the 3-factor CCI structure', color: PURPLE, font: {size: 14, weight: '600'}},
+          tooltip: {callbacks: {label: c => ' ' + c.label}}
+        }
+      }
+    });
 
-            // Animate statistics when they come into view
-            const statsObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const statNumbers = entry.target.querySelectorAll('.stat-number');
-                        statNumbers.forEach(num => {
-                            const finalValue = num.textContent;
-                            const numericValue = parseInt(finalValue.replace(/[^\d]/g, ''));
-                            
-                            if (numericValue && numericValue < 100000) {
-                                let currentValue = 0;
-                                const increment = numericValue / 50;
-                                const timer = setInterval(() => {
-                                    currentValue += increment;
-                                    if (currentValue >= numericValue) {
-                                        num.textContent = finalValue;
-                                        clearInterval(timer);
-                                    } else {
-                                        num.textContent = Math.floor(currentValue).toLocaleString() + (finalValue.includes('+') ? '+' : '');
-                                    }
-                                }, 30);
-                            }
-                        });
-                    }
-                });
-            }, { threshold: 0.5 });
+    /* Finding 2 — equity grouped bars */
+    new Chart(document.getElementById('chartEquity'), {
+      type: 'bar',
+      data: {
+        labels: ['Emergent Bilingual', 'Hispanic', 'Econ. Disadvantaged', 'African American', 'Special Education'],
+        datasets: [
+          {label: 'Math', data: [6.27, 4.64, 4.54, 4.15, 3.32], backgroundColor: PURPLE, borderRadius: 6},
+          {label: 'Reading', data: [5.96, 3.29, 3.41, 3.42, 3.52], backgroundColor: CRIMSON, borderRadius: 6}
+        ]
+      },
+      options: {
+        maintainAspectRatio: false, indexAxis: 'y',
+        scales: {
+          x: {grid: gridOpts, title: {display: true, text: 'Percentage-point advantage'}, beginAtZero: true},
+          y: {grid: {display: false}}
+        },
+        plugins: {tooltip: {callbacks: {label: c => ` ${c.dataset.label}: +${c.parsed.x}pp`}}}
+      }
+    });
 
-            document.querySelectorAll('.research-stats').forEach(el => {
-                statsObserver.observe(el);
-            });
-        });
-    </script>
+    /* Finding 3 — regional bars */
+    new Chart(document.getElementById('chartRegions'), {
+      type: 'bar',
+      data: {
+        labels: ['Houston Metro', 'DFW Metro', 'San Antonio', 'South Texas', 'West Texas', 'Other / Rural'],
+        datasets: [{
+          label: '4-year enrollment advantage',
+          data: [7.42, 5.76, 5.41, 4.50, 4.18, 2.17],
+          backgroundColor: [PURPLE, PURPLE, PURPLE2, PURPLE2, PURPLE2, '#b6a6cf'],
+          borderRadius: 6
+        }]
+      },
+      options: {
+        maintainAspectRatio: false,
+        scales: {
+          y: {grid: gridOpts, title: {display: true, text: 'Percentage points'}, beginAtZero: true},
+          x: {grid: {display: false}}
+        },
+        plugins: {
+          legend: {display: false},
+          tooltip: {callbacks: {label: c => ` +${c.parsed.y}pp (p < 0.001)`}}
+        }
+      }
+    });
+
+    /* Finding 4 — TIA event study */
+    new Chart(document.getElementById('chartTIA'), {
+      type: 'line',
+      data: {
+        labels: ['Year 1', 'Year 2', 'Year 3', 'Year 4'],
+        datasets: [
+          {
+            label: 'Overall CCI effect',
+            data: [0.03, 0.11, 0.20, 0.14],
+            borderColor: PURPLE, backgroundColor: 'rgba(61,20,102,.08)',
+            fill: true, tension: .35, borderWidth: 3,
+            pointRadius: 5, pointBackgroundColor: PURPLE
+          },
+          {
+            label: 'Experience dimension',
+            data: [0.05, 0.12, 0.18, 0.22],
+            borderColor: CRIMSON, borderDash: [6, 5], tension: .35, borderWidth: 2.5,
+            pointRadius: 4, pointBackgroundColor: CRIMSON, fill: false
+          }
+        ]
+      },
+      options: {
+        maintainAspectRatio: false,
+        scales: {
+          y: {grid: gridOpts, title: {display: true, text: 'Effect size (SD)'}, beginAtZero: true, suggestedMax: 0.25},
+          x: {grid: {display: false}, title: {display: true, text: 'Years since TIA approval'}}
+        },
+        plugins: {tooltip: {callbacks: {label: c => ` ${c.dataset.label}: ${c.parsed.y} SD`}}}
+      }
+    });
+
+    /* Finding 5 — mediation pathway comparison */
+    new Chart(document.getElementById('chartPathway'), {
+      type: 'bar',
+      data: {
+        labels: ['Policy → Capacity', 'Capacity → Achievement (Math)', 'Capacity → Achievement (Reading)', 'Direct Policy → Achievement (Math)', 'Direct Policy → Achievement (Reading)'],
+        datasets: [{
+          data: [0.09, 0.21, 0.17, 0.05, 0.03],
+          backgroundColor: [GOLD, PURPLE, PURPLE2, '#c9c2d6', '#c9c2d6'],
+          borderRadius: 6
+        }]
+      },
+      options: {
+        maintainAspectRatio: false, indexAxis: 'y',
+        scales: {
+          x: {grid: gridOpts, title: {display: true, text: 'Effect size (SD)'}, beginAtZero: true},
+          y: {grid: {display: false}, ticks: {autoSkip: false, font: {size: 11}}}
+        },
+        plugins: {
+          legend: {display: false},
+          title: {display: true, text: 'The indirect pathway dominates the direct one', color: PURPLE, font: {size: 14, weight: '600'}},
+          tooltip: {callbacks: {label: c => ` ${c.parsed.x} SD`}}
+        }
+      }
+    });
+  }
+})();
+</script>
 </body>
-</html><!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roy Zamora - Research: The Campus Capacity Index</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-        }
-        
-        /* Header */
-        .header {
-            background: linear-gradient(135deg, #4d1a78 0%, #663399 50%, #1a1a1a 100%);
-            color: white;
-            padding: 2rem;
-            text-align: center;
-            position: relative;
-        }
-        
-        .back-link {
-            display: none;
-        }
-        
-        .research-title {
-            font-size: clamp(1.8rem, 4vw, 3rem);
-            margin-bottom: 1rem;
-            font-weight: 700;
-        }
-        
-        .research-subtitle {
-            font-size: clamp(1rem, 2vw, 1.3rem);
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-        
-        .researcher-info {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-        
-        .info-item {
-            background: rgba(255,255,255,0.1);
-            padding: 0.5rem 1rem;
-            border-radius: 15px;
-            font-size: 0.9rem;
-        }
-        
-        .research-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 1rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .stat-box {
-            background: rgba(255,255,255,0.1);
-            padding: 1rem;
-            border-radius: 10px;
-            text-align: center;
-        }
-        
-        .stat-number {
-            font-size: 1.5rem;
-            font-weight: bold;
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-        
-        .stat-label {
-            font-size: 0.7rem;
-            opacity: 0.9;
-        }
-        
-        /* Navigation */
-        .nav-container {
-            background: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        
-        .research-nav {
-            max-width: 1000px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: center;
-        }
-        
-        .nav-btn {
-            background: none;
-            border: none;
-            padding: 1rem 1.5rem;
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: #666;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border-bottom: 3px solid transparent;
-        }
-        
-        .nav-btn:hover {
-            color: #4d1a78;
-            background: rgba(77, 26, 120, 0.05);
-        }
-        
-        .nav-btn.active {
-            color: #4d1a78;
-            border-bottom-color: #dc143c;
-            background: rgba(77, 26, 120, 0.05);
-        }
-        
-        /* Main Content */
-        .main-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-        
-        .research-section {
-            display: none;
-        }
-        
-        .research-section.active {
-            display: block;
-            animation: fadeIn 0.5s ease-in-out;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .section-title {
-            font-size: 2rem;
-            color: #4d1a78;
-            margin-bottom: 1rem;
-            text-align: center;
-        }
-        
-        .section-description {
-            font-size: 1.1rem;
-            color: #666;
-            text-align: center;
-            margin-bottom: 2rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        /* Overview Section */
-        .overview-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-        
-        .lead-question {
-            font-size: 1.3rem;
-            color: #4d1a78;
-            font-weight: 600;
-            font-style: italic;
-            margin-bottom: 1.5rem;
-            padding: 1.5rem;
-            background: rgba(77, 26, 120, 0.05);
-            border-left: 4px solid #4d1a78;
-            border-radius: 0 8px 8px 0;
-        }
-        
-        .overview-text h3 {
-            color: #4d1a78;
-            margin-bottom: 1rem;
-        }
-        
-        .overview-text p {
-            margin-bottom: 1rem;
-            line-height: 1.7;
-        }
-        
-        /* Literature Gap Styles */
-        .literature-gap {
-            background: rgba(220, 20, 60, 0.05);
-            padding: 1.5rem;
-            border-left: 4px solid #dc143c;
-            border-radius: 0 8px 8px 0;
-            margin: 2rem 0;
-        }
-        
-        .literature-gap h4 {
-            color: #dc143c;
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-        }
-        
-        .gap-list {
-            list-style: none;
-            padding: 0;
-        }
-        
-        .gap-list li {
-            padding: 0.8rem 0;
-            position: relative;
-            padding-left: 1.5rem;
-            border-bottom: 1px solid rgba(220, 20, 60, 0.1);
-        }
-        
-        .gap-list li:last-child {
-            border-bottom: none;
-        }
-        
-        .gap-list li::before {
-            content: '⚠';
-            position: absolute;
-            left: 0;
-            color: #dc143c;
-            font-size: 1rem;
-        }
-        
-        /* Theoretical Framework Styles */
-        .theoretical-framework {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            margin: 2rem 0;
-        }
-        
-        .theoretical-framework h4 {
-            color: #4d1a78;
-            margin-bottom: 1.5rem;
-            text-align: center;
-            font-size: 1.5rem;
-        }
-        
-        .theory-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-        
-        .theory-card {
-            background: #f8f9fa;
-            border: 2px solid #e9ecef;
-            border-radius: 10px;
-            padding: 1.5rem;
-            text-align: center;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-        
-        .theory-card:hover {
-            border-color: #4d1a78;
-            background: rgba(77, 26, 120, 0.05);
-            transform: translateY(-3px);
-        }
-        
-        .theory-icon {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            display: block;
-        }
-        
-        .theory-name {
-            color: #4d1a78;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            font-size: 1rem;
-        }
-        
-        .theory-description {
-            font-size: 0.85rem;
-            color: #666;
-            line-height: 1.4;
-        }
-        
-        .integration-note {
-            background: rgba(77, 26, 120, 0.05);
-            padding: 1rem;
-            border-radius: 8px;
-            text-align: center;
-            font-style: italic;
-            color: #4d1a78;
-            border-left: 4px solid #4d1a78;
-        }
-        
-        /* Three Paper Framework */
-        .three-paper-framework {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            margin: 2rem 0;
-        }
-        
-        .three-paper-framework h4 {
-            color: #4d1a78;
-            margin-bottom: 2rem;
-            text-align: center;
-            font-size: 1.5rem;
-        }
-        
-        .paper-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-        
-        .paper-card {
-            background: #f8f9fa;
-            border: 2px solid #e9ecef;
-            border-radius: 10px;
-            padding: 1.5rem;
-            text-align: center;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-        
-        .paper-card:hover {
-            border-color: #4d1a78;
-            background: rgba(77, 26, 120, 0.05);
-            transform: translateY(-3px);
-        }
-        
-        .paper-number {
-            background: #4d1a78;
-            color: white;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1rem;
-            font-weight: bold;
-        }
-        
-        .paper-title {
-            color: #4d1a78;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
-        }
-        
-        .paper-description {
-            font-size: 0.8rem;
-            color: #666;
-            line-height: 1.4;
-            margin-bottom: 1rem;
-        }
-        
-        .paper-methods {
-            font-size: 0.75rem;
-            color: #4d1a78;
-            font-weight: 500;
-            background: rgba(77, 26, 120, 0.1);
-            padding: 0.3rem 0.6rem;
-            border-radius: 12px;
-            display: inline-block;
-        }
-        
-        /* Findings Grid */
-        .findings-grid {
-            display: grid;
-            gap: 2rem;
-        }
-        
-        .finding-card {
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            overflow: hidden;
-        }
-        
-        .finding-header {
-            padding: 1.5rem;
-            background: #4d1a78;
-            color: white;
-        }
-        
-        .finding-header h3 {
-            margin: 0;
-            font-size: 1.2rem;
-        }
-        
-        .finding-type {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 0.3rem 0.8rem;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            margin-top: 0.5rem;
-            display: inline-block;
-        }
-        
-        .finding-content {
-            padding: 1.5rem;
-        }
-        
-        .insight-list {
-            list-style: none;
-            padding: 0;
-        }
-        
-        .insight-list li {
-            padding: 0.5rem 0;
-            position: relative;
-            padding-left: 1.5rem;
-        }
-        
-        .insight-list li::before {
-            content: '▶';
-            position: absolute;
-            left: 0;
-            color: #663399;
-            font-size: 0.8rem;
-        }
-        
-        /* Mediation Diagram */
-        .mediation-diagram {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            margin: 2rem 0;
-        }
-        
-        .mediation-triangle {
-            position: relative;
-            width: 100%;
-            max-width: 500px;
-            height: 400px;
-            margin: 0 auto 2rem;
-        }
-        
-        /* Match your diagram layout exactly */
-        .path-element {
-            position: absolute;
-            background: #f8f9fa;
-            padding: 1.5rem;
-            border-radius: 8px;
-            text-align: center;
-            border: 2px solid #e9ecef;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-        
-        .path-element:hover {
-            transform: translateY(-3px);
-        }
-        
-        /* TIA at top-left */
-        .path-element:first-child {
-            top: 0;
-            left: 0;
-            width: 160px;
-            height: 120px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        /* CRI at middle-right */
-        .path-element.mediator {
-            top: 50%;
-            right: 0;
-            transform: translateY(-50%);
-            width: 160px;
-            height: 120px;
-            background: rgba(220, 20, 60, 0.1);
-            border-color: #dc143c;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        /* Student Achievement at bottom-left */
-        .path-element.outcome {
-            bottom: 0;
-            left: 0;
-            width: 160px;
-            height: 120px;
-            background: rgba(77, 26, 120, 0.1);
-            border-color: #4d1a78;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        /* Arrows */
-        .mediation-arrow {
-            position: absolute;
-            z-index: 2;
-        }
-        
-        /* Arrow from TIA to CRI (diagonal down-right) */
-        .arrow-tia-cri {
-            top: 80px;
-            left: 140px;
-            width: 180px;
-            height: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        /* Arrow from CRI to Achievement (diagonal down-left) */
-        .arrow-cri-achievement {
-            top: 220px;
-            left: 140px;
-            width: 180px;
-            height: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        /* Direct arrow from TIA to Achievement (vertical dashed) */
-        .arrow-direct {
-            top: 120px;
-            left: 50px;
-            width: 60px;
-            height: 160px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .diagonal-arrow {
-            width: 120px;
-            height: 3px;
-            background: #4d1a78;
-            position: relative;
-        }
-        
-        .diagonal-arrow.down-right {
-            transform: rotate(25deg);
-        }
-        
-        .diagonal-arrow.down-left {
-            transform: rotate(-25deg);
-        }
-        
-        .diagonal-arrow::after {
-            content: '';
-            position: absolute;
-            right: -8px;
-            top: -5px;
-            width: 0;
-            height: 0;
-            border: 6px solid transparent;
-            border-left-color: #4d1a78;
-        }
-        
-        .diagonal-arrow.down-left::after {
-            right: auto;
-            left: -8px;
-            border-left-color: transparent;
-            border-right-color: #4d1a78;
-        }
-        
-        .vertical-dashed {
-            width: 3px;
-            height: 120px;
-            background: repeating-linear-gradient(
-                to bottom,
-                #999 0px,
-                #999 8px,
-                transparent 8px,
-                transparent 16px
-            );
-            position: relative;
-        }
-        
-        .vertical-dashed::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: -5px;
-            width: 0;
-            height: 0;
-            border: 6px solid transparent;
-            border-top-color: #999;
-        }
-        
-        .path-label {
-            position: absolute;
-            background: #4d1a78;
-            color: white;
-            padding: 0.4rem 0.8rem;
-            border-radius: 6px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-align: center;
-            box-shadow: 0 2px 8px rgba(77, 26, 120, 0.3);
-            white-space: nowrap;
-        }
-        
-        /* Position labels along arrows like in your diagram */
-        .arrow-tia-cri .path-label {
-            top: -35px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        
-        .arrow-cri-achievement .path-label {
-            bottom: -35px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        
-        .arrow-direct .path-label {
-            right: -90px;
-            top: 50%;
-            background: #999;
-            font-style: italic;
-            transform: translateY(-50%);
-        }
-        
-        .mediation-results {
-            background: #f8f9fa;
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin-top: 1rem;
-        }
-        
-        .mediation-results h4 {
-            color: #4d1a78;
-            margin-bottom: 1rem;
-        }
-        
-        /* Subgroup Benefits */
-        .subgroup-benefits {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            margin: 2rem 0;
-        }
-        
-        .benefit-bars {
-            margin-bottom: 1.5rem;
-        }
-        
-        .benefit-row {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-        
-        .group-label {
-            flex: 0 0 150px;
-            font-weight: 600;
-            color: #4d1a78;
-            font-size: 0.9rem;
-        }
-        
-        .benefit-bar {
-            flex: 1;
-            height: 25px;
-            background: #f0f0f0;
-            border-radius: 15px;
-            position: relative;
-            overflow: hidden;
-            margin-left: 1rem;
-        }
-        
-        .bar-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #663399, #4d1a78);
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            padding-right: 8px;
-            transition: width 1s ease-out;
-        }
-        
-        .benefit-value {
-            color: white;
-            font-weight: 600;
-            font-size: 0.7rem;
-        }
-        
-        .equity-insight {
-            background: rgba(77, 26, 120, 0.05);
-            padding: 1rem;
-            border-radius: 8px;
-            border-left: 4px solid #4d1a78;
-            font-style: italic;
-        }
-        
-        /* Regional Map */
-        .regional-map {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            margin: 2rem 0;
-        }
-        
-        .regional-map h4 {
-            color: #4d1a78;
-            margin-bottom: 2rem;
-            text-align: center;
-            font-size: 1.3rem;
-        }
-        
-        .map-container {
-            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-            padding: 2rem;
-            border-radius: 15px;
-            margin-bottom: 1.5rem;
-        }
-        
-        .texas-regions {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 1rem;
-        }
-        
-        .region {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-        }
-        
-        .region:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-        }
-        
-        .region-label {
-            display: block;
-            font-weight: 600;
-            color: #4d1a78;
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
-        }
-        
-        .region-effect {
-            display: block;
-            font-size: 1.2rem;
-            color: #dc143c;
-            font-weight: bold;
-        }
-        
-        .geographic-insight {
-            background: rgba(77, 26, 120, 0.05);
-            padding: 1rem;
-            border-radius: 8px;
-            border-left: 4px solid #4d1a78;
-            font-style: italic;
-        }
-        
-        .geographic-insight strong {
-            color: #4d1a78;
-        }
-        
-        /* Method Grid */
-        .method-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-        
-        .method-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        }
-        
-        .method-card h4 {
-            color: #663399;
-            margin-bottom: 1rem;
-        }
-        
-        .method-card ul {
-            list-style: none;
-            padding: 0;
-        }
-        
-        .method-card li {
-            padding: 0.5rem 0;
-            position: relative;
-            padding-left: 1.5rem;
-        }
-        
-        .method-card li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: #663399;
-            font-weight: bold;
-        }
-        
-        /* Mediation Framework */
-        .mediation-framework {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            margin: 2rem 0;
-        }
-        
-        .mediation-framework h4 {
-            color: #4d1a78;
-            margin-bottom: 2rem;
-            text-align: center;
-            font-size: 1.5rem;
-        }
-        
-        .mediation-flow-horizontal {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-        
-        .mediation-box-horizontal {
-            background: #f8f9fa;
-            border: 2px solid #e9ecef;
-            border-radius: 8px;
-            padding: 1.5rem;
-            text-align: center;
-            flex: 1;
-            min-width: 180px;
-            transition: all 0.3s ease;
-        }
-        
-        .mediation-box-horizontal.highlight {
-            background: rgba(77, 26, 120, 0.1);
-            border-color: #4d1a78;
-        }
-        
-        .mediation-box-horizontal strong {
-            display: block;
-            color: #4d1a78;
-            margin-bottom: 0.5rem;
-            font-size: 1rem;
-        }
-        
-        .mediation-box-horizontal .mediation-label {
-            font-size: 0.8rem;
-            color: #666;
-        }
-        
-        .mediation-arrow-horizontal {
-            font-size: 1.5rem;
-            color: #4d1a78;
-            font-weight: bold;
-        }
-        
-        .mediation-paths {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-        
-        .indirect-path {
-            background: rgba(77, 26, 120, 0.05);
-            padding: 1rem;
-            border-radius: 8px;
-            border-left: 4px solid #4d1a78;
-        }
-        
-        .direct-path {
-            background: rgba(220, 20, 60, 0.05);
-            padding: 1rem;
-            border-radius: 8px;
-            border-left: 4px solid #dc143c;
-        }
-        
-        .indirect-path strong,
-        .direct-path strong {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #4d1a78;
-        }
-        
-        .direct-path strong {
-            color: #dc143c;
-        }
-        
-        .indirect-path span,
-        .direct-path span {
-            font-size: 0.9rem;
-            color: #666;
-        }
-        
-        .paper-contributions {
-            display: flex;
-            justify-content: space-around;
-            margin-bottom: 1.5rem;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-        
-        .paper-contribution {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: #f8f9fa;
-            padding: 0.8rem 1rem;
-            border-radius: 8px;
-            border: 1px solid #e9ecef;
-        }
-        
-        .contribution-number {
-            background: #4d1a78;
-            color: white;
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 0.8rem;
-        }
-        
-        .paper-contribution span {
-            font-size: 0.85rem;
-            color: #4d1a78;
-            font-weight: 500;
-        }
-        
-        .framework-note {
-            background: rgba(255,255,255,0.9);
-            border: 1px solid #4d1a78;
-            border-radius: 8px;
-            padding: 1rem;
-            font-size: 0.9rem;
-            color: #333;
-            text-align: center;
-            font-style: italic;
-        }
-        
-        /* Framework Visual Styles */
-        .framework-visual {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            margin: 2rem 0;
-        }
-        
-        .framework-visual h4 {
-            color: #4d1a78;
-            margin-bottom: 2rem;
-            text-align: center;
-            font-size: 1.5rem;
-        }
-        
-        /* Paper 1 Section - Purple theme */
-        .paper1-section {
-            background: linear-gradient(135deg, rgba(77, 26, 120, 0.1) 0%, rgba(102, 51, 153, 0.15) 100%);
-            border: 2px solid #4d1a78;
-            border-radius: 15px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            position: relative;
-        }
-        
-        .paper1-title {
-            text-align: center;
-            font-weight: bold;
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
-            color: #4d1a78;
-        }
-        
-        .theory-boxes {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .theory-box {
-            background: white;
-            border: 2px solid #663399;
-            border-radius: 8px;
-            padding: 1rem;
-            text-align: center;
-            font-weight: 500;
-            color: #4d1a78;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            font-size: 0.9rem;
-        }
-        
-        .theory-box:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(77, 26, 120, 0.2);
-            background: rgba(77, 26, 120, 0.05);
-        }
-        
-        .dimensions-title {
-            text-align: center;
-            font-weight: bold;
-            margin: 1.5rem 0 1rem 0;
-            color: #4d1a78;
-        }
-        
-        .dimensions-container {
-            border: 2px dashed #663399;
-            border-radius: 10px;
-            padding: 1rem;
-            background: rgba(255,255,255,0.8);
-        }
-        
-        .dimensions-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-        }
-        
-        .dimension-box {
-            background: rgba(77, 26, 120, 0.05);
-            border: 1px solid #663399;
-            border-radius: 6px;
-            padding: 0.8rem;
-            text-align: center;
-            font-weight: 500;
-            color: #4d1a78;
-            font-size: 0.85rem;
-        }
-        
-        .cri-box {
-            background: white;
-            border: 3px solid #4d1a78;
-            border-radius: 10px;
-            padding: 1rem;
-            text-align: center;
-            font-weight: bold;
-            margin: 1.5rem auto;
-            max-width: 300px;
-            color: #4d1a78;
-        }
-        
-        /* Papers 2 and 3 Container */
-        .papers-container {
-            display: grid;
-            grid-template-columns: 1fr auto 1fr;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            align-items: center;
-        }
-        
-        /* Paper 2 Section - Crimson theme */
-        .paper2-section {
-            background: linear-gradient(135deg, rgba(220, 20, 60, 0.1) 0%, rgba(220, 20, 60, 0.15) 100%);
-            border: 2px solid #dc143c;
-            border-radius: 15px;
-            padding: 1.5rem;
-            position: relative;
-        }
-        
-        .paper2-title {
-            text-align: center;
-            font-weight: bold;
-            font-size: 1rem;
-            margin-bottom: 1rem;
-            color: #dc143c;
-        }
-        
-        .paper2-theory {
-            background: white;
-            border: 2px solid #dc143c;
-            border-radius: 8px;
-            padding: 0.8rem;
-            text-align: center;
-            margin-bottom: 1rem;
-            color: #dc143c;
-            font-size: 0.85rem;
-        }
-        
-        .paper2-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.8rem;
-        }
-        
-        .paper2-box {
-            background: white;
-            border: 1px solid #dc143c;
-            border-radius: 6px;
-            padding: 0.6rem;
-            text-align: center;
-            font-size: 0.8rem;
-            color: #dc143c;
-        }
-        
-        /* Paper 3 Section - Secondary purple theme */
-        .paper3-section {
-            background: linear-gradient(135deg, rgba(102, 51, 153, 0.1) 0%, rgba(102, 51, 153, 0.15) 100%);
-            border: 2px solid #663399;
-            border-radius: 15px;
-            padding: 1.5rem;
-            position: relative;
-        }
-        
-        .paper3-title {
-            text-align: center;
-            font-weight: bold;
-            font-size: 1rem;
-            margin-bottom: 1rem;
-            color: #663399;
-        }
-        
-        .paper3-theories {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        .paper3-theory {
-            background: white;
-            border: 2px solid #663399;
-            border-radius: 6px;
-            padding: 0.6rem;
-            text-align: center;
-            font-size: 0.8rem;
-            color: #663399;
-        }
-        
-        .paper3-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.5rem;
-        }
-        
-        .paper3-box {
-            background: white;
-            border: 1px solid #663399;
-            border-radius: 6px;
-            padding: 0.6rem;
-            text-align: center;
-            font-size: 0.75rem;
-            color: #663399;
-        }
-        
-        /* Arrows */
-        .arrow-down {
-            text-align: center;
-            font-size: 2rem;
-            color: #4d1a78;
-            margin: 1rem 0;
-        }
-        
-        .arrows-container {
-            display: flex;
-            justify-content: space-around;
-            margin: 1rem 0;
-        }
-        
-        .arrow-down-small {
-            font-size: 1.5rem;
-            color: #4d1a78;
-        }
-        
-        
-        
-        /* Expected Contributions */
-        .expected-contributions {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            margin: 2rem 0;
-        }
-        
-        .expected-contributions h4 {
-            color: #4d1a78;
-            margin-bottom: 1.5rem;
-            text-align: center;
-            font-size: 1.5rem;
-        }
-        
-        .contributions-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-        }
-        
-        .contribution-item {
-            background: #f8f9fa;
-            padding: 1.5rem;
-            border-radius: 10px;
-            border-left: 4px solid #663399;
-        }
-        
-        .contribution-item h5 {
-            color: #663399;
-            margin-bottom: 0.8rem;
-            font-size: 1rem;
-        }
-        
-        .contribution-item p {
-            font-size: 0.9rem;
-            color: #666;
-            line-height: 1.5;
-        }
-        
-        .expected-badge {
-            background: rgba(220, 20, 60, 0.05);
-            color: #dc143c;
-            padding: 0.2rem 0.5rem;
-            border-radius: 10px;
-            font-size: 0.7rem;
-            font-weight: 600;
-            display: inline-block;
-            margin-bottom: 0.5rem;
-        }
-        
-        .policy-connection {
-            background: rgba(220, 20, 60, 0.05);
-            padding: 1.5rem;
-            border-left: 4px solid #dc143c;
-            border-radius: 0 8px 8px 0;
-            margin: 2rem 0;
-        }
-        
-        .policy-connection h5 {
-            color: #dc143c;
-            margin-bottom: 1rem;
-            font-size: 1.2rem;
-        }
-        
-        .policy-connection p {
-            color: #333;
-            line-height: 1.6;
-        }
-        
-        /* Implications Grid */
-        .implications-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-        
-        .implication-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        }
-        
-        .implication-icon {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            text-align: center;
-        }
-        
-        .implication-card h4 {
-            color: #663399;
-            margin-bottom: 1rem;
-            text-align: center;
-        }
-        
-        .implication-card ul {
-            list-style: none;
-            padding: 0;
-        }
-        
-        .implication-card li {
-            padding: 0.5rem 0;
-            position: relative;
-            padding-left: 1.5rem;
-        }
-        
-        .implication-card li::before {
-            content: '▶';
-            position: absolute;
-            left: 0;
-            color: #663399;
-            font-size: 0.8rem;
-        }
-        
-        /* Footer */
-        .footer {
-            background: #1a1a1a;
-            color: white;
-            padding: 2rem;
-            text-align: center;
-            margin-top: 3rem;
-        }
-        
-        .footer h3 {
-            margin-bottom: 1rem;
-            color: #dc143c;
-        }
-        
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-        
-        .footer-link {
-            color: white;
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            border: 1px solid rgba(255,255,255,0.3);
-            border-radius: 20px;
-            transition: all 0.3s ease;
-        }
-        
-        .footer-link:hover {
-            background: rgba(220, 20, 60, 0.2);
-            border-color: #dc143c;
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            .overview-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            
-            .implications-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .theory-grid,
-            .paper-grid,
-            .contributions-grid,
-            .theory-boxes,
-            .dimensions-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .papers-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .mediation-flow-horizontal {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .mediation-arrow-horizontal {
-                transform: rotate(90deg);
-                margin: 0.5rem 0;
-            }
-            
-            .mediation-paths {
-                grid-template-columns: 1fr;
-            }
-            
-            .paper-contributions {
-                flex-direction: column;
-            }
-            
-            .benefit-row {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            
-            .benefit-bar {
-                margin-left: 0;
-                margin-top: 0.5rem;
-            }
-            
-            .research-nav {
-                flex-direction: column;
-            }
-            
-            .nav-btn {
-                border-bottom: 1px solid #f0f0f0;
-                border-radius: 0;
-            }
-            
-            .three-paper-framework .paper-card a.paper-dive-deep,
-            .paper-grid .paper-card a.paper-dive-deep {
-                display: inline-block;
-                margin-top: 1rem;
-                padding: 0.6rem 1.2rem;
-                background-color: rgba(220, 20, 60, 0.05);
-                border: 1px solid rgba(220, 20, 60, 0.5);
-                border-radius: 20px;
-                color: #dc143c;
-                text-decoration: none;
-                font-weight: 600;
-                font-size: 0.9rem;
-                text-align: center;
-                transition: all 0.3s ease;
-            }
-            
-            .three-paper-framework .paper-card a.paper-dive-deep:hover,
-            .paper-grid .paper-card a.paper-dive-deep:hover {
-                background-color: #dc143c;
-                color: #fff;
-                text-decoration: none;
-            }
-            
-            .three-paper-framework .paper-card a.paper-dive-deep:visited,
-            .paper-grid .paper-card a.paper-dive-deep:visited {
-                color: #dc143c;
-            }
-            
-            .three-paper-framework .paper-card a.paper-dive-deep:visited:hover,
-            .paper-grid .paper-card a.paper-dive-deep:visited:hover {
-                color: #fff;
-            }
-        }
-
-            .site-footer {
-                background-color: #212529; /* Dark background */
-                color: #f8f9fa;
-                padding: 3rem 1rem;
-                margin-top: 4rem;
-                text-align: center;
-            }
-            .footer-title {
-                color: #dc143c; /* Crimson to match theme */
-                margin-bottom: 0.5rem;
-                font-size: 1.5rem;
-                font-weight: 600;
-            }
-            .footer-subtitle {
-                margin-bottom: 2rem;
-                color: #adb5bd;
-                font-size: 1.1rem;
-            }
-            .footer-links {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 1rem;
-            }
-            .footer-btn {
-                display: inline-flex;
-                align-items: center;
-                gap: 0.75rem;
-                background-color: #343a40;
-                border: 1px solid #495057;
-                color: #f8f9fa;
-                padding: 0.75rem 1.5rem;
-                border-radius: 50px; /* Pill shape */
-                text-decoration: none;
-                font-size: 1rem;
-                font-weight: 500;
-                transition: all 0.3s ease;
-            }
-            .footer-btn:hover {
-                background-color: #495057;
-                border-color: #dc143c;
-                color: #fff;
-                transform: translateY(-2px);
-            }
-            .footer-btn span {
-                font-size: 1.2rem;
-            }
-
-            a.paper-dive-deep,
-            .three-paper-framework .paper-card a.paper-dive-deep,
-            .paper-grid .paper-card a.paper-dive-deep,
-            .paper-card .paper-dive-deep {
-                display: inline-block !important;
-                margin-top: 1rem !important;
-                padding: 0.6rem 1.2rem !important;
-                background-color: rgba(220, 20, 60, 0.05) !important;
-                border: 1px solid rgba(220, 20, 60, 0.5) !important;
-                border-radius: 20px !important;
-                color: #dc143c !important;
-                text-decoration: none !important;
-                font-weight: 600 !important;
-                font-size: 0.9rem !important;
-                text-align: center !important;
-                transition: all 0.3s ease !important;
-            }
-            
-            a.paper-dive-deep:hover,
-            .three-paper-framework .paper-card a.paper-dive-deep:hover,
-            .paper-grid .paper-card a.paper-dive-deep:hover,
-            .paper-card .paper-dive-deep:hover {
-                background-color: #dc143c !important;
-                color: #fff !important;
-                text-decoration: none !important;
-            }
-            
-            a.paper-dive-deep:visited,
-            .three-paper-framework .paper-card a.paper-dive-deep:visited,
-            .paper-grid .paper-card a.paper-dive-deep:visited,
-            .paper-card .paper-dive-deep:visited {
-                color: #dc143c !important;
-                text-decoration: none !important;
-            }
-            
-            a.paper-dive-deep:visited:hover,
-            .three-paper-framework .paper-card a.paper-dive-deep:visited:hover,
-            .paper-grid .paper-card a.paper-dive-deep:visited:hover,
-            .paper-card .paper-dive-deep:visited:hover {
-                color: #fff !important;
-                background-color: #dc143c !important;
-                text-decoration: none !important;
-            }
-            
-            /* Additional override for any link states */
-            a.paper-dive-deep:link,
-            a.paper-dive-deep:active,
-            a.paper-dive-deep:focus {
-                color: #dc143c !important;
-                text-decoration: none !important;
-            }
-            /* Paper Questions Styling */
-            .paper-questions {
-                margin: 1.5rem 0;
-                padding: 1rem;
-                background: rgba(255, 255, 255, 0.7);
-                border-radius: 8px;
-                border-left: 3px solid #4d1a78;
-            }
-            
-            .paper-questions h5 {
-                color: #4d1a78;
-                font-size: 0.9rem;
-                font-weight: 600;
-                margin-bottom: 0.8rem;
-                text-transform: none;
-                letter-spacing: 0.5px;
-            }
-            
-            .questions-list {
-                list-style: none;
-                padding: 0;
-                margin: 0;
-            }
-            
-            .questions-list li {
-                padding: 0.5rem 0;
-                font-size: 0.85rem;
-                line-height: 1.4;
-                color: #333;
-                position: relative;
-                padding-left: 1.2rem;
-                border-bottom: 1px solid rgba(77, 26, 120, 0.1);
-            }
-            
-            .questions-list li:last-child {
-                border-bottom: none;
-            }
-            
-            .questions-list li::before {
-                content: '';
-                position: absolute;
-                left: 0;
-                color: #4d1a78;
-                font-weight: bold;
-                font-size: 0.9rem;
-            }
-            
-            /* Responsive adjustments */
-            @media (max-width: 768px) {
-                .paper-questions {
-                    margin: 1rem 0;
-                    padding: 0.8rem;
-                }
-                
-                .questions-list li {
-                    font-size: 0.8rem;
-                    padding: 0.4rem 0;
-                }
-            }
-    </style>
+</html>

@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Equity Power of High-Capacity Schools | Paper 2 Deep Dive — Roy Zamora</title>
+
+<!-- SEO -->
+<meta name="description" content="Deep dive into Paper 2: how the Campus Capacity Index functions as an equity mechanism. High-capacity Texas schools deliver the largest achievement gains to emergent bilingual students and students with disabilities, and systematically channel students toward four-year colleges — 48,620 campus-year observations, 2017–2023.">
+<meta name="author" content="Roy Zamora">
+<link rel="canonical" href="Deep_Dive_Paper2.html">
+
+<!-- Open Graph -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Equity Power of High-Capacity Schools (Paper 2 Deep Dive)">
+<meta property="og:description" content="Organizational capacity is an equity mechanism: the students facing the greatest institutional barriers gain the most from high-capacity schools.">
+<meta property="og:url" content="Deep_Dive_Paper2.html">
+<meta property="og:site_name" content="Roy Zamora — Research Portfolio">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="The Equity Power of High-Capacity Schools — Paper 2 Deep Dive">
+<meta name="twitter:description" content="For whom does school organizational capacity matter most? Evidence from 48,620 Texas campus-year observations.">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚖️</text></svg>">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+
+<style>
+/* ================================================================
+   TOKENS — matches portfolio index.html
+   ================================================================ */
+:root{
+  --purple:      #3d1466;
+  --purple-2:    #663399;
+  --purple-3:    #9d7fd0;
+  --purple-soft: #f3eff9;
+  --crimson:     #dc143c;
+  --crimson-soft:#fdf0f2;
+  --ink:         #211c29;
+  --ink-2:       #5b5566;
+  --paper:       #fbfafd;
+  --card:        #ffffff;
+  --line:        #e7e2ef;
+  --gold:        #c9a24b;
+
+  --font-display:'Newsreader', Georgia, serif;
+  --font-body:   'Public Sans', -apple-system, 'Segoe UI', sans-serif;
+  --font-mono:   'IBM Plex Mono', 'SF Mono', Consolas, monospace;
+
+  --radius: 14px;
+  --shadow: 0 1px 2px rgba(33,28,41,.05), 0 8px 28px rgba(61,20,102,.08);
+  --shadow-lift: 0 2px 4px rgba(33,28,41,.06), 0 16px 40px rgba(61,20,102,.14);
+  --maxw: 1160px;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);color:var(--ink);background:var(--paper);line-height:1.65;-webkit-font-smoothing:antialiased}
+img,svg,canvas{max-width:100%}
+a{color:var(--purple-2)}
+
+.skip-link{position:absolute;left:-9999px;top:0;background:var(--purple);color:#fff;padding:.6rem 1rem;border-radius:0 0 8px 0;z-index:1000;font-weight:600}
+.skip-link:focus{left:0}
+:focus-visible{outline:3px solid var(--crimson);outline-offset:2px;border-radius:4px}
+
+/* ============================ HERO ============================ */
+.hero{
+  background:
+    radial-gradient(1100px 500px at 85% -10%, rgba(220,20,60,.18), transparent 60%),
+    radial-gradient(900px 600px at 10% 110%, rgba(102,51,153,.35), transparent 60%),
+    linear-gradient(150deg, #2a0d49 0%, var(--purple) 55%, #1b0a33 100%);
+  color:#fff;padding:3.5rem 1.5rem 4rem;
+}
+.hero-inner{max-width:var(--maxw);margin:0 auto}
+.back-link{display:inline-flex;align-items:center;gap:.4rem;color:#e8ddf5;text-decoration:none;font-size:.88rem;font-weight:600;margin-bottom:2.2rem;opacity:.85;transition:opacity .2s}
+.back-link:hover{opacity:1;text-decoration:underline}
+.eyebrow{font-family:var(--font-mono);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:#e8ddf5;opacity:.85;margin-bottom:1rem}
+.hero h1{font-family:var(--font-display);font-weight:600;font-size:clamp(2rem,4.4vw,3.3rem);line-height:1.12;letter-spacing:-.01em;max-width:22ch;margin-bottom:1.1rem}
+.hero h1 em{font-style:italic;color:#f5c8d2}
+.hero-sub{font-size:clamp(1rem,1.6vw,1.12rem);color:#d9cdea;max-width:64ch;margin-bottom:2.6rem}
+
+/* Signature: interactive CCI sunburst + detail panel */
+.sunburst-wrap{
+  display:grid;grid-template-columns:minmax(300px,440px) 1fr;gap:2rem;align-items:center;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);
+  border-radius:var(--radius);padding:1.8rem;backdrop-filter:blur(6px);
+}
+#sunburst{width:100%;height:auto;display:block}
+#sunburst path{cursor:pointer;transition:opacity .2s, filter .2s}
+#sunburst path:hover, #sunburst path.active{filter:brightness(1.18)}
+#sunburst.has-active path:not(.active){opacity:.45}
+#sunburst text{pointer-events:none;font-family:var(--font-body)}
+.sun-panel{min-width:0}
+.sun-kicker{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:#cdbde4;margin-bottom:.4rem}
+.sun-title{font-family:var(--font-display);font-weight:600;font-size:1.5rem;line-height:1.25;margin-bottom:.6rem}
+.sun-desc{color:#d9cdea;font-size:.95rem;margin-bottom:1rem}
+.sun-meta{display:flex;flex-wrap:wrap;gap:.5rem}
+.sun-chip{font-family:var(--font-mono);font-size:.76rem;font-weight:500;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);padding:.3rem .7rem;border-radius:99px;color:#f0eaf8}
+.sun-hint{font-size:.78rem;color:#a894c9;margin-top:1.1rem;font-style:italic}
+
+/* ============================ IN-PAGE NAV ============================ */
+.nav-wrap{position:sticky;top:0;z-index:100;background:rgba(251,250,253,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.tabs{max-width:var(--maxw);margin:0 auto;display:flex;overflow-x:auto}
+.tabs a{font-weight:600;font-size:.9rem;color:var(--ink-2);text-decoration:none;padding:1rem 1.3rem;border-bottom:3px solid transparent;white-space:nowrap;transition:color .2s,background .2s}
+.tabs a:hover{color:var(--purple);background:var(--purple-soft)}
+
+/* ============================ SECTIONS ============================ */
+main{max-width:var(--maxw);margin:0 auto;padding:3rem 1.5rem}
+section{scroll-margin-top:4.5rem;margin-bottom:4rem}
+.section-title{font-family:var(--font-display);font-weight:600;color:var(--purple);font-size:clamp(1.6rem,3vw,2.2rem);letter-spacing:-.01em;margin-bottom:.5rem}
+.section-desc{color:var(--ink-2);max-width:70ch;margin-bottom:2rem;font-size:1.02rem}
+.subhead{font-family:var(--font-display);color:var(--purple);font-size:1.35rem;font-weight:600;margin:2.2rem 0 1rem}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:1.8rem;transition:transform .25s ease, box-shadow .25s ease}
+.card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lift)}
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:1.6rem}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem}
+
+.callout{border-left:4px solid var(--crimson);background:var(--crimson-soft);border-radius:0 10px 10px 0;padding:1.4rem 1.6rem;margin:1.8rem 0}
+.callout h4{color:var(--crimson);margin-bottom:.7rem;font-size:1.02rem}
+.callout.purple{border-left-color:var(--purple);background:var(--purple-soft)}
+.callout.purple h4{color:var(--purple)}
+
+ul.clean{list-style:none}
+ul.clean li{padding:.5rem 0 .5rem 1.5rem;position:relative}
+ul.clean li::before{content:'▸';position:absolute;left:0;color:var(--purple-2)}
+ul.clean li+li{border-top:1px solid var(--line)}
+ul.clean li b{color:var(--ink)}
+ul.clean li small{color:var(--ink-2)}
+
+.chart-box{position:relative;height:320px;margin:1rem 0}
+.chart-note{font-size:.78rem;color:var(--ink-2);font-family:var(--font-mono);margin-top:.4rem}
+
+.stat-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin:1.2rem 0}
+.stat-strip>div{background:var(--paper);padding:1rem 1.1rem}
+.stat-strip b{display:block;font-family:var(--font-mono);font-weight:600;font-size:1.25rem;color:var(--purple)}
+.stat-strip small{font-size:.76rem;color:var(--ink-2);line-height:1.4;display:block}
+
+.badge{display:inline-block;background:var(--crimson-soft);color:var(--crimson);font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.2rem .6rem;border-radius:99px;margin-bottom:.5rem}
+.chip{display:inline-block;background:var(--purple-soft);color:var(--purple);font-size:.76rem;font-weight:600;padding:.25rem .7rem;border-radius:99px;font-family:var(--font-mono)}
+
+/* ============================ ACCORDIONS ============================ */
+.acc{border:1px solid var(--line);border-radius:var(--radius);background:var(--card);box-shadow:var(--shadow);margin-bottom:1.1rem;overflow:hidden}
+.acc-btn{appearance:none;width:100%;background:none;border:none;cursor:pointer;text-align:left;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1.3rem 1.6rem;font-family:var(--font-body);transition:background .2s}
+.acc-btn:hover{background:var(--purple-soft)}
+.acc-btn .t{font-family:var(--font-display);font-weight:600;font-size:1.2rem;color:var(--purple);display:block}
+.acc-btn .d{font-size:.86rem;color:var(--ink-2);display:block;margin-top:.15rem}
+.acc-meta{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;flex-shrink:0}
+.acc-chevron{color:var(--purple-2);transition:transform .3s;font-size:.9rem}
+.acc-btn[aria-expanded="true"] .acc-chevron{transform:rotate(180deg)}
+.acc-body{display:none;padding:0 1.6rem 1.6rem;border-top:1px solid var(--line)}
+.acc-body.open{display:block}
+.acc-body .theory{background:var(--purple-soft);border-left:4px solid var(--purple);border-radius:0 10px 10px 0;padding:1.1rem 1.3rem;margin:1.3rem 0}
+.acc-body .theory b{color:var(--purple)}
+.ind-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem}
+.ind-card{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:1.2rem 1.3rem}
+.ind-card h5{color:var(--purple);font-size:1rem;margin-bottom:.5rem}
+.ind-card p{font-size:.88rem;color:var(--ink-2);margin-bottom:.9rem}
+.scoring{background:#fff;border:1px dashed var(--line);border-left:3px solid var(--purple-2);border-radius:8px;padding:.8rem 1rem}
+.scoring b{font-size:.78rem;text-transform:uppercase;letter-spacing:.07em;color:var(--purple)}
+.scoring div{font-family:var(--font-mono);font-size:.8rem;color:var(--ink);margin-top:.4rem;line-height:1.7}
+
+/* ============================ READINESS LEVELS ============================ */
+.levels{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem;align-items:stretch}
+.level{padding:1.7rem;text-align:center;border-top:5px solid}
+.level.min{border-top-color:var(--crimson)}
+.level.mod{border-top-color:var(--gold)}
+.level.opt{border-top-color:var(--purple)}
+.level h4{font-family:var(--font-display);font-weight:600;font-size:1.25rem;color:var(--ink);margin-bottom:.2rem}
+.level .range{font-family:var(--font-mono);font-weight:600;font-size:1.9rem;margin:.6rem 0}
+.level.min .range{color:var(--crimson)}
+.level.mod .range{color:#a07c2c}
+.level.opt .range{color:var(--purple)}
+.level .share{font-family:var(--font-mono);font-size:.86rem;color:var(--ink-2);margin-bottom:.5rem}
+.level p{font-size:.88rem;color:var(--ink-2)}
+
+/* ============================ EQUATIONS & FIGURES ============================ */
+.equation{background:#241a33;color:#f0eaf8;border-radius:10px;font-family:var(--font-mono);font-size:1.05rem;text-align:center;padding:1.1rem 1.2rem;margin:.8rem 0 1rem;overflow-x:auto}
+.equation sub{font-size:.7em}
+.figure{background:#fff;border:1px solid var(--line);border-radius:10px;padding:1rem;margin:1rem 0;text-align:center}
+.figure img{border-radius:6px}
+.figure figcaption{font-size:.8rem;color:var(--ink-2);font-family:var(--font-mono);margin-top:.6rem}
+
+/* ============================ FOOTER ============================ */
+.site-footer{background:#17101f;color:#e8e2f0;text-align:center;padding:3.5rem 1.5rem;margin-top:2rem}
+.site-footer h2{font-family:var(--font-display);font-weight:600;color:#f5c8d2;margin-bottom:.4rem}
+.site-footer p{color:#a99cbb;margin-bottom:2rem}
+.footer-links{display:flex;justify-content:center;flex-wrap:wrap;gap:.9rem}
+.footer-btn{display:inline-flex;align-items:center;gap:.6rem;background:#241a30;border:1px solid #3b2d4d;color:#f0eaf8;padding:.7rem 1.4rem;border-radius:99px;text-decoration:none;font-size:.92rem;font-weight:500;transition:all .25s ease}
+.footer-btn:hover{border-color:var(--crimson);background:#2e2140;transform:translateY(-2px)}
+
+/* ============================ RESPONSIVE + MOTION ============================ */
+@media (max-width: 960px){
+  .sunburst-wrap{grid-template-columns:1fr}
+  .grid-3,.levels{grid-template-columns:1fr}
+  .grid-2,.ind-grid{grid-template-columns:1fr}
+}
+@media (max-width: 600px){
+  .hero{padding:2.5rem 1.2rem 3rem}
+  main{padding:2rem 1.2rem}
+  .chart-box{height:280px}
+  .acc-btn{flex-wrap:wrap}
+}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
+<style>
+/* Page-specific: Texas hub map */
+.map-wrap{
+  display:grid;grid-template-columns:minmax(300px,470px) 1fr;gap:2rem;align-items:center;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);
+  border-radius:var(--radius);padding:1.8rem;backdrop-filter:blur(6px);
+}
+.map-stage{position:relative;line-height:0}
+.map-stage img{width:100%;height:auto;display:block}
+#txmap{position:absolute;inset:0;width:100%;height:100%}
+#txmap .hub{cursor:pointer;transition:opacity .2s, filter .2s}
+#txmap .hub:hover circle, #txmap .hub.active circle{filter:brightness(1.25) drop-shadow(0 0 10px rgba(245,200,210,.9))}
+#txmap.has-active .hub:not(.active){opacity:.35}
+#txmap text{pointer-events:none;font-family:var(--font-body)}
+@keyframes hubPulse{0%,100%{opacity:.55;transform:scale(1)}50%{opacity:0;transform:scale(1.9)}}
+#txmap .pulse{transform-origin:center;transform-box:fill-box;animation:hubPulse 2.6s ease-out infinite}
+@media (prefers-reduced-motion: reduce){#txmap .pulse{animation:none;opacity:0}}
+@media (max-width:960px){.map-wrap{grid-template-columns:1fr}}
+
+/* Framework: compact ecological rings (static) */
+.eco-rings{max-width:340px;margin:0 auto;display:block}
+.framework-grid{display:grid;grid-template-columns:minmax(260px,360px) 1fr;gap:1.8rem;align-items:center}
+@media (max-width:960px){.framework-grid{grid-template-columns:1fr}}
+</style>
+</head><body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ============================ HERO ============================ -->
+<header class="hero">
+  <div class="hero-inner">
+    <a class="back-link" href="research.html">← Back to research portfolio</a>
+    <p class="eyebrow">Paper 02 · Dissertation Deep Dive · Study 2</p>
+    <h1>The equity power of <em>high-capacity</em> schools.</h1>
+    <p class="hero-sub">Organizational capacity doesn't benefit all students equally — and that's the point. The students facing the greatest institutional barriers gain the most from high-capacity schools. This study asks for whom capacity matters, in which contexts, and across which timescales.</p>
+
+    <!-- Signature element: interactive Texas university-hub map -->
+    <div class="map-wrap">
+      <div class="map-stage">
+        <img src="Figure6_hub_map.png" alt="Choropleth map of Texas Education Service Center regions grouped into eight university hubs: Other/Rural, DFW Metro, East Texas, West Texas, Central Texas, Houston Metro, San Antonio Metro, and South Texas." loading="eager">
+        <svg id="txmap" viewBox="0 0 1500 1221" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Interactive markers over the university hub map, sized by each hub's four-year college enrollment advantage for Optimal Capacity schools: Houston Metro 7.42 percentage points, DFW Metro 5.76, San Antonio 5.41, South Texas 4.50, West Texas 4.18, Other slash Rural 2.17, East Texas moderate and significant, Central Texas null.">
+          <rect id="mapReset" x="0" y="0" width="1500" height="1221" fill="transparent"/>
+        </svg>
+      </div>
+      <div class="sun-panel" aria-live="polite">
+        <p class="sun-kicker" id="mKicker">The geography of capacity</p>
+        <h2 class="sun-title" id="mTitle">Eight university hubs, eight different returns</h2>
+        <p class="sun-desc" id="mDesc">The same organizational capacity pays off differently depending on the higher-education ecosystem around the school. Markers are sized by the four-year college enrollment advantage of Optimal Capacity schools (district FE).</p>
+        <div class="sun-meta" id="mMeta">
+          <span class="sun-chip">Strongest: Houston +7.42pp</span>
+          <span class="sun-chip">Puzzle: Central TX n.s.</span>
+          <span class="sun-chip">Surprise: Edinburg 31.2% Optimal</span>
+        </div>
+        <p class="sun-hint">Hover or tap a hub marker to explore its capacity story. Base map: Figure 6 from the paper — ESC regions (white) grouped into university hubs (red).</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============================ NAV ============================ -->
+<div class="nav-wrap">
+  <nav class="tabs" aria-label="Page sections">
+    <a href="#framework">Framework</a>
+    <a href="#design">Data &amp; Methods</a>
+    <a href="#equity">Equity Effects</a>
+    <a href="#pathways">College Pathways</a>
+    <a href="#context">Context</a>
+    <a href="#takeaways">Takeaways</a>
+  </nav>
+</div>
+
+<main id="main">
+
+<!-- ============================ FRAMEWORK ============================ -->
+<section id="framework">
+  <h2 class="section-title">Why equity, why now</h2>
+  <p class="section-desc">The pandemic exposed how unevenly schools absorb disruption: students in low-income neighborhoods suffered lasting learning losses while advantaged peers were largely unharmed, and the same crisis destabilized experienced staffing and stable leadership precisely where they were needed most. Schools are not neutral sites of instruction — they are institutional environments that amplify or mitigate inequity through their capacity configurations.</p>
+
+  <h3 class="subhead">Research questions</h3>
+  <div class="grid-3">
+    <div class="card"><span class="badge">RQ1 · Microsystem</span><p style="font-size:.94rem">Is organizational capacity, as measured by the CCI, associated with achievement across different student populations?</p></div>
+    <div class="card"><span class="badge">RQ2 · Chronosystem</span><p style="font-size:.94rem">Is campus capacity associated with long-term success metrics — four-year and two-year college enrollment?</p></div>
+    <div class="card"><span class="badge">RQ3 · Mesosystem</span><p style="font-size:.94rem">Do these relationships vary across school contexts — urbanicity, governance, and regional higher-education ecosystems?</p></div>
+  </div>
+
+  <div class="card" style="margin-top:2rem">
+    <div class="framework-grid">
+      <svg class="eco-rings" viewBox="-215 -215 430 430" role="img" aria-label="Bronfenbrenner's ecological systems as nested rings: the student at the center, surrounded by the microsystem of classroom processes, the mesosystem of community context, and the chronosystem of time and transitions.">
+        <circle r="176" fill="none" stroke="#e4d6f2" stroke-width="42"/>
+        <circle r="126" fill="none" stroke="#ecd9a8" stroke-width="42"/>
+        <circle r="76"  fill="none" stroke="#f2c7d3" stroke-width="42"/>
+        <circle r="46"  fill="#f3eff9" stroke="#3d1466" stroke-width="1.5"/>
+        <text text-anchor="middle" y="5" font-size="16" font-weight="700" fill="#3d1466" font-family="Public Sans, sans-serif">Student</text>
+        <text text-anchor="middle" y="-70" font-size="13" font-weight="700" fill="#8c2f47" font-family="Public Sans, sans-serif">Microsystem</text>
+        <text text-anchor="middle" y="-120" font-size="13" font-weight="700" fill="#7a5f1e" font-family="Public Sans, sans-serif">Mesosystem</text>
+        <text text-anchor="middle" y="-170" font-size="13" font-weight="700" fill="#553093" font-family="Public Sans, sans-serif">Chronosystem</text>
+      </svg>
+      <div>
+        <h4 style="color:var(--purple);font-family:var(--font-display);font-size:1.25rem;margin-bottom:.6rem">Theoretical move: an ecological lens on the CCI</h4>
+        <p style="font-size:.94rem;color:var(--ink-2);margin-bottom:1rem">This study extends organizational capacity theory through three of Bronfenbrenner's ecological systems. Rather than assuming capacity operates uniformly, its effects emerge from the nested environments students live in — and each ring maps to a research question.</p>
+        <ul class="clean">
+          <li><b>Microsystem → RQ1:</b> <small>classroom processes — experienced teachers and stable leadership alter how students engage with instruction, with the largest gains for students needing specialized support</small></li>
+          <li><b>Mesosystem → RQ3:</b> <small>community &amp; institutional context — urbanicity, governance, and regional resources amplify or constrain capacity's reach</small></li>
+          <li><b>Chronosystem → RQ2:</b> <small>time &amp; transitions — capacity shapes aspirations and college pathways over years, not just test scores</small></li>
+        </ul>
+        <p style="font-size:.86rem;color:var(--ink-2);margin-top:.9rem;font-style:italic">The theory guides where to look — the study investigates the CCI's equity mechanisms, not the theory itself.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ DATA & METHODS ============================ -->
+<section id="design">
+  <h2 class="section-title">Data &amp; methods</h2>
+  <p class="section-desc">Two complementary samples — one for achievement across all campuses, one for college pathways among high schools — analyzed with the same staged fixed-effects design.</p>
+
+  <div class="stat-strip">
+    <div><b>48,620</b><small>Campus-year observations for achievement (2017–2023, 8,605 campuses)</small></div>
+    <div><b>7,983</b><small>High-school-year observations for college enrollment (1,465 high schools)</small></div>
+    <div><b>26.51%</b><small>Average four-year college enrollment rate in the high school sample</small></div>
+    <div><b>25.15%</b><small>Average two-year college enrollment rate</small></div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <h4 style="color:var(--purple-2);margin-bottom:.9rem">📊 Data sources</h4>
+      <ul class="clean">
+        <li><b>TAPR</b> <small>— the CCI's indicators plus achievement disaggregated by seven subgroups: economically disadvantaged, African American, Hispanic, emergent bilingual, special education, at-risk, and female students</small></li>
+        <li><b>AskTED</b> <small>— urbanicity (NCES locale codes collapsed to City / Suburban / Town / Rural), charter status, ESC regions</small></li>
+        <li><b>THECB</b> <small>— campus-level two- and four-year public college enrollment (Texas public institutions; private and out-of-state not captured)</small></li>
+        <li><b>University Hubs</b> <small>— eight regional higher-education ecosystems built by aggregating ESC regions (DFW Metro, Central TX, Houston Metro, San Antonio, South TX, West TX, East TX, Other/Rural)</small></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4 style="color:var(--purple-2);margin-bottom:.9rem">🧭 Analytical approach</h4>
+      <div class="equation">Year FE: Y<sub>it</sub> = β<sub>0</sub> + β<sub>1</sub>CCI<sub>it</sub> + β<sub>2</sub>X<sub>it</sub> + δ<sub>t</sub> + ε<sub>it</sub></div>
+      <div class="equation">District FE: Y<sub>it</sub> = β<sub>0</sub> + β<sub>1</sub>CCI<sub>it</sub> + β<sub>2</sub>X<sub>it</sub> + δ<sub>t</sub> + δ<sub>d</sub> + ε<sub>it</sub></div>
+      <p style="font-size:.9rem;color:var(--ink-2)">Year-only models capture the total statewide association (upper bound); district fixed effects compare campuses <em>within the same district</em> (conservative). Controls: standardized economic disadvantage, plus enrollment counts for college models. SEs clustered by district. RQ3 adds stratified models and formal interaction tests.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ EQUITY EFFECTS ============================ -->
+<section id="equity">
+  <h2 class="section-title">Finding 1 — Capacity is an equity mechanism</h2>
+  <p class="section-desc">Capacity advantages are significantly larger for historically marginalized populations — the students who require the most institutional support gain the most from high-capacity schools.</p>
+
+  <div class="card">
+    <div class="chart-box" style="height:360px"><canvas id="chartEquity" aria-label="Grouped bar chart of Optimal versus Minimal capacity advantages with district fixed effects. Emergent bilingual students: 6.27 percentage points math, 5.96 reading. All students: 4.67 and 3.39. Hispanic: 4.64 and 3.29. Economically disadvantaged: 4.54 and 3.41. African American: 4.15 and 3.42. Special education: 3.32 and 3.52."></canvas></div>
+    <p class="chart-note">Optimal vs. Minimal Capacity, district + year FE (conservative within-district estimates). Year-only estimates run roughly 1–3pp higher — e.g., 8.33pp math for emergent bilingual students.</p>
+  </div>
+
+  <div class="grid-3">
+    <div class="card">
+      <span class="badge">Largest gains</span>
+      <h5 style="color:var(--purple-2);margin-bottom:.5rem">Emergent bilingual students</h5>
+      <p style="font-size:.9rem;color:var(--ink-2)">The strongest capacity benefits in the study: +6.27pp math and +5.96pp reading within districts. Even Moderate Capacity confers significant advantages (2.11–3.51pp) — consistent with the theory that EB students benefit most from strategically deployed instructional expertise.</p>
+    </div>
+    <div class="card">
+      <span class="badge">Specialized support</span>
+      <h5 style="color:var(--purple-2);margin-bottom:.5rem">Students with disabilities</h5>
+      <p style="font-size:.9rem;color:var(--ink-2)">+3.32pp math and +3.52pp reading with district controls (year-only models reach 5.33pp) — evidence that stability and experienced staff foster the conditions for inclusive, specialized instruction.</p>
+    </div>
+    <div class="card">
+      <span class="badge">Subject pattern</span>
+      <h5 style="color:var(--purple-2);margin-bottom:.5rem">Math &gt; reading, everywhere</h5>
+      <p style="font-size:.9rem;color:var(--ink-2)">Mathematics associations are stronger across every population, suggesting math instruction depends more on systematic organizational approaches, while reading is shaped by broader factors like home environments the CCI can't reach.</p>
+    </div>
+  </div>
+
+  <div class="callout purple">
+    <h4>The equity interpretation</h4>
+    <p style="font-size:.95rem">The differential benefits reveal that the CCI operates as an equity-<em>enhancing</em> mechanism rather than amplifying existing advantage: it reflects schools' ability to build and sustain the specialized systems that students facing the greatest institutional barriers need most. This shifts the frame from deficit-based explanations of achievement gaps toward institutional solutions.</p>
+  </div>
+</section>
+
+<!-- ============================ COLLEGE PATHWAYS ============================ -->
+<section id="pathways">
+  <h2 class="section-title">Finding 2 — Capacity channels students toward four-year colleges</h2>
+  <p class="section-desc">High-capacity high schools don't just raise college-going — they shape <em>which</em> college pathway students take, boosting four-year enrollment while systematically reducing two-year enrollment.</p>
+
+  <div class="card">
+    <div class="chart-box" style="height:340px"><canvas id="chartChannel" aria-label="Grouped bar chart of Optimal Capacity effects on four-year versus two-year college enrollment with district fixed effects. Non-rural: positive 6.16 four-year, negative 1.41 two-year. Charter: positive 5.24, negative 3.51. Overall: positive 4.34, negative 0.71. Traditional public: positive 4.22, negative 0.62."></canvas></div>
+    <p class="chart-note">Optimal vs. Minimal Capacity effects on college enrollment (pp), district + year FE. Within districts, even Moderate Capacity confers a significant +1.04pp four-year advantage.</p>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <span class="badge">Governance</span>
+      <h5 style="color:var(--purple-2);margin-bottom:.5rem">The charter reveal</h5>
+      <p style="font-size:.9rem;color:var(--ink-2)">Across districts, charter capacity looks ineffective for college-going (non-significant estimates). But <em>within</em> districts, Optimal Capacity charters show a +5.24pp four-year advantage — among the largest in the study — alongside the strongest channeling away from two-year colleges (−3.51pp). Charter success appears highly dependent on district-level regulatory support and higher-ed relationships.</p>
+    </div>
+    <div class="card">
+      <span class="badge">Geography</span>
+      <h5 style="color:var(--purple-2);margin-bottom:.5rem">Rural schools don't channel</h5>
+      <p style="font-size:.9rem;color:var(--ink-2)">Non-rural Optimal schools show large four-year advantages (+6.16pp within districts) with clear channeling (−1.41pp two-year). Rural schools show only modest four-year gains (+2.55pp, year-only) and slightly <em>positive</em> two-year effects — community colleges remain a vital pathway where four-year access is constrained.</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <h4>The channeling phenomenon</h4>
+    <p style="font-size:.95rem">The consistent negative two-year effects across most contexts suggest high-capacity schools develop institutional cultures, counseling systems, and academic programs that orient students toward four-year institutions over extended periods — a chronosystem effect on developmental trajectories, not just a bump in achievement. It also raises genuine equity questions about pathway diversity and the role of community colleges in rural economies.</p>
+  </div>
+</section>
+
+<!-- ============================ CONTEXT ============================ -->
+<section id="context">
+  <h2 class="section-title">Finding 3 — Context shapes how far capacity reaches</h2>
+  <p class="section-desc">The same organizational capacity produces different returns depending on the resource environment around the school — the mesosystem at work.</p>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="chart-box"><canvas id="chartUrban" aria-label="Grouped bar chart of Optimal Capacity achievement advantages by urbanicity with district fixed effects. City: 5.58 percentage points math, 4.68 reading. Suburban: 4.07 and 2.75. Town: 4.39 and 2.40. Rural: 3.44 and 2.01."></canvas></div>
+      <p class="chart-note">Optimal vs. Minimal achievement advantages (pp) by urbanicity, district + year FE.</p>
+    </div>
+    <div class="card">
+      <div class="chart-box"><canvas id="chartHubs" aria-label="Bar chart of four-year college enrollment advantages by university hub: Houston Metro 7.42 percentage points, DFW Metro 5.76, San Antonio 5.41, South Texas 4.50, West Texas 4.18, Other slash Rural 2.17."></canvas></div>
+      <p class="chart-note">Optimal Capacity four-year enrollment advantages (pp) by university hub, district FE. Channeling from two-year colleges is significant only in the big metros (Houston −1.88, DFW −0.98, San Antonio −1.79).</p>
+    </div>
+  </div>
+
+  <div class="grid-3" style="margin-top:1.6rem">
+    <div class="card">
+      <span class="badge">Standout</span>
+      <h5 style="color:var(--purple-2);margin-bottom:.5rem">Non-rural charters lead achievement</h5>
+      <p style="font-size:.9rem;color:var(--ink-2)">Optimal Capacity non-rural charters post the largest achievement estimates in any context: +7.90pp math and +7.91pp reading within districts — while rural charters show non-significant negatives, likely reflecting tiny samples.</p>
+    </div>
+    <div class="card">
+      <span class="badge">Anomaly</span>
+      <h5 style="color:var(--purple-2);margin-bottom:.5rem">The Central Texas puzzle</h5>
+      <p style="font-size:.9rem;color:var(--ink-2)">The Austin–Waco hub shows negative and null four-year estimates — possibly reflecting high private-college attendance the data can't see, or the competitive admissions market around the state's flagships. A genuinely interesting open question.</p>
+    </div>
+    <div class="card">
+      <span class="badge">Honest caveat</span>
+      <h5 style="color:var(--purple-2);margin-bottom:.5rem">Interaction tests: not significant</h5>
+      <p style="font-size:.9rem;color:var(--ink-2)">Stratified analyses show meaningful practical differences, but formal moderation tests are non-significant (only rural × reading approaches the 0.10 threshold at p = 0.095). Contextual variation is real in pattern but operates through complex mechanisms formal tests don't cleanly capture.</p>
+    </div>
+  </div>
+
+  <div class="callout purple">
+    <h4>A surprise worth noting</h4>
+    <p style="font-size:.95rem">The region with the highest proportion of Optimal Capacity campuses isn't a metro at all — it's Edinburg (Region 1) at 31.2%, on the state's southern border. And the Other/Rural hub shows a relatively high Optimal share (17.4%), evidence that some rural schools build strong organizational capacity despite labor-market constraints.</p>
+  </div>
+</section>
+
+<!-- ============================ TAKEAWAYS ============================ -->
+<section id="takeaways">
+  <h2 class="section-title">Takeaways</h2>
+  <p class="section-desc">What Paper 2 establishes — and the question it hands to Paper 3.</p>
+
+  <div class="grid-3">
+    <div class="card">
+      <span class="badge">Equity</span>
+      <h5 style="color:var(--purple-2);margin-bottom:.5rem">Capacity compensates for systemic disadvantage</h5>
+      <p style="font-size:.9rem;color:var(--ink-2)">The largest benefits accrue to emergent bilingual students and students with disabilities — a measurable, institutional lever for educational equity rather than a deficit-based account of gaps.</p>
+    </div>
+    <div class="card">
+      <span class="badge">Context</span>
+      <h5 style="color:var(--purple-2);margin-bottom:.5rem">Effectiveness is context-dependent</h5>
+      <p style="font-size:.9rem;color:var(--ink-2)">From +7.90pp in non-rural charters to modest rural estimates, environmental resources fundamentally shape capacity returns — school effectiveness should be valued within local contexts rather than through uniform statewide metrics.</p>
+    </div>
+    <div class="card">
+      <span class="badge">Trajectories</span>
+      <h5 style="color:var(--purple-2);margin-bottom:.5rem">Capacity shapes pathways, not just scores</h5>
+      <p style="font-size:.9rem;color:var(--ink-2)">The channeling effect shows organizational capacity operating on students' long-run trajectories — influencing aspirations and transitions over years, exactly as the chronosystem predicts.</p>
+    </div>
+  </div>
+
+  <div class="callout" style="margin-top:1.6rem">
+    <h4>Limitations</h4>
+    <p style="font-size:.94rem">The design is correlational — it strengthens the CCI's measurement framework and motivates causal work, but cannot establish causality. THECB enrollment data cover Texas public institutions only, missing private and out-of-state pathways. And subgroup analyses use separate models by necessity of the administrative data structure, preventing direct cross-subgroup comparisons within a single model.</p>
+  </div>
+
+  <div class="callout purple">
+    <h4>The question this paper hands to Paper 3</h4>
+    <p style="font-size:.95rem">If organizational capacity can compensate for systemic disadvantage and deliver the greatest benefits to the students who need institutional support most, the critical question becomes: <strong>which policies can reliably build that capacity?</strong> The working paper takes this up directly — <a href="Deep_Dive_Paper3.html">read "From Incentives to Capacity" →</a></p>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================ FOOTER ============================ -->
+<footer class="site-footer">
+  <h2>Continue the conversation</h2>
+  <p>Interested in discussing this research or potential collaborations?</p>
+  <div class="footer-links">
+    <a href="research.html" class="footer-btn"><span aria-hidden="true">←</span> Back to portfolio</a>
+    <a href="Deep_Dive_Paper1.html" class="footer-btn"><span aria-hidden="true">📑</span> Paper 1: the CCI</a>
+    <a href="Deep_Dive_Paper3.html" class="footer-btn"><span aria-hidden="true">📄</span> Paper 3: the working paper</a>
+    <a href="mailto:roy.zamora@ttu.edu" class="footer-btn"><span aria-hidden="true">📧</span> Email discussion</a>
+    <a href="https://www.linkedin.com/in/roy-zamora2/" class="footer-btn" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">💼</span> LinkedIn</a>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ================= Texas hub map ================= */
+  const NS = 'http://www.w3.org/2000/svg';
+  const svg = document.getElementById('txmap');
+  const DEFAULT = {
+    kicker:'The geography of capacity', title:'Eight university hubs, eight different returns',
+    desc:'The same organizational capacity pays off differently depending on the higher-education ecosystem around the school. Markers are sized by the four-year college enrollment advantage of Optimal Capacity schools (district FE).',
+    chips:['Strongest: Houston +7.42pp','Puzzle: Central TX n.s.','Surprise: Edinburg 31.2% Optimal']
+  };
+  const HUBS = [
+    {x:845,y:560,eff:7.42,name:'Houston Metro',
+     kicker:'University hub \u00b7 ESC Region 4',
+     desc:'The strongest capacity payoff in the state: +7.42pp four-year enrollment, with significant channeling away from two-year colleges (\u22121.88pp) \u2014 despite having the highest share of Minimal Capacity schools (47.7%).',
+     chips:['+7.42pp four-year','\u22121.88pp two-year','47.7% Minimal Capacity']},
+    {x:753,y:340,eff:5.76,name:'DFW Metro',
+     kicker:'University hub \u00b7 ESC Regions 10\u201311',
+     desc:'+5.76pp four-year advantage with channeling (\u22120.98pp). The most balanced capacity distribution of any hub \u2014 and the highest Optimal Capacity share, at 18.7%.',
+     chips:['+5.76pp four-year','\u22120.98pp two-year','18.7% Optimal \u2014 state high']},
+    {x:577,y:597,eff:5.41,name:'San Antonio',
+     kicker:'University hub \u00b7 ESC Region 20',
+     desc:'+5.41pp four-year advantage with significant channeling (\u22121.79pp) \u2014 the third metro where capacity systematically redirects students toward four-year institutions.',
+     chips:['+5.41pp four-year','\u22121.79pp two-year']},
+    {x:700,y:662,eff:4.50,name:'South Texas',
+     kicker:'University hub \u00b7 ESC Regions 1\u20133',
+     desc:'+4.50pp four-year advantage (district FE). Home to the study\u2019s biggest surprise: Edinburg (Region 1), on the border, has the highest Optimal Capacity share in Texas \u2014 31.2%.',
+     chips:['+4.50pp four-year','Edinburg: 31.2% Optimal']},
+    {x:350,y:500,eff:4.18,name:'West Texas',
+     kicker:'University hub \u00b7 ESC Regions 18\u201319',
+     desc:'+4.18pp within districts \u2014 and the largest year-only estimate in the state (+9.14pp), underscoring how much attending a high-capacity school matters where options are scarce.',
+     chips:['+4.18pp district FE','+9.14pp year-only \u2014 state high']},
+    {x:878,y:440,eff:null,name:'East Texas',dash:true,color:'#c9a24b',r:15,
+     kicker:'University hub \u00b7 ESC Regions 5\u20138',
+     desc:'Moderate but significant four-year advantages for Optimal Capacity schools once district factors are controlled \u2014 without the metro-style channeling away from two-year colleges.',
+     chips:['Moderate, significant (district FE)','No systematic channeling']},
+    {x:686,y:472,eff:null,name:'Central Texas',hollow:true,r:14,
+     kicker:'University hub \u00b7 ESC Regions 12\u201313 (Austin\u2013Waco)',
+     desc:'The puzzle: negative and null four-year estimates in the state\u2019s capital region. Possibly high private-college attendance the data can\u2019t see, or the competitive admissions market around the flagships. A genuinely open question.',
+     chips:['Null / negative estimates','Open research question']},
+    {x:490,y:322,eff:2.17,name:'Other / Rural',
+     kicker:'University hub \u00b7 ESC Regions 9, 14\u201317',
+     desc:'+2.17pp four-year advantage, with little channeling \u2014 community colleges stay central to rural pathways. And 17.4% of these schools reach Optimal Capacity despite labor-market constraints.',
+     chips:['+2.17pp four-year','17.4% Optimal despite constraints']}
+  ];
+  const kEl=document.getElementById('mKicker'), tEl=document.getElementById('mTitle'),
+        dEl=document.getElementById('mDesc'),  mEl=document.getElementById('mMeta');
+  function show(d){
+    kEl.textContent=d.kicker; tEl.textContent=d.title||d.name; dEl.textContent=d.desc;
+    mEl.innerHTML=d.chips.map(c=>`<span class="sun-chip">${c}</span>`).join('');
+  }
+  function activate(el,d){
+    svg.querySelectorAll('.hub').forEach(x=>x.classList.remove('active'));
+    if(el){el.classList.add('active');svg.classList.add('has-active');show(d);}
+    else{svg.classList.remove('has-active');show(DEFAULT);}
+  }
+  document.getElementById('mapReset').addEventListener('mouseenter',()=>activate(null));
+  document.getElementById('mapReset').addEventListener('click',()=>activate(null));
+  HUBS.forEach(d=>{
+    const g=document.createElementNS(NS,'g');
+    g.setAttribute('class','hub'); g.setAttribute('tabindex','0'); g.setAttribute('role','button');
+    g.setAttribute('aria-label', d.eff!==null ? `${d.name}: plus ${d.eff} percentage points four-year enrollment` : d.name);
+    const r = d.r || (9 + d.eff*2.6);
+    if(d.eff!==null && !d.dash){
+      const pulse=document.createElementNS(NS,'circle');
+      pulse.setAttribute('cx',d.x); pulse.setAttribute('cy',d.y); pulse.setAttribute('r',r);
+      pulse.setAttribute('fill','none'); pulse.setAttribute('stroke','#f5c8d2'); pulse.setAttribute('stroke-width','2');
+      pulse.setAttribute('class','pulse'); g.appendChild(pulse);
+    }
+    const c=document.createElementNS(NS,'circle');
+    c.setAttribute('cx',d.x); c.setAttribute('cy',d.y); c.setAttribute('r',r);
+    if(d.hollow){ c.setAttribute('fill','rgba(255,255,255,.06)'); c.setAttribute('stroke','#9d8bb8'); c.setAttribute('stroke-width','2'); c.setAttribute('stroke-dasharray','4 3'); }
+    else if(d.dash){ c.setAttribute('fill',d.color); c.setAttribute('fill-opacity','.85'); c.setAttribute('stroke','#fff'); c.setAttribute('stroke-width','1.5'); c.setAttribute('stroke-dasharray','4 3'); }
+    else { c.setAttribute('fill','#f5c8d2'); c.setAttribute('stroke','#fff'); c.setAttribute('stroke-width','1.5'); }
+    g.appendChild(c);
+    if(d.eff!==null && !d.dash){
+      const v=document.createElementNS(NS,'text');
+      v.setAttribute('x',d.x); v.setAttribute('y',d.y+5); v.setAttribute('text-anchor','middle');
+      v.setAttribute('font-size','13'); v.setAttribute('font-weight','700'); v.setAttribute('fill','#3d1466');
+      v.textContent='+'+d.eff.toFixed(1); g.appendChild(v);
+    }
+    ['mouseenter','focus','click'].forEach(ev=>g.addEventListener(ev,e=>{e.preventDefault?.();activate(g,d);}));
+    svg.appendChild(g);
+  });
+
+  /* ================= Charts ================= */
+  if (typeof Chart === 'undefined') return;
+  const css=getComputedStyle(document.documentElement);
+  const PURPLE=css.getPropertyValue('--purple').trim(), PURPLE2=css.getPropertyValue('--purple-2').trim(),
+        CRIMSON=css.getPropertyValue('--crimson').trim(), GOLD=css.getPropertyValue('--gold').trim(),
+        INK2=css.getPropertyValue('--ink-2').trim(), LINE=css.getPropertyValue('--line').trim();
+
+  Chart.defaults.font.family="'Public Sans', sans-serif";
+  Chart.defaults.font.size=12; Chart.defaults.color=INK2;
+  Chart.defaults.animation = reduceMotion ? false : {duration:800, easing:'easeOutQuart'};
+  Chart.defaults.plugins.legend.labels.usePointStyle=true;
+  Chart.defaults.plugins.legend.labels.boxHeight=7;
+  Chart.defaults.plugins.tooltip.backgroundColor='#211c29';
+  Chart.defaults.plugins.tooltip.padding=10;
+  Chart.defaults.plugins.tooltip.cornerRadius=8;
+  const grid={color:LINE};
+  const zeroLine={id:'zeroLine',beforeDraw(c){const y=c.scales.y;if(!y)return;const y0=y.getPixelForValue(0);
+    if(y0<c.chartArea.top||y0>c.chartArea.bottom)return;const x=c.ctx;x.save();x.strokeStyle='#c9c2d6';
+    x.lineWidth=1.5;x.setLineDash([4,4]);x.beginPath();x.moveTo(c.chartArea.left,y0);x.lineTo(c.chartArea.right,y0);x.stroke();x.restore();}};
+
+  /* Equity effects by subgroup */
+  new Chart(document.getElementById('chartEquity'),{
+    type:'bar',
+    data:{
+      labels:['Emergent Bilingual','All Students','Hispanic','Econ. Disadvantaged','African American','Special Education'],
+      datasets:[
+        {label:'Math', data:[6.27,4.67,4.64,4.54,4.15,3.32], backgroundColor:PURPLE, borderRadius:6},
+        {label:'Reading', data:[5.96,3.39,3.29,3.41,3.42,3.52], backgroundColor:CRIMSON, borderRadius:6}
+      ]
+    },
+    options:{
+      maintainAspectRatio:false, indexAxis:'y',
+      scales:{x:{grid,title:{display:true,text:'Percentage-point advantage (district FE)'},beginAtZero:true},
+              y:{grid:{display:false}}},
+      plugins:{
+        title:{display:true,text:'The biggest gains go to the students facing the biggest barriers',color:PURPLE,font:{size:14,weight:'600'}},
+        tooltip:{callbacks:{label:c=>` ${c.dataset.label}: +${c.parsed.x}pp`}}
+      }
+    }
+  });
+
+  /* Channeling: 4yr vs 2yr */
+  new Chart(document.getElementById('chartChannel'),{
+    type:'bar',
+    plugins:[zeroLine],
+    data:{
+      labels:['Non-rural','Charter','Overall','Traditional public'],
+      datasets:[
+        {label:'Four-year enrollment', data:[6.16,5.24,4.34,4.22], backgroundColor:PURPLE, borderRadius:6},
+        {label:'Two-year enrollment', data:[-1.41,-3.51,-0.71,-0.62], backgroundColor:CRIMSON, borderRadius:6}
+      ]
+    },
+    options:{
+      maintainAspectRatio:false,
+      scales:{y:{grid,title:{display:true,text:'Effect on enrollment (pp)'}},x:{grid:{display:false}}},
+      plugins:{
+        title:{display:true,text:'Up to four-year colleges, away from two-year colleges',color:PURPLE,font:{size:14,weight:'600'}},
+        tooltip:{callbacks:{label:c=>` ${c.dataset.label}: ${c.parsed.y>0?'+':''}${c.parsed.y}pp`}}
+      }
+    }
+  });
+
+  /* Urbanicity */
+  new Chart(document.getElementById('chartUrban'),{
+    type:'bar',
+    data:{
+      labels:['City','Suburban','Town','Rural'],
+      datasets:[
+        {label:'Math', data:[5.58,4.07,4.39,3.44], backgroundColor:PURPLE, borderRadius:6},
+        {label:'Reading', data:[4.68,2.75,2.40,2.01], backgroundColor:CRIMSON, borderRadius:6}
+      ]
+    },
+    options:{
+      maintainAspectRatio:false,
+      scales:{y:{grid,title:{display:true,text:'Percentage-point advantage'},beginAtZero:true},x:{grid:{display:false}}},
+      plugins:{
+        title:{display:true,text:'Capacity returns shrink from city to rural',color:PURPLE,font:{size:14,weight:'600'}},
+        tooltip:{callbacks:{label:c=>` ${c.dataset.label}: +${c.parsed.y}pp`}}
+      }
+    }
+  });
+
+  /* University hubs */
+  new Chart(document.getElementById('chartHubs'),{
+    type:'bar',
+    data:{
+      labels:['Houston Metro','DFW Metro','San Antonio','South Texas','West Texas','Other / Rural'],
+      datasets:[{data:[7.42,5.76,5.41,4.50,4.18,2.17],
+        backgroundColor:[PURPLE,PURPLE,PURPLE2,PURPLE2,PURPLE2,'#b6a6cf'], borderRadius:6}]
+    },
+    options:{
+      maintainAspectRatio:false,
+      scales:{y:{grid,title:{display:true,text:'Four-year enrollment advantage (pp)'},beginAtZero:true},x:{grid:{display:false}}},
+      plugins:{legend:{display:false},
+        title:{display:true,text:'Metros amplify the four-year advantage',color:PURPLE,font:{size:14,weight:'600'}},
+        tooltip:{callbacks:{label:c=>` +${c.parsed.y}pp`}}
+      }
+    }
+  });
+})();
+</script>
+</body>
+</html>
